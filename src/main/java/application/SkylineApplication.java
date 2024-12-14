@@ -10,8 +10,8 @@ import java.io.IOException;
 public class SkylineApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/login_page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1247, 687);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
