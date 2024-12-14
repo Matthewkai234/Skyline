@@ -14,6 +14,14 @@ public class FlightsBookingModel {
     @Column(name = "status")
     private String status;
 
+    public FlightsBookingModel() {
+    }
+
+    public FlightsBookingModel(int booking_id, LocalDate bookingDate, Status status) {
+        this.booking_id = booking_id;
+        this.bookingDate = bookingDate;
+        this.status = status.toString();
+    }
 
     public enum Status {
         PENDING,
