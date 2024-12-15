@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>-->
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="693.0" style="-fx-background-color: #FFFFFF; -fx-background-color: linear-gradient(to bottom, rgba(240, 248, 255, 0.6), rgba(173, 216, 230, 0.4));" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text fill="#040539" layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CompanyFlight" wrappingWidth="137.5999755859375" />
+        <Text fill="#148fff" layoutX="294.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flights" wrappingWidth="52.79998779296875">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="#777789" layoutX="347.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotels" wrappingWidth="52.79998779296875" />
+        <Text layoutX="172.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+        <Pane layoutX="32.0" layoutY="91.0" prefHeight="325.0" prefWidth="451.0" style="-fx-background-color: #FFFFFF;">
+            <children>
+                <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="14.0" layoutY="98.0" preserveRatio="true">
+                    <image>
+<!--                        <Image url="@../../../img/AirAsia_Logo.png" />-->
+                    </image>
+                    <clip>
+                        <Circle centerX="16.5" centerY="16.5" radius="15.0" />
+                    </clip>
+                </ImageView>
+                <Text fill="#040539" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Review Client Booking" wrappingWidth="137.5999755859375">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="11.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DXB-CAI" wrappingWidth="72.7203369140625">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Text>
+                <Line endX="338.9999694824219" endY="-0.4999847412109375" layoutX="112.0" layoutY="84.0" startX="-111.99999237060547" startY="-0.4999847412109375" stroke="#c9c9c9" />
+                <Text fill="#777789" layoutX="55.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirates Airline" wrappingWidth="85.376953125" />
+                <Text fill="#040539" layoutX="55.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BG | 612" wrappingWidth="65.0">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#b9b9bf" layoutX="355.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Economy Class" wrappingWidth="91.12030029296864">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <Line endX="338.9999694824219" endY="0.5000152587890625" layoutX="112.0" layoutY="162.0" startX="-111.99999237060547" startY="-0.4999847412109375" stroke="#c9c9c9" />
+                <Text fill="#777789" layoutX="16.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Depart" wrappingWidth="85.376953125" />
+                <Text fill="#040539" layoutX="15.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="04:30 pm" wrappingWidth="65.0">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="15.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun, 12,04,2024" wrappingWidth="99.84130859375">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#040539" layoutX="17.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DXB" wrappingWidth="65.0">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="16.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirate" wrappingWidth="99.84130859375">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="341.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arrive" wrappingWidth="85.376953125" />
+                <Text fill="#040539" layoutX="340.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="08:00 pm" wrappingWidth="65.0">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="340.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun, 12,04,2024" wrappingWidth="99.84130859375">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#040539" layoutX="342.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CAI" wrappingWidth="65.0">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="341.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cairo" wrappingWidth="99.84130859375">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#148fff" layoutX="179.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight details" wrappingWidth="72.72033691406244">
+                    <font>
+                        <Font name="System Bold" size="11.0" />
+                    </font>
+                </Text>
+                <QuadCurve controlX="12.000030517578125" controlY="-77.99998474121094" endX="82.84127807617188" endY="-5.0" fill="WHITE" layoutX="190.0" layoutY="240.0" startX="-53.399993896484375" startY="-5.0" stroke="BLACK" strokeType="INSIDE" />
+                <Text fill="#777789" layoutX="178.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="03h 30m" wrappingWidth="99.84130859375">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Button layoutX="364.0" layoutY="28.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="BOOK NOW" textFill="WHITE">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+        <Pane layoutX="495.0" layoutY="91.0" prefHeight="224.0" prefWidth="167.0" style="-fx-background-color: white;">
+            <children>
+                <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="6.0" layoutY="14.0" preserveRatio="true">
+                    <image>
+<!--                        <Image url="@../../../img/AirAsia_Logo.png" />-->
+                    </image>
+                    <clip>
+                        <Circle centerX="16.5" centerY="16.5" radius="15.0" />
+                    </clip>
+                </ImageView>
+                <Text fill="#040539" layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirates Airline" wrappingWidth="137.5999755859375">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+                <Line endX="526.0" endY="52.40000915527344" layoutX="-373.0" layoutY="3.0" startX="387.70001220703125" startY="52.40000915527344" stroke="#c9c9c9" />
+                <Text fill="#777789" layoutX="13.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fare Summary" wrappingWidth="85.376953125" />
+                <Text fill="#040539" layoutX="13.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Traveller" wrappingWidth="65.0">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#040539" layoutX="109.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD 250$" wrappingWidth="64.99999999999994" />
+                <Text fill="#040539" layoutX="13.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax" wrappingWidth="65.0">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#040539" layoutX="112.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD 0$" wrappingWidth="64.99999999999994" />
+                <Line endX="526.0" endY="52.40000915527344" layoutX="-373.0" layoutY="132.0" startX="387.70001220703125" startY="52.40000915527344" stroke="#c9c9c9" />
+                <Text fill="#040539" layoutX="14.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="65.0">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <Text fill="#040539" layoutX="112.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD 250$" wrappingWidth="64.99999999999994" />
+                <Text fill="#777789" layoutX="13.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Base" wrappingWidth="85.376953125">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="110.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="( 1 * 250 )" wrappingWidth="85.376953125">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="12.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taxess + Fees" wrappingWidth="73.0">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#777789" layoutX="125.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="16.20001220703125">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+            </children>
+        </Pane>
+        <Button layoutX="493.0" layoutY="313.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="167.0" style="-fx-background-color: #148fff; -fx-border-radius: 80px;" text="BOOK NOW" textFill="WHITE">
+            <font>
+                <Font size="11.0" />
+            </font>
+        </Button>
+        <ImageView fitHeight="33.0" fitWidth="40.0" layoutX="627.0" layoutY="25.0" preserveRatio="true">
+            <image>
+<!--                <Image url="@../../../img/person.jpg" />-->
+            </image>
+            <clip>
+                <Circle centerX="20.0" centerY="21.0" radius="21.0" />
+            </clip>
+        </ImageView>
+    </children>
+</Pane>
