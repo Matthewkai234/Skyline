@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane prefHeight="849.0" prefWidth="1366.0" style="-fx-background-color: white;" stylesheets="@../styles/bookings-view.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookingsController">
+   <tabs>
+      <Tab text="Flight Bookings">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="flights-bookings-tab">
+               <children>
+                  <TableView fx:id="tableView" layoutX="244.0" layoutY="106.0" prefHeight="539.0" prefWidth="859.0" styleClass="bookings-table" stylesheets="@../styles/bookings-view.css">
+                     <columns>
+                        <TableColumn fx:id="bookingIdColumn" minWidth="100.0" prefWidth="100.0" styleClass="bookings-table-header" text="Booking ID" />
+                        <TableColumn fx:id="bookingDateColumn" minWidth="0.0" prefWidth="100.0" styleClass="bookings-table-header" text="Booking Date" />
+                        <TableColumn fx:id="bookingStatusColumn" minWidth="0.0" prefWidth="100.0" styleClass="bookings-table-header" text="Booking Status" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Hotel Bookings">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="244.0" layoutY="106.0" prefHeight="539.0" prefWidth="859.0" styleClass="bookings-table" stylesheets="@../styles/bookings-view.css">
+                     <columns>
+                        <TableColumn minWidth="100.0" prefWidth="100.0" styleClass="bookings-table-header" text="Booking ID" />
+                        <TableColumn minWidth="0.0" prefWidth="100.0" styleClass="bookings-table-header" text="Booking Date" />
+                        <TableColumn minWidth="0.0" prefWidth="100.0" styleClass="bookings-table-header" text="Booking Status" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Booking History">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
