@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -12,23 +13,22 @@ import java.io.IOException;
 
 public class SearchFlightController {
     @FXML
-    protected void handelSearchBtn(ActionEvent event){
+    public void handelSearchBtn(ActionEvent actionEvent) throws IOException {
+        loadNewWindow("ResultFlight.fxml");
+    }
+
+    private void loadNewWindow(String fxmlFile) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/ResultFlight.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-            stage.setScene(scene);
-            stage.setTitle("Home Page");
-            stage.show();
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
+            Node content = loader.load();
+            Stage newStage = new Stage();
+            Scene scene = new Scene((Parent) content);
+            newStage.setScene(scene);
+            newStage.setTitle("Skyline");
+            newStage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
     }
 
 

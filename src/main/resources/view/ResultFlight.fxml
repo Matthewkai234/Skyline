@@ -131,7 +131,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Text>
-                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handelShowBtn">
+                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handleShowBtn">
                     <font>
                         <Font size="11.0" />
                     </font>
@@ -186,7 +186,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Text>
-                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handelShowBtn">
+                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handleShowBtn">
                     <font>
                         <Font size="11.0" />
                     </font>
@@ -236,7 +236,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Text>
-                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handelShowBtn">
+                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handleShowBtn">
                     <font>
                         <Font size="11.0" />
                     </font>
@@ -286,7 +286,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Text>
-                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handelShowBtn">
+                <Button layoutX="386.0" layoutY="24.0" mnemonicParsing="false"  prefHeight="12.0" prefWidth="53.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="SHOW" textFill="WHITE" onAction = "#handleShowBtn">
                     <font>
                         <Font size="11.0" />
                     </font>

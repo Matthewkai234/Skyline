@@ -44,7 +44,7 @@
                                        <Image url="@../images/airplane-57-48.png" />
                                    </image>
                                </ImageView>
-                               <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: transparent;" styleClass="Hbutton" text="Flights">
+                               <Button onAction="#flights" mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: transparent;" styleClass="Hbutton" text="Flights">
                                    <font>
                                        <Font size="16.0" />
                                    </font>

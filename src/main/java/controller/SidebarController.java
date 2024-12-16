@@ -58,6 +58,9 @@ public class SidebarController implements Initializable {
     public void login(ActionEvent actionEvent) throws IOException {
         loadLogin();
     }
+    public void flights(ActionEvent actionEvent) throws IOException {
+        loadFlights();
+    }
 
 
     public void loadHome() {
@@ -72,6 +75,8 @@ public class SidebarController implements Initializable {
     }
     public void loadAdminPanel(){loadPage("adminHome.fxml");}
     public void loadLogin(){loadPage("login_page.fxml");}
+    public void loadFlights(){loadPage("SearchFlight.fxml");}
+
 
 
     private void loadPage(String fxmlFile) {

@@ -6,23 +6,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ForgotPasswordController {
 
+    public void handleExitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
     @FXML
     private void navigateToVerificationPage(ActionEvent event) {
         try {
-            // Load Verification page FXML with the correct path
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/verification.fxml"));
             Parent root = loader.load();
-
-            // Get current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Set Verification page scene
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();

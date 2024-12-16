@@ -76,7 +76,7 @@
          <Button prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #00AFF0; -fx-text-fill: white;" text="+ New Booking" />
          <Button prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #00AFF0; -fx-text-fill: white;" text="+ Add Hotel" />
          <Button prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #00AFF0; -fx-text-fill: white;" text="+ Add Flight" />
-         <Button prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #00AFF0; -fx-text-fill: white;" text="+ Add Customer" />
+         <Button onAction="#addCustomerWindow" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #00AFF0; -fx-text-fill: white;" text="+ Add Customer" />
       </HBox>
    </VBox>
 </AnchorPane>

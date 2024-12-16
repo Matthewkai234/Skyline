@@ -11,19 +11,22 @@ import java.io.IOException;
 
 public class page1ghcontroller {
 
-    public void onSearchButtonClick(ActionEvent event) {
+    public void onSearchButtonClick(ActionEvent actionEvent) throws IOException {
+        loadNewWindow("page2gh.fxml");
+    }
+
+    private void loadNewWindow(String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/page2gh.fxml"));
-            Parent nextPageParent = loader.load();
-
-            Scene nextPageScene = new Scene(nextPageParent);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(nextPageScene);
-            stage.show();
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
+            Node content = loader.load();
+            Stage newStage = new Stage();
+            Scene scene = new Scene((Parent) content);
+            newStage.setScene(scene);
+            newStage.setTitle("Skyline");
+            newStage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+

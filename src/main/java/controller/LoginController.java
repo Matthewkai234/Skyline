@@ -1,8 +1,6 @@
 package controller;
 
-import application.SkylineApplication;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,10 +9,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ResultFlightController {
-    @FXML
-    public void handleShowBtn(ActionEvent actionEvent) throws IOException {
-        loadNewWindow("ReviewForFlight.fxml");
+public class LoginController {
+
+
+    public void forgetPasswordWindow(ActionEvent actionEvent) throws IOException {
+        loadNewWindow("ForgotPassword.fxml");
     }
 
     private void loadNewWindow(String fxmlFile) {

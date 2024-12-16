@@ -4,10 +4,19 @@ import database.Flight;
 import database.Hotel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class ListingsController {
 
@@ -33,6 +42,25 @@ public class ListingsController {
         setupHotelTable();
         loadDummyData();
     }
+
+    public void addListingWindow(ActionEvent actionEvent) throws IOException {
+        loadNewWindow("Editlisting.fxml");
+    }
+
+    private void loadNewWindow(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
+            Node content = loader.load();
+            Stage newStage = new Stage();
+            Scene scene = new Scene((Parent) content);
+            newStage.setScene(scene);
+            newStage.setTitle("Skyline");
+            newStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void setupFlightTable() {
         flightNumberColumn.setCellValueFactory(data -> data.getValue().flightNumberProperty());

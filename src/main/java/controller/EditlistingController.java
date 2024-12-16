@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
 
 public class EditlistingController {
@@ -30,13 +32,15 @@ public class EditlistingController {
     @FXML
     private void initialize() {
         listingTypeComboBox.setOnAction(event -> toggleFields());
-
-        // Ensure only "Hotel" and "Flight" options are present
         listingTypeComboBox.getItems().clear();
         listingTypeComboBox.getItems().addAll("Hotel", "Flight");
-
         hotelFieldsContainer.setVisible(false);
         flightFieldsContainer.setVisible(false);
+    }
+
+    public void handleExitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     @FXML
