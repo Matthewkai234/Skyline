@@ -57,7 +57,7 @@
                                        <Image url="@../images/hotelIcon.png" />
                                    </image>
                                </ImageView>
-                               <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: transparent;" text="Hotels">
+                               <Button onAction="#hotels" mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: transparent;" text="Hotels">
                                    <font>
                                        <Font size="16.0" />
                                    </font>

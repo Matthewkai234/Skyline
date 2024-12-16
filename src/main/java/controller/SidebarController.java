@@ -36,16 +36,22 @@ public class SidebarController implements Initializable {
 
     @FXML
     public void home(ActionEvent actionEvent) throws IOException {
-        loadHome();  // Load the home page when the "Home" button is clicked
+        loadHome();
     }
 
     public void bookings(ActionEvent actionEvent) throws IOException {
-        loadBookings();  // Load the home page when the "Home" button is clicked
+        loadBookings();
+    }
+
+    public void hotels(ActionEvent actionEvent) throws IOException {
+        loadHotels();
     }
 
     public void loadHome() {
         loadPage("home.fxml");
     }
+
+    public void loadHotels(){loadPage("page1gh.fxml");}
 
     public void loadBookings(){
         loadPage("bookings.fxml");
