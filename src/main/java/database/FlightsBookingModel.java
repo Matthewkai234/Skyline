@@ -1,5 +1,5 @@
 package database;
-
+import javafx.beans.property.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -14,7 +14,13 @@ public class FlightsBookingModel {
     @Column(name = "status")
     private String status;
 
+
+
     public FlightsBookingModel() {
+    }
+    public FlightsBookingModel(LocalDate bookingDate, Status status) {
+        this.bookingDate = bookingDate;
+        this.status = status.toString();
     }
 
     public FlightsBookingModel(int booking_id, LocalDate bookingDate, Status status) {

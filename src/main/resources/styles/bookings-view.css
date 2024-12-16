@@ -4,56 +4,31 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2); /* Subtle shadow */
     -fx-padding: 10px;
     -fx-border-width: 1px;
-    -fx-border-color: #A6D8F5; /* rgba(255, 255, 255, 0.3) Light border color */
-    -fx-border-radius: 10px;
     -fx-font-size: 14px;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
-    -fx-text-fill: white; /* Text color */
 }
 
 .bookings-table-header {
-    -fx-background-color: white; /* Darker background for header */
-    -fx-background-radius: 10px 10px 0 0; /* Rounded top corners */
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px 10px 0 0;
     -fx-border-radius: 10px 10px 0 0;
     -fx-padding: 10px 40px 10px 30px;
-    -fx-text-fill: white; /* White text color */
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
 
-.bookings-table .table-row-cell {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-padding: 8px 10px;
-    -fx-border-radius: 5px;
-}
-
-.sidebar {
-    -fx-background-color: white;
-    -fx-background-radius: 10px;
-    -fx-padding: 10px;
-    -fx-pref-width: 170px;
-    -fx-text-fill: white;
-    -fx-font-family: "Segoe UI", Arial, sans-serif;
-    -fx-font-size: 14px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
-    -fx-spacing: 10px;
-}
 
 .tab-pane {
-    -fx-background-color: transparent; /* Light background for tab content */
-    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
     -fx-padding: 10px;
 }
 
-.sidebar .HBox {
+
+
+.centerArea{
     -fx-padding: 10px;
-    -fx-border-radius: 5px;
-    -fx-alignment: center-left;
-
-    -fx-cursor: hand;
-    -fx-transition: background-color 0.3s ease, padding 0.3s ease; /* Smooth transition for background color and padding */
+    -fx-alignment: center;
 }
-
 
 
