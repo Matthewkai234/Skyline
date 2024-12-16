@@ -10,21 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.page1ghcontroller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="849.0" prefWidth="1366.0" style="-fx-background-color: white; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.page1ghcontroller">
    <children>
       <AnchorPane layoutX="28.0" layoutY="557.0" prefHeight="126.0" prefWidth="1310.0" style="-fx-border-color: #089cff;">
          <children>
-            <Button
-                    fx:id="searchButton"
-                    layoutX="1136.0"
-                    layoutY="59.0"
-                    mnemonicParsing="false"
-                    prefHeight="32.0"
-                    prefWidth="138.0"
-                    style="-fx-background-color: #089cff;"
-                    text="Search"
-                    textFill="#f7f1f1"
-                    onAction="#onSearchButtonClick" />
+            <Button fx:id="searchButton" layoutX="1136.0" layoutY="59.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="32.0" prefWidth="138.0" style="-fx-background-color: #089cff;" text="Search" textFill="#f7f1f1" />
             <TextField layoutX="55.0" layoutY="47.0" prefHeight="30.0" prefWidth="240.0" promptText="           Where to go ? " style="-fx-border-color: black;">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -32,7 +22,7 @@
             </TextField>
             <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="57.0" layoutY="39.0">
                <image>
-                  <Image url="@images/1495574559-map-location-solid-style-01_84581.png"/>
+                  <Image url="@images/1495574559-map-location-solid-style-01_84581.png" />
                </image>
             </ImageView>
 
@@ -60,21 +50,11 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button layoutX="590.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: 000000; -fx-text-fill: #089cff;" text="Hotels" textFill="#089cff">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="523.0" fitWidth="695.0" layoutX="674.0" layoutY="39.0">
          <image>
             <Image url="@images/office-company-clay-cartoon-building-ai-generated_946993-5927.png" />
          </image>
       </ImageView>
-      <Button layoutX="674.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: 000000; -fx-text-fill: #000000;" text="Flights" textFill="#383737">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
       <Text fill="#089cff" layoutX="261.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy Hotel Booking">
          <font>
             <Font name="System Bold" size="36.0" />
@@ -86,19 +66,9 @@
          </font>
       </Text>
       <Button layoutX="303.0" layoutY="381.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="162.0" style="-fx-background-color: #089cff;" text="Let's go" textFill="#f7f1f1" />
-      <ImageView fitHeight="53.0" fitWidth="54.0" layoutX="1298.0" layoutY="13.0">
-         <image>
-            <Image url="@images/9203764.png" />
-         </image>
-      </ImageView>
       <Text fill="#e48901" layoutX="52.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Hotels">
          <font>
             <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#e4a001" layoutX="41.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skyline">
-         <font>
-            <Font name="System Bold Italic" size="36.0" />
          </font>
       </Text>
    </children>

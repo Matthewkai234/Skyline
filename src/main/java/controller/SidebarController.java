@@ -47,15 +47,31 @@ public class SidebarController implements Initializable {
         loadHotels();
     }
 
+    public void adminPanel(ActionEvent actionEvent) throws IOException {
+        loadAdminPanel();
+    }
+
+    public void listings(ActionEvent actionEvent) throws IOException {
+        loadListings();
+    }
+
+    public void login(ActionEvent actionEvent) throws IOException {
+        loadLogin();
+    }
+
+
     public void loadHome() {
         loadPage("home.fxml");
     }
-
+    public void loadListings() {
+        loadPage("listings-view.fxml");
+    }
     public void loadHotels(){loadPage("page1gh.fxml");}
-
     public void loadBookings(){
         loadPage("bookings.fxml");
     }
+    public void loadAdminPanel(){loadPage("adminHome.fxml");}
+    public void loadLogin(){loadPage("login_page.fxml");}
 
 
     private void loadPage(String fxmlFile) {
