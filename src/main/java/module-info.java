@@ -17,6 +17,9 @@ module com.example.skyline {
     requires java.naming;
     requires java.sql;
     requires mysql.connector.java;
+
+    requires annotations;
+
     requires java.desktop;
 
 }
