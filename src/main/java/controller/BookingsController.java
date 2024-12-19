@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +17,7 @@ import java.awt.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class BookingsController implements Initializable {
 
@@ -35,9 +37,14 @@ public class BookingsController implements Initializable {
     FlightsBookingRepository flightsBookingRepository = new FlightsBookingRepository();
 
     ObservableList<FlightsBookingModel> initialData() {
-//        FlightsBookingModel book1 = new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.BOOKED);
-//        FlightsBookingModel book2 = new FlightsBookingModel(LocalDate.now(), FlightsBookingModel.Status.CANCELLED);
-//        FlightsBookingModel book3 = new FlightsBookingModel(LocalDate.now(), FlightsBookingModel.Status.PENDING);
+
+
+//        flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.PENDING));
+//        flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.PENDING));
+//        flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.PENDING));
+//        flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.PENDING));
+//        flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.CANCELLED));
+//        flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),FlightsBookingModel.Status.CANCELLED));
 
         var bookings = flightsBookingRepository.getAll();
         return FXCollections.<FlightsBookingModel>observableArrayList(bookings);
@@ -49,6 +56,29 @@ public class BookingsController implements Initializable {
         bookingDateColumn.setCellValueFactory (new PropertyValueFactory<FlightsBookingModel, LocalDate>( "bookingDate"));
         bookingStatusColumn.setCellValueFactory (new PropertyValueFactory<FlightsBookingModel, String>( "status"));
 
+        bookingStatusColumn.setCellFactory(column -> {
+            return new TableCell<FlightsBookingModel, String>() {
+                private final Button button = new Button();
+                @Override
+                protected void updateItem(String status, boolean empty) {
+                    super.updateItem(status, empty);
+
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        button.setText(status);
+                        button.setOnAction(event -> {
+                            FlightsBookingModel booking = getTableView().getItems().get(getIndex());
+                            booking.setStatus(FlightsBookingModel.Status.CANCELLED);
+                            flightsBookingRepository.update(booking);
+                            tableView.refresh();
+                        });
+                        setGraphic(button);
+                    }
+                }
+            };
+        });
+
         tableView.setItems(initialData());
 
         initialData().forEach(booking -> {
@@ -59,7 +89,14 @@ public class BookingsController implements Initializable {
         });
     }
 
+    public void refreshTableData() {
+        ObservableList<FlightsBookingModel> allBookings = FXCollections.observableArrayList(flightsBookingRepository.getAll());
+        ObservableList<FlightsBookingModel> filteredBookings = allBookings.stream()
+                .filter(booking -> !booking.getStatus().equals(FlightsBookingModel.Status.CANCELLED.toString()))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
+        tableView.setItems(filteredBookings);
+    }
 
 }
 
