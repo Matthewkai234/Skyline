@@ -17,7 +17,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.Objects;
-
+/*
 public class ListingsController {
 
     @FXML private TableView<Flight> flightTable;
@@ -63,6 +63,7 @@ public class ListingsController {
 
 
     private void setupFlightTable() {
+        /*
         flightNumberColumn.setCellValueFactory(data -> data.getValue().flightNumberProperty());
         airlineColumn.setCellValueFactory(data -> data.getValue().airlineProperty());
         destinationColumn.setCellValueFactory(data -> data.getValue().destinationProperty());
@@ -125,3 +126,5 @@ public class ListingsController {
         });
     }
 }
+
+ */

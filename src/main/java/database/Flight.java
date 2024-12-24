@@ -1,40 +1,87 @@
 package database;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javax.persistence.*;
+import java.time.LocalDate;
 
+// Flight class
+@Entity
+@Table(name = "flight")
 public class Flight {
-    private final StringProperty flightNumber;
-    private final StringProperty airline;
-    private final StringProperty destination;
-    private final StringProperty departureDate;
-    private final StringProperty arrivalDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer flightId;
 
-    public Flight(String flightNumber, String airline, String destination, String departureDate, String arrivalDate) {
-        this.flightNumber = new SimpleStringProperty(flightNumber);
-        this.airline = new SimpleStringProperty(airline);
-        this.destination = new SimpleStringProperty(destination);
-        this.departureDate = new SimpleStringProperty(departureDate);
-        this.arrivalDate = new SimpleStringProperty(arrivalDate);
+    @Column(name = "Airline")
+    private String Airline;
+
+    @Column(name = "TakeoffContry")
+    private String TakeoffContry;
+
+    @Column(name = "LandingCountry")
+    private String LandingCountry;
+
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "StartDate")
+    private LocalDate StartDate;
+
+    @Column(name = "ArriveDate")
+    private LocalDate ArriveDate;
+
+    public int getPrice() {
+        return price;
     }
 
-    public StringProperty flightNumberProperty() {
-        return flightNumber;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public StringProperty airlineProperty() {
-        return airline;
+    public String getLandingCountry() {
+        return LandingCountry;
     }
 
-    public StringProperty destinationProperty() {
-        return destination;
+    public void setLandingCountry(String landingCountry) {
+        this.LandingCountry = landingCountry;
     }
 
-    public StringProperty departureDateProperty() {
-        return departureDate;
+    public String getTakeoffContry() {
+        return TakeoffContry;
     }
 
-    public StringProperty arrivalDateProperty() {
-        return arrivalDate;
+    public void setTakeoffContry(String takeoffContry) {
+        this.TakeoffContry = takeoffContry;
+    }
+
+    public Integer getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(Integer flightId) {
+        this.flightId = flightId;
+    }
+
+    public String getAirline() {
+        return Airline;
+    }
+
+    public void setAirline(String airline) {
+        this.Airline = airline;
+    }
+
+    public LocalDate getStartDate() {
+        return StartDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.StartDate = startDate;
+    }
+
+    public LocalDate getArriveDate() {
+        return ArriveDate;
+    }
+
+    public void setArriveDate(LocalDate arriveDate) {
+        this.ArriveDate = arriveDate;
     }
 }
