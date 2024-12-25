@@ -13,7 +13,23 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <junit.version>5.10.2</junit.version>  </properties>
 
+  <!--    email dependency    -->
+
   <dependencies>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.4</version>
+    </dependency>
+
+
 
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -69,6 +85,11 @@
           <artifactId>annotations</artifactId>
           <version>13.0</version>
       </dependency>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>Skyline</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -12,6 +12,8 @@ module com.example.skyline {
     exports controller;
     opens controller to javafx.fxml;
     opens database to javafx.base, javafx.fxml, org.hibernate.orm.core;
+    exports util;
+    opens util to javafx.fxml;
 
 
     requires java.naming;
@@ -21,5 +23,8 @@ module com.example.skyline {
     requires annotations;
 
     requires java.desktop;
+    requires com.google.protobuf;
+    requires java.mail;
+    requires jbcrypt;
 
 }
