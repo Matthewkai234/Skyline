@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1366.0" style="-fx-background-color: #f0f0f0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.page2ghcontroller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1366.0" style="-fx-background-color: #f0f0f0;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.page2ghcontroller">
    <children>
       <Label layoutX="74.0" layoutY="48.0" prefHeight="68.0" prefWidth="250.0" text="Search result : " textFill="#089cff">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="917.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: 000000; -fx-text-fill: #089cff;" text="Hotels" textFill="#089cff">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="995.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: 000000; -fx-text-fill: black;" text="Flights" textFill="#333536">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="150.0">
          <image>
             <Image url="@images/تنزيل.jpg" />
@@ -74,452 +60,102 @@
       </Text>
       <AnchorPane layoutX="1000.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
          <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
             <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="100.0" layoutY="24.0">
                <image>
                   <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="24.0">
                <image>
                   <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="24.0">
                <image>
                   <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="164.0" layoutY="25.0">
                <image>
                   <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                </image>
             </ImageView>
-            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="hotelNameLabel1" layoutX="34.0" layoutY="6.0" text="">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel1" layoutX="152.0" layoutY="57.0" text="">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel1" layoutX="24.0" layoutY="25.0" text="">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
 
 
          </children>
       </AnchorPane>
-      <Button layoutX="1073.0" layoutY="254.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="1073.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="761.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
 
-      <AnchorPane layoutX="100.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="174.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="147.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="700.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="28.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="400.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="28.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="410.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="28.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="1000.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="30.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="700.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="30.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="400.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="30.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="100.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
-         <children>
-            <Text layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 $">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taybeh Golden Hotel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="90.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="115.0" layoutY="24.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="25.0">
-               <image>
-                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="30.0" layoutY="62.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE" onAction="#handleReserveButtonAction">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-
-         </children>
-      </AnchorPane>
-      <Button layoutX="761.0" layoutY="254.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="465.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
 
-      <Button layoutX="465.0" layoutY="252.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="1073.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
 
-      <Button layoutX="1073.0" layoutY="513.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="773.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
 
-      <Button layoutX="773.0" layoutY="513.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="465.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
 
-      <Button layoutX="465.0" layoutY="513.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="161.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
 
-      <Button layoutX="161.0" layoutY="513.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-
-      <Button layoutX="161.0" layoutY="254.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE" onAction="#handleMoreButtonAction">
+      <Button layoutX="161.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleMoreButtonAction" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -542,5 +178,383 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
+      <AnchorPane layoutX="700.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="100.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel2" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel2" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel2" layoutX="24.0" layoutY="25.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="395.0" layoutY="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="94.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel3" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel3" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel3" layoutX="18.0" layoutY="24.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1000.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="100.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="163.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel5" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel5" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel5" layoutX="24.0" layoutY="24.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="400.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="100.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="163.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel7" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel7" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel7" layoutX="24.0" layoutY="24.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="100.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="100.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="163.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel8" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel8" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel8" layoutX="24.0" layoutY="25.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="100.0" layoutY="293.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="94.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="122.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="142.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel4" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel4" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel4" layoutX="18.0" layoutY="25.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="700.0" layoutY="553.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="84.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="110.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="132.0" layoutY="24.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="154.0" layoutY="25.0">
+               <image>
+                  <Image url="@images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="hotelNameLabel6" layoutX="34.0" layoutY="6.0" text="Taybeh Golden Hotel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelPriceLabel6" layoutX="152.0" layoutY="57.0" text="30$">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLocationLabel6" layoutX="24.0" layoutY="25.0" text="paris">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
