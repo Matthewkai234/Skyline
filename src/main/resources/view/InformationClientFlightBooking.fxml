@@ -27,7 +27,7 @@
             <children>
                 <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="14.0" layoutY="98.0" preserveRatio="true">
                     <image>
-<!--                        <Image url="@../../../img/AirAsia_Logo.png" />-->
+                        <Image url="@../images/AirAsia_Logo.png" />
                     </image>
                     <clip>
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
@@ -120,7 +120,7 @@
             <children>
                 <ImageView fitHeight="33.0" fitWidth="42.0" layoutX="6.0" layoutY="14.0" preserveRatio="true">
                     <image>
-<!--                        <Image url="@../../../img/AirAsia_Logo.png" />-->
+                        <Image url="@../images/AirAsia_Logo.png" />
                     </image>
                     <clip>
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
@@ -181,7 +181,7 @@
         </Button>
         <ImageView fitHeight="33.0" fitWidth="40.0" layoutX="627.0" layoutY="25.0" preserveRatio="true">
             <image>
-<!--                <Image url="@../../../img/person.jpg" />-->
+               <Image url="@../images/person.jpg" />
             </image>
             <clip>
                 <Circle centerX="20.0" centerY="21.0" radius="21.0" />

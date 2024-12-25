@@ -1,5 +1,6 @@
 package controller;
 
+import application.SkylineApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
@@ -59,6 +61,20 @@ public class SidebarController implements Initializable {
         loadLogin();
     }
     public void flights(ActionEvent actionEvent) throws IOException {
+        /*
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/SearchFlight.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("two!");
+            stage.setScene(scene);
+            stage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+         */
         loadFlights();
     }
 
@@ -75,7 +91,7 @@ public class SidebarController implements Initializable {
     }
     public void loadAdminPanel(){loadPage("adminHome.fxml");}
     public void loadLogin(){loadPage("login_page.fxml");}
-    public void loadFlights(){loadPage("SearchFlight.fxml");}
+    public void loadFlights(){loadPage("SearchFlightBigFinal.fxml");}
 
 
 

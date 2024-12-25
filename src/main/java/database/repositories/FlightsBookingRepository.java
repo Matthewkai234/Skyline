@@ -1,7 +1,7 @@
 package database.repositories;
 
 import database.FlightsBookingModel;
-import database.interfaces.IFlightsBookingRepository;
+import database.interfaces.IBookingRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
@@ -9,7 +9,7 @@ import util.HibernateUtil;
 import java.util.List;
 
 
-public class FlightsBookingRepository implements IFlightsBookingRepository {
+public class FlightsBookingRepository implements IBookingRepository <FlightsBookingModel> {
 
     private final SessionFactory sessionFactory;
 
