@@ -1,127 +1,164 @@
 package controller;
 
-import database.Flight;
-import database.Hotel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import model.Flight;
+import model.Hotel;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
-import java.io.IOException;
-import java.util.Objects;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class ListingsController {
+    @FXML
+    private TabPane tabPane;
 
-    @FXML private TableView<Flight> flightTable;
-    @FXML private TableColumn<Flight, String> flightNumberColumn;
-    @FXML private TableColumn<Flight, String> airlineColumn;
-    @FXML private TableColumn<Flight, String> destinationColumn;
-    @FXML private TableColumn<Flight, String> departureDateColumn;
-    @FXML private TableColumn<Flight, String> arrivalDateColumn;
-    @FXML private TableColumn<Flight, Void> flightActionsColumn;
+    @FXML
+    private TableView<Flight> flightTable;
 
-    @FXML private TableView<Hotel> hotelTable;
-    @FXML private TableColumn<Hotel, String> hotelIdColumn;
-    @FXML private TableColumn<Hotel, String> hotelNameColumn;
-    @FXML private TableColumn<Hotel, String> locationColumn;
-    @FXML private TableColumn<Hotel, Void> hotelActionsColumn;
+    @FXML
+    private TableColumn<Flight, String> flightNumberColumn;
 
-    private final ObservableList<Flight> flightList = FXCollections.observableArrayList();
-    private final ObservableList<Hotel> hotelList = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Flight, String> airlineColumn;
 
+    @FXML
+    private TableColumn<Flight, String> destinationColumn;
+
+    @FXML
+    private TableColumn<Flight, String> departureDateColumn;
+
+    @FXML
+    private TableColumn<Flight, String> arrivalDateColumn;
+
+    @FXML
+    private TableColumn<Flight, String> flightActionsColumn;
+
+    @FXML
+    private TableView<Hotel> hotelTable;
+
+    @FXML
+    private TableColumn<Hotel, Integer> hotelIdColumn;
+
+    @FXML
+    private TableColumn<Hotel, String> hotelNameColumn;
+
+    @FXML
+    private TableColumn<Hotel, String> locationColumn;
+
+    @FXML
+    private TableColumn<Hotel, String> hotelActionsColumn;
+
+    private SessionFactory sessionFactory;
+
+    @FXML
     public void initialize() {
-        setupFlightTable();
-        setupHotelTable();
-        loadDummyData();
-    }
+        //Configure hibernate Session
+        try{
+            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Flight.class).addAnnotatedClass(Hotel.class);
+            sessionFactory = config.buildSessionFactory();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            System.out.println("failed to create the session");
+        }
 
-    public void addListingWindow(ActionEvent actionEvent) throws IOException {
-        loadNewWindow("Editlisting.fxml");
+        tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if (newTab != null) {
+                String tabText = newTab.getText();
+                if ("Hotels".equals(tabText)) {
+                    loadHotelData();
+                } else if ("Flights".equals(tabText)) {
+                    loadFlightData();
+                }
+            }
+        });
     }
-
-    private void loadNewWindow(String fxmlFile) {
+    @FXML
+    private void addListingWindow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
-            Node content = loader.load();
-            Stage newStage = new Stage();
-            Scene scene = new Scene((Parent) content);
-            newStage.setScene(scene);
-            newStage.setTitle("Skyline");
-            newStage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddListing.fxml"));
+            Parent root = loader.load();
+
+            AddListingController addListingController = loader.getController();
+            addListingController.setParentController(this);
+
+            Stage stage = new Stage();
+            stage.setTitle("Add New Listing");
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    private void setupFlightTable() {
-        flightNumberColumn.setCellValueFactory(data -> data.getValue().flightNumberProperty());
-        airlineColumn.setCellValueFactory(data -> data.getValue().airlineProperty());
-        destinationColumn.setCellValueFactory(data -> data.getValue().destinationProperty());
-        departureDateColumn.setCellValueFactory(data -> data.getValue().departureDateProperty());
-        arrivalDateColumn.setCellValueFactory(data -> data.getValue().arrivalDateProperty());
 
-        addEditAndDeleteIcons(flightTable, flightActionsColumn, flightList);
+    public void loadHotelData() {
+        // Set up the columns
+        hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("hotelId"));
+        hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        hotelActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+
+        // Load data from database
+        ObservableList<Hotel> hotelList = loadHotelsFromDatabase();
+
+        // Set items to the table
+        hotelTable.setItems(hotelList);
+
+    }
+
+    private ObservableList<Hotel> loadHotelsFromDatabase() {
+        ObservableList<Hotel> hotels = FXCollections.observableArrayList();
+        try(Session session = sessionFactory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Hotel> criteriaQuery = builder.createQuery(Hotel.class);
+            Root<Hotel> root = criteriaQuery.from(Hotel.class);
+            criteriaQuery.select(root);
+            List<Hotel> hotelData = session.createQuery(criteriaQuery).getResultList();
+            hotels.addAll(hotelData);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return hotels;
+
+    }
+
+    public void loadFlightData() {
+        flightNumberColumn.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
+        airlineColumn.setCellValueFactory(new PropertyValueFactory<>("airline"));
+        destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
+        arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalDate"));
+        flightActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+
+        ObservableList<Flight> flightList = loadFlightsFromDatabase();
         flightTable.setItems(flightList);
     }
 
-    private void setupHotelTable() {
-        hotelIdColumn.setCellValueFactory(data -> data.getValue().hotelIdProperty());
-        hotelNameColumn.setCellValueFactory(data -> data.getValue().nameProperty());
-        locationColumn.setCellValueFactory(data -> data.getValue().locationProperty());
-
-        addEditAndDeleteIcons(hotelTable, hotelActionsColumn, hotelList);
-        hotelTable.setItems(hotelList);
-    }
-
-    private void loadDummyData() {
-        flightList.addAll(
-                new Flight("AA123", "American Airlines", "New York", "2024-12-15", "2024-12-16"),
-                new Flight("BA456", "British Airways", "London", "2024-12-20", "2024-12-21"),
-                new Flight("DL789", "Delta Airlines", "Tokyo", "2024-12-25", "2024-12-26")
-        );
-
-        hotelList.addAll(
-                new Hotel("H001", "Grand Palace", "Paris"),
-                new Hotel("H002", "Royal Inn", "Rome"),
-                new Hotel("H003", "Seaside Hotel", "Barcelona")
-        );
-    }
-
-    private <T> void addEditAndDeleteIcons(TableView<T> table, TableColumn<T, Void> actionsColumn, ObservableList<T> list) {
-        actionsColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button editButton = new Button("Edit");
-            private final Button deleteButton = new Button("Delete");
-
-            {
-                editButton.setOnAction(event -> {
-                    T item = getTableView().getItems().get(getIndex());
-                    System.out.println("Editing: " + item);
-                });
-
-                deleteButton.setOnAction(event -> {
-                    T item = getTableView().getItems().get(getIndex());
-                    list.remove(item);
-                });
-            }
-
-            @Override
-            public void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(new HBox(5, editButton, deleteButton));
-                }
-            }
-        });
+    private ObservableList<Flight> loadFlightsFromDatabase() {
+        ObservableList<Flight> flights = FXCollections.observableArrayList();
+        try(Session session = sessionFactory.openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Flight> criteriaQuery = builder.createQuery(Flight.class);
+            Root<Flight> root = criteriaQuery.from(Flight.class);
+            criteriaQuery.select(root);
+            List<Flight> flightData = session.createQuery(criteriaQuery).getResultList();
+            flights.addAll(flightData);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return flights;
     }
 }
