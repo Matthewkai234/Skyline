@@ -1,7 +1,5 @@
 package controller;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,12 +10,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Booking;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-
-public class AdminHomeController  {
+public class AdminHomeController {
     public void addCustomerWindow(ActionEvent actionEvent) throws IOException {
         loadNewWindow("CreateAccount.fxml");
     }
@@ -36,21 +39,29 @@ public class AdminHomeController  {
         }
     }
 
+    @FXML
+    private TableView<Booking> bookingTable;
+    @FXML
+    private TableColumn<Booking, String> bookingIdColumn;
+    @FXML
+    private TableColumn<Booking, String> typeColumn;
+    @FXML
+    private TableColumn<Booking, String> customerNameColumn;
+    @FXML
+    private TableColumn<Booking, String> detailsColumn;
 
-    @FXML private TableView<Booking> bookingTable;
-    @FXML private TableColumn<Booking, String> bookingIdColumn;
-    @FXML private TableColumn<Booking, String> typeColumn;
-    @FXML private TableColumn<Booking, String> customerNameColumn;
-    @FXML private TableColumn<Booking, String> detailsColumn;
+    @FXML
+    private Label airBookingLabel;
+    @FXML
+    private Label hotelBookingLabel;
 
     private final ObservableList<Booking> bookingList = FXCollections.observableArrayList();
 
     public void initialize() {
         setupBookingTable();
-        loadStaticData();
+        loadLatestBookingsFromDatabase();
+        updateBookingCounts();
     }
-
-
 
     private void setupBookingTable() {
         bookingIdColumn.setCellValueFactory(data -> data.getValue().bookingIdProperty());
@@ -61,42 +72,73 @@ public class AdminHomeController  {
         bookingTable.setItems(bookingList);
     }
 
-    private void loadStaticData() {
-        bookingList.addAll(
-                new Booking("B001", "Flight", "John Doe", "Flight AA123 - New York"),
-                new Booking("B002", "Hotel", "Jane Smith", "Grand Palace - Paris"),
-                new Booking("B003", "Flight", "Mike Johnson", "Flight DL456 - London"),
-                new Booking("B004", "Hotel", "Emily Davis", "Seaside Hotel - Barcelona")
-        );
+    private void loadLatestBookingsFromDatabase() {
+        String url = "jdbc:mysql://localhost:3306/skyline";
+        String user = "root";
+        String password = "root1234";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             Statement statement = connection.createStatement()) {
+
+            // Query to get the latest bookings from AirBooking
+            String airBookingQuery = "SELECT booking_id, 'Flight' AS type, customer_name, flight_number AS details " +
+                    "FROM AirBooking ORDER BY booking_date DESC LIMIT 5";
+            ResultSet airResultSet = statement.executeQuery(airBookingQuery);
+
+            while (airResultSet.next()) {
+                bookingList.add(new Booking(
+                        airResultSet.getString("booking_id"),
+                        airResultSet.getString("type"),
+                        airResultSet.getString("customer_name"),
+                        airResultSet.getString("details")
+                ));
+            }
+
+            // Query to get the latest bookings from HotelBooking
+            String hotelBookingQuery = "SELECT booking_id, 'Hotel' AS type, customer_name, hotel_name AS details " +
+                    "FROM HotelBooking ORDER BY booking_date DESC LIMIT 5";
+            ResultSet hotelResultSet = statement.executeQuery(hotelBookingQuery);
+
+            while (hotelResultSet.next()) {
+                bookingList.add(new Booking(
+                        hotelResultSet.getString("booking_id"),
+                        hotelResultSet.getString("type"),
+                        hotelResultSet.getString("customer_name"),
+                        hotelResultSet.getString("details")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static class Booking {
-        private final StringProperty bookingId;
-        private final StringProperty type;
-        private final StringProperty customerName;
-        private final StringProperty details;
+    private void updateBookingCounts() {
+        String url = "jdbc:mysql://localhost:3306/skyline";
+        String user = "root";
+        String password = "root1234";
 
-        public Booking(String bookingId, String type, String customerName, String details) {
-            this.bookingId = new SimpleStringProperty(bookingId);
-            this.type = new SimpleStringProperty(type);
-            this.customerName = new SimpleStringProperty(customerName);
-            this.details = new SimpleStringProperty(details);
-        }
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             Statement statement = connection.createStatement()) {
 
-        public StringProperty bookingIdProperty() {
-            return bookingId;
-        }
+            // Query to count total air bookings
+            String airBookingCountQuery = "SELECT COUNT(*) AS total FROM AirBooking";
+            ResultSet airResultSet = statement.executeQuery(airBookingCountQuery);
 
-        public StringProperty typeProperty() {
-            return type;
-        }
+            if (airResultSet.next()) {
+                airBookingLabel.setText(airResultSet.getString("total"));
+            }
 
-        public StringProperty customerNameProperty() {
-            return customerName;
-        }
+            // Query to count total hotel bookings
+            String hotelBookingCountQuery = "SELECT COUNT(*) AS total FROM HotelBooking";
+            ResultSet hotelResultSet = statement.executeQuery(hotelBookingCountQuery);
 
-        public StringProperty detailsProperty() {
-            return details;
+            if (hotelResultSet.next()) {
+                hotelBookingLabel.setText(hotelResultSet.getString("total"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
