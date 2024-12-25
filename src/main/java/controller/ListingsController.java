@@ -1,23 +1,26 @@
 package controller;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Flight;
 import model.Hotel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.util.List;
 
 public class ListingsController {
@@ -43,7 +46,7 @@ public class ListingsController {
     private TableColumn<Flight, String> arrivalDateColumn;
 
     @FXML
-    private TableColumn<Flight, String> flightActionsColumn;
+    private TableColumn<Flight, Button> flightActionsColumn;
 
     @FXML
     private TableView<Hotel> hotelTable;
@@ -58,9 +61,11 @@ public class ListingsController {
     private TableColumn<Hotel, String> locationColumn;
 
     @FXML
-    private TableColumn<Hotel, String> hotelActionsColumn;
+    private TableColumn<Hotel, Button> hotelActionsColumn;
+
 
     private SessionFactory sessionFactory;
+
 
     @FXML
     public void initialize() {
@@ -73,6 +78,24 @@ public class ListingsController {
             System.out.println("failed to create the session");
         }
 
+        // Handle flight actions
+        flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForFlight(param.getValue())));
+        // Handle hotel actions
+        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForHotel(param.getValue())));
+
+        // Load initial data based on the selected tab (or default to Flights)
+        if(tabPane.getSelectionModel().getSelectedItem() != null){
+            String initialTabText = tabPane.getSelectionModel().getSelectedItem().getText();
+            if ("Hotels".equals(initialTabText)) {
+                loadHotelData();
+            } else if ("Flights".equals(initialTabText)) {
+                loadFlightData();
+            }
+        }
+        else { // default to loading Flights if there are no tabs
+            loadFlightData();
+        }
+
         tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
             if (newTab != null) {
                 String tabText = newTab.getText();
@@ -83,37 +106,72 @@ public class ListingsController {
                 }
             }
         });
+
     }
-    @FXML
-    private void addListingWindow() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddListing.fxml"));
-            Parent root = loader.load();
+    private Button createDeleteButtonForFlight(Flight flight) {
+        Button deleteButton = new Button("Delete");
+        deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;"); //Added styles to the button
+        deleteButton.setOnAction(event -> {
+            deleteFlight(flight);
+        });
+        return deleteButton;
+    }
+    private Button createDeleteButtonForHotel(Hotel hotel) {
+        Button deleteButton = new Button("Delete");
+        deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;"); //Added styles to the button
+        deleteButton.setOnAction(event -> {
+            deleteHotel(hotel);
+        });
+        return deleteButton;
+    }
 
-            AddListingController addListingController = loader.getController();
-            addListingController.setParentController(this);
-
-            Stage stage = new Stage();
-            stage.setTitle("Add New Listing");
-            stage.setScene(new Scene(root));
-            stage.show();
+    private void deleteFlight(Flight flight) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(flight);
+            transaction.commit();
+            loadFlightData();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+    private void deleteHotel(Hotel hotel) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(hotel);
+            transaction.commit();
+            loadHotelData();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
 
+
+    @FXML
+    private void addListingWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddListing.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            AddListingController controller = loader.getController();
+            controller.setParentController(this);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadHotelData() {
         // Set up the columns
         hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("hotelId"));
         hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-        hotelActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
 
         // Load data from database
         ObservableList<Hotel> hotelList = loadHotelsFromDatabase();
-
+        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForHotel(param.getValue())));
         // Set items to the table
         hotelTable.setItems(hotelList);
 
@@ -132,7 +190,6 @@ public class ListingsController {
             System.out.println(ex.getMessage());
         }
         return hotels;
-
     }
 
     public void loadFlightData() {
@@ -141,9 +198,11 @@ public class ListingsController {
         destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalDate"));
-        flightActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
 
+        // Load data from database
         ObservableList<Flight> flightList = loadFlightsFromDatabase();
+        flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForFlight(param.getValue())));
+
         flightTable.setItems(flightList);
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,7 @@
    <AnchorPane layoutX="178.0" prefHeight="761.0" prefWidth="1188.0">
       <VBox spacing="20.0" style="-fx-padding: 20.0;">
          <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-padding: 10.0;">
-            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Manage Listings" HBox.hgrow="ALWAYS"/>
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #007bff;" text="Manage Listings" HBox.hgrow="ALWAYS"/>
          </HBox>
          <HBox alignment="TOP_RIGHT" spacing="10.0">
             <Button onAction="#addListingWindow" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-padding: 10;" text="+ Add New Listing">
@@ -29,7 +30,7 @@
                <Tab text="Hotels">
                   <content>
                      <VBox style="-fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: #f9f9f9; -fx-padding: 15;" VBox.vgrow="ALWAYS">
-                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Hotel Listings" HBox.hgrow="ALWAYS"/>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Hotel Listings" HBox.hgrow="ALWAYS" />
                         <TableView fx:id="hotelTable" prefHeight="300.0" prefWidth="939.0" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="hotelIdColumn" text="Hotel ID" />
@@ -47,7 +48,7 @@
                <Tab text="Flights">
                   <content>
                      <VBox prefHeight="300.0" prefWidth="971.0" style="-fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: #f9f9f9; -fx-padding: 15;" VBox.vgrow="ALWAYS">
-                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Flight Listings" HBox.hgrow="ALWAYS"/>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Flight Listings" HBox.hgrow="ALWAYS" />
                         <TableView fx:id="flightTable" prefWidth="600" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="flightNumberColumn" text="Flight Number" />
