@@ -67,7 +67,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Button layoutX="593.0" layoutY="42.0" mnemonicParsing="false" onAction="#handelSearchBtn" prefHeight="40.0" prefWidth="97.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="Search" textFill="WHITE" />
+            <Button  layoutX="593.0" layoutY="42.0" mnemonicParsing="false" onAction="#handelSearchBtn" prefHeight="40.0" prefWidth="97.0" style="-fx-background-color: #127fff; -fx-border-radius: 80px;" text="Search" textFill="WHITE" />
             <DatePicker fx:id="dateFlight" layoutX="390.0" layoutY="48.0" prefHeight="37.0" prefWidth="194.0" promptText="Sun,Dec 20" />
          </children>
       </Pane>

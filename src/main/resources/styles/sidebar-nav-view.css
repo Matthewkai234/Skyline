@@ -1,31 +1,31 @@
-.sidebar {
-    -fx-background-color: white;
-    -fx-background-radius: 10px;
-    -fx-padding: 10px;
-    -fx-pref-width: 170px;
-    -fx-text-fill: white;
-    -fx-font-family: "Segoe UI", Arial, sans-serif;
-    -fx-font-size: 14px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
-    -fx-spacing: 10px;
-}
 
-.sidebar .HBox {
-    -fx-padding: 10px;
-    -fx-border-radius: 5px;
-    -fx-alignment: center-left;
-    -fx-cursor: hand;
-}
-
-
-.sidebar .HBox:hover {
+HBox:hover {
     -fx-background-color: #E5E4E2; /* Background color on hover */
     -fx-background-radius: 15px;
     -fx-border-radius: 15px;/* Border color on hover */
     -fx-cursor: hand; /* Change cursor to hand */
 }
 
-.centerarea-vbox{
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+HBox:focused {
+    -fx-background-color: white; /* White background when clicked */
+    -fx-border-color: #00affa; /* Optional: Border color when focused */
+    -fx-border-width: 2px; /* Optional: Border width when focused */
 }
+
+/* Style for Button text when the parent HBox is focused (clicked) */
+HBox:focused Button {
+    -fx-text-fill: black; /* Change text color to black */
+}
+
+/* Default Button style */
+Button {
+    -fx-background-color: transparent; /* Make button background transparent */
+    -fx-text-fill: white; /* Default text color is white */
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+
+
 

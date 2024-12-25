@@ -13,11 +13,8 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminHomeController">
    <children>
-      <!-- Sidebar -->
-      <VBox prefWidth="250.0" style="-fx-background-color: #00AFF0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-
       <!-- Main Content -->
-      <VBox spacing="20.0" style="-fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox spacing="20.0" style="-fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text style="-fx-font-size: 2em; -fx-font-weight: bold;" text="Admin Home" />
 
@@ -99,7 +96,7 @@
                      </ImageView>
                   </graphic>
                </Button>
-               <Button style="-fx-background-color: #00AFF0; -fx-text-fill: white; -fx-font-weight: 700;" text="Add Customer">
+               <Button style="-fx-background-color: #00AFF0; -fx-text-fill: white; -fx-font-weight: 700;" text="Add Customer" onAction="#addCustomerWindow">
                   <graphic>
                      <ImageView fitHeight="6.0" fitWidth="6.0" pickOnBounds="true" preserveRatio="true">
                         <image>

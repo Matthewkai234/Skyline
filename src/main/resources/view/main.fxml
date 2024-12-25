@@ -12,7 +12,7 @@
 <SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SidebarController">
    <items>
       <!-- Sidebar -->
-      <VBox maxWidth="200" minWidth="150" spacing="10" style="-fx-background-color: #00affa; -fx-padding: 10;">
+      <VBox maxWidth="200" minWidth="150" spacing="10" style="-fx-background-color: #00affa; -fx-padding: 10;" stylesheets="@../styles/sidebar-nav-view.css">
          <!-- Logo Section -->
          <StackPane VBox.vgrow="NEVER">
             <ImageView fitHeight="120.0" fitWidth="135.0" preserveRatio="true">
@@ -23,7 +23,7 @@
          <!-- Navigation Menu -->
          <VBox spacing="16.0" style="-fx-padding: 20 0;" VBox.vgrow="ALWAYS">
             <!-- Home -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/home-5-48.png" />
                </ImageView>
@@ -35,7 +35,7 @@
             </HBox>
 
             <!-- Flights -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/airplane-11-48.png" />
                </ImageView>
@@ -47,7 +47,7 @@
             </HBox>
 
             <!-- Hotels -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/hotel.png" />
                </ImageView>
@@ -59,7 +59,7 @@
             </HBox>
 
             <!-- Bookings -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/banknotes-48.png" />
                </ImageView>
@@ -71,7 +71,7 @@
             </HBox>
 
             <!-- Dashboard -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/dashboard-48.png" />
                </ImageView>
@@ -83,7 +83,7 @@
             </HBox>
 
             <!-- Listings -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/list-ingredients-48.png" />
                </ImageView>

@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AdminHomeController {
+
     public void addCustomerWindow(ActionEvent actionEvent) throws IOException {
         loadNewWindow("CreateAccount.fxml");
     }

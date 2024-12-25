@@ -21,5 +21,8 @@ module com.example.skyline {
     requires annotations;
 
     requires java.desktop;
+    requires jbcrypt;
+    requires com.google.protobuf;
+    requires java.mail;
 
 }
