@@ -115,7 +115,7 @@ public class PasswordFiledController {
             return;
         }
 
-        // Hash the password using BCrypt
+       
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         try {
