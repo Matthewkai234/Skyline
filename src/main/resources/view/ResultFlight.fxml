@@ -97,7 +97,7 @@
                 <!-- ImageView inside StackPane -->
                 <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="14.0" layoutY="12.0" preserveRatio="true">
                     <image>
-<!--                        <Image url="@../../../img/Emirates_logo.png" />-->
+                        <Image url="@../images/Emirates_logo.png" />
                     </image>
                     <clip>
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
@@ -151,7 +151,7 @@
             <children>
                 <ImageView fitHeight="34.0" fitWidth="33.0" layoutX="14.0" layoutY="12.0" preserveRatio="true">
                     <image>
-<!--                        <Image url="@../../../img/su_logo.png" />-->
+                        <Image url="@../images/su_logo.png" />
                     </image>
                     <clip>
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
@@ -202,7 +202,7 @@
             <children>
                 <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="14.0" layoutY="12.0" preserveRatio="true">
                     <image>
-<!--                        <Image url="@../../../img/lufthansa_logo.jpg" />-->
+                        <Image url="@../images/lufthansa_logo.jpg" />
                     </image>
                     <clip>
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
@@ -252,7 +252,7 @@
             <children>
                 <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="14.0" layoutY="12.0" preserveRatio="true">
                     <image>
-<!--                        <Image url="@../../../img/AirAsia_Logo.png" />-->
+                        <Image url="@../images/AirAsia_Logo.png" />
                     </image>
                     <clip>
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightSearshResultTapleController">
+    <center>
+        <TableView fx:id="Table" onMouseClicked="#onTableRowClick" prefHeight="308.0" prefWidth="614.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="FlightId" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="takeoffContry" prefWidth="75.0" text="Takeoff" />
+                <TableColumn fx:id="LandingCountry" prefWidth="95.20001220703125" text="Landing" />
+                <TableColumn fx:id="price" prefWidth="109.60003662109375" text="Price" />
+                <TableColumn fx:id="Data" prefWidth="75.0" text="Data" />
+                <TableColumn fx:id="AirLine" prefWidth="75.0" text="AirLine" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </center>
+    <top>
+        <VBox alignment="CENTER" prefHeight="130.0" prefWidth="614.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="70.0" prefWidth="614.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flight result" wrappingWidth="120.79576110839844">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="StartPrice" promptText="Price From" />
+                  <TextField fx:id="EndPrice" promptText="Proce To" />
+                  <TextField fx:id="Airline" promptText="AirLine" />
+               </children>
+            </HBox>
+            <Button fx:id="filter" alignment="TOP_RIGHT" mnemonicParsing="false" text="Filter" textAlignment="RIGHT" onAction="#FilterData"/>
+            </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+        </VBox>
+    </top>
+</BorderPane>
