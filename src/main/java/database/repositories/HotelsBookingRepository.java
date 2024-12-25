@@ -1,6 +1,6 @@
 package database.repositories;
 
-import database.FlightsBookingModel;
+import database.HotelsBookingModel;
 import database.interfaces.IBookingRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,53 +9,53 @@ import util.HibernateUtil;
 import java.util.List;
 
 
-public class FlightsBookingRepository implements IBookingRepository <FlightsBookingModel> {
+public class HotelsBookingRepository implements IBookingRepository <HotelsBookingModel> {
 
     private final SessionFactory sessionFactory;
 
-    public FlightsBookingRepository() {
+    public HotelsBookingRepository() {
         HibernateUtil hibernateUtility = HibernateUtil.getInstance();
         sessionFactory = hibernateUtility.getSessionFactory();
     }
 
     @Override
-    public void insert(FlightsBookingModel flightsBookingModel) {
+    public void insert(HotelsBookingModel hotelsBookingModel) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(flightsBookingModel);
+            session.save(hotelsBookingModel);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public void update(FlightsBookingModel flightsBookingModel) {
+    public void update(HotelsBookingModel hotelsBookingModel) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.update(flightsBookingModel);
+            session.update(hotelsBookingModel);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public void delete(FlightsBookingModel flightsBookingModel) {
+    public void delete(HotelsBookingModel hotelsBookingModel) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.delete(flightsBookingModel);
+            session.delete(hotelsBookingModel);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public List<FlightsBookingModel> getAll() {
+    public List<HotelsBookingModel> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT u FROM FlightsBookingModel u", FlightsBookingModel.class).list();
+            return session.createQuery("SELECT u FROM HotelsBookingModel u", HotelsBookingModel.class).list();
         }
     }
 
     @Override
-    public FlightsBookingModel findBookingById(int id) {
+    public HotelsBookingModel findBookingById(int id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(FlightsBookingModel.class, id);
+            return session.get(HotelsBookingModel.class, id);
         }
     }
 
