@@ -1,47 +1,42 @@
 package database;
-import javafx.beans.property.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "flights_booking")
-public class FlightsBookingModel {
+@Table(name = "hotels_booking")
+public class HotelsBookingModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int booking_id;
     @Column(name = "booking_date")
     private LocalDate bookingDate;
-    @Column(name = "take_off")
-    private String takeOff;
-    @Column(name = "destination")
-    private String destination;
-    @Column(name = "airline")
-    private String airline;
+    @Column(name = "hotel_name")
+    private String hotelName;
     @Column(name = "customer_name")
     private String customerName;
+    @Column(name = "location")
+    private String location;
     @Column(name = "status")
     private String status;
 
 
 
-    public FlightsBookingModel() {
+    public HotelsBookingModel() {
     }
-    public FlightsBookingModel(LocalDate bookingDate,String customerName, String takeOff, String destination, String airline, Status status) {
+    public HotelsBookingModel(LocalDate bookingDate, String customerName, String hotelName, String location, Status status) {
         this.bookingDate = bookingDate;
         this.customerName = customerName;
-        this.takeOff = takeOff;
-        this.destination = destination;
-        this.airline = airline;
+        this.hotelName = hotelName;
+        this.location = location;
         this.status = status.toString();
     }
 
-    public FlightsBookingModel(int booking_id, LocalDate bookingDate,String customerName, String takeOff, String destination, String airline, Status status) {
+    public HotelsBookingModel(int booking_id, LocalDate bookingDate, String customerName, String hotelName, String location, Status status) {
         this.booking_id = booking_id;
         this.bookingDate = bookingDate;
         this.customerName = customerName;
-        this.takeOff = takeOff;
-        this.destination = destination;
-        this.airline = airline;
+        this.hotelName = hotelName;
+        this.location = location;
         this.status = status.toString();
     }
 
@@ -75,28 +70,20 @@ public class FlightsBookingModel {
         this.status = status.toString();
     }
 
-
-    public String getTakeOff() {
-        return takeOff;
-    }
-    public void setTakeOff(String takeOff) {
-        this.takeOff = takeOff;
+    public String getLocation() {
+        return location;
     }
 
-
-    public String getDestination() {
-        return destination;
-    }
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-
-    public String getAirline() {
-        return airline;
+    public String getHotelName() {
+        return hotelName;
     }
-    public void setAirline(String airline) {
-        this.airline = airline;
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
 
     public String getCustomerName() {
