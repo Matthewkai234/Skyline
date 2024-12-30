@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Flight;
@@ -46,7 +47,7 @@ public class ListingsController {
     private TableColumn<Flight, String> arrivalDateColumn;
 
     @FXML
-    private TableColumn<Flight, Button> flightActionsColumn;
+    private TableColumn<Flight, HBox> flightActionsColumn; // Changed to HBox
 
     @FXML
     private TableView<Hotel> hotelTable;
@@ -61,11 +62,9 @@ public class ListingsController {
     private TableColumn<Hotel, String> locationColumn;
 
     @FXML
-    private TableColumn<Hotel, Button> hotelActionsColumn;
-
+    private TableColumn<Hotel, HBox> hotelActionsColumn;  // Changed to HBox
 
     private SessionFactory sessionFactory;
-
 
     @FXML
     public void initialize() {
@@ -79,9 +78,9 @@ public class ListingsController {
         }
 
         // Handle flight actions
-        flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForFlight(param.getValue())));
+        flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForFlight(param.getValue())));
         // Handle hotel actions
-        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForHotel(param.getValue())));
+        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForHotel(param.getValue())));
 
         // Load initial data based on the selected tab (or default to Flights)
         if(tabPane.getSelectionModel().getSelectedItem() != null){
@@ -108,21 +107,33 @@ public class ListingsController {
         });
 
     }
-    private Button createDeleteButtonForFlight(Flight flight) {
+
+    // Updated methods to return an HBox containing both buttons
+    private HBox createActionButtonsForFlight(Flight flight) {
         Button deleteButton = new Button("Delete");
-        deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;"); //Added styles to the button
-        deleteButton.setOnAction(event -> {
-            deleteFlight(flight);
-        });
-        return deleteButton;
+        deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
+        deleteButton.setOnAction(event -> deleteFlight(flight));
+
+        Button editButton = new Button("Edit");
+        editButton.setStyle("-fx-background-color: #00affa; -fx-text-fill: white;");
+
+        HBox buttons = new HBox(5); // 5 pixel spacing between buttons
+        buttons.getChildren().addAll(deleteButton, editButton);
+        return buttons;
     }
-    private Button createDeleteButtonForHotel(Hotel hotel) {
+
+    private HBox createActionButtonsForHotel(Hotel hotel) {
         Button deleteButton = new Button("Delete");
-        deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;"); //Added styles to the button
-        deleteButton.setOnAction(event -> {
-            deleteHotel(hotel);
-        });
-        return deleteButton;
+        deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
+        deleteButton.setOnAction(event -> deleteHotel(hotel));
+
+        Button editButton = new Button("Edit");
+        editButton.setStyle("-fx-background-color: #00affa; -fx-text-fill: white;");
+
+
+        HBox buttons = new HBox(5);
+        buttons.getChildren().addAll(deleteButton, editButton);
+        return buttons;
     }
 
     private void deleteFlight(Flight flight) {
@@ -171,7 +182,7 @@ public class ListingsController {
 
         // Load data from database
         ObservableList<Hotel> hotelList = loadHotelsFromDatabase();
-        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForHotel(param.getValue())));
+        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForHotel(param.getValue())));
         // Set items to the table
         hotelTable.setItems(hotelList);
 
@@ -201,7 +212,7 @@ public class ListingsController {
 
         // Load data from database
         ObservableList<Flight> flightList = loadFlightsFromDatabase();
-        flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createDeleteButtonForFlight(param.getValue())));
+        flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForFlight(param.getValue())));
 
         flightTable.setItems(flightList);
     }
