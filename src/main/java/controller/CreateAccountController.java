@@ -2,14 +2,10 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import model.Users;
 import java.util.regex.Pattern;
-import org.mindrot.jbcrypt.BCrypt;
 
-public class PasswordFiledController {
+public class CreateAccountController {
 
     @FXML
     private TextField firstNameField;
@@ -43,10 +39,6 @@ public class PasswordFiledController {
 
     private boolean isPasswordVisible = false;
     private boolean isConfirmPasswordVisible = false;
-
-    private final String DB_URL = "jdbc:mysql://localhost:3306/UserRegistration";
-    private final String DB_USER = "root";
-    private final String DB_PASSWORD = "Ali692004";
 
     @FXML
     public void togglePasswordVisibility() {
@@ -115,15 +107,11 @@ public class PasswordFiledController {
             return;
         }
 
-        // Hash the password using BCrypt
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
-        try {
-            saveToDatabase(firstName, lastName, email, hashedPassword);
+        Users user = new Users(firstName, lastName, email, password);
+        if (user.save()) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account created successfully!");
-        } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while saving your account. Please try again.");
-            e.printStackTrace();
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while saving your account.");
         }
     }
 
@@ -135,20 +123,6 @@ public class PasswordFiledController {
     private boolean isStrongPassword(String password) {
         String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
         return password != null && Pattern.compile(passwordRegex).matcher(password).matches();
-    }
-
-    private void saveToDatabase(String firstName, String lastName, String email, String hashedPassword) throws SQLException {
-        String insertQuery = "INSERT INTO Users (first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?)";
-
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, hashedPassword); // Save the hashed password
-            preparedStatement.executeUpdate();
-        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {

@@ -83,7 +83,7 @@ public class ResetPasswordController {
         } else {
             errorMessageLabel.setVisible(false);
 
-            // Hash the new password using BCrypt
+
             String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
 
             if (updatePasswordInDatabase(hashedPassword)) {

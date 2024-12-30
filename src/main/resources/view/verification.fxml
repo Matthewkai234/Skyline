@@ -14,38 +14,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="761.0" prefWidth="1366.0" spacing="20" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerificationController" stylesheets="@verificationstyles.css">
-    <VBox alignment="CENTER" maxHeight="451.0" maxWidth="778.0" prefHeight="305.0" prefWidth="695.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-padding: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 5);">
-        <GridPane hgap="10" vgap="15">
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
-        <VBox alignment="CENTER" spacing="10" />
-        <HBox prefHeight="282.0" prefWidth="730.0">
-            <children>
-                <ImageView fitHeight="282.0" fitWidth="274.0">
-                    <image>
-                        <Image url="@../verificationcode.png"/>
-                    </image>
-                </ImageView>
-                <Pane prefHeight="200.0" prefWidth="444.0">
-                    <children>
-                        <TextField fx:id="verificationCodeField" layoutX="85.0" layoutY="115.0" prefHeight="26.0" prefWidth="275.0" />
-                        <Button fx:id="verifyButton" layoutX="170.0" layoutY="173.0" onAction="#navigateToResetPasswordPage" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #007bff;" styleClass="verify-button" text="Verify" />
-                        <Label layoutX="85.0" layoutY="82.0" prefHeight="27.0" prefWidth="113.0" text="Enter Code:" />
-                        <Text fontSmoothingType="LCD" layoutX="137.0" layoutY="58.0" style="-fx-font-size: 20;" styleClass="title-text" text="Verification" wrappingWidth="122.65325558185577">
-                            <font>
-                                <Font name="System Bold" size="10.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-            </children>
-        </HBox>
-    </VBox>
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerificationController"
+      stylesheets="@../styles/verificationstyles.css"
+      alignment="CENTER" maxHeight="451.0" maxWidth="778.0"
+      prefHeight="305.0" prefWidth="695.0" spacing="10"
+      style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 5);">
+
+    <HBox spacing="20" alignment="CENTER" prefHeight="282.0" prefWidth="730.0">
+        <children>
+            <ImageView fitHeight="282.0" fitWidth="274.0">
+                <image>
+                    <Image url="@../images/verificationcode.png" />
+                </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="444.0">
+                <children>
+                    <Text layoutX="137.0" layoutY="20.0"
+                          style="-fx-font-size: 24px; -fx-font-weight: bold;"
+                          text="Verification" />
+
+                    <Label layoutX="85.0" layoutY="82.0"
+                           style="-fx-font-size: 16px;"
+                           text="Enter Code:" />
+
+                    <TextField fx:id="verificationCodeField" layoutX="85.0" layoutY="115.0"
+                               prefHeight="30.0" prefWidth="275.0"
+                               promptText="Enter verification code" />
+
+                    <Button fx:id="verifyButton" layoutX="170.0" layoutY="173.0"
+                            onAction="#handleVerifyCode"
+                            prefHeight="30.0" prefWidth="105.0"
+                            style="-fx-background-color: #007bff; -fx-text-fill: white;"
+                            text="Verify" />
+                </children>
+            </Pane>
+        </children>
+    </HBox>
 </VBox>
