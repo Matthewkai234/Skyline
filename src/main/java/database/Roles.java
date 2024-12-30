@@ -21,13 +21,13 @@ public class Roles {
 
     @ManyToMany
     @JoinTable(
-            name = "role_permission", // جدول الربط بين الأدوار والصلاحيات
+            name = "role_permission", 
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
     private Set<Permissions> permissions;
 
-    // Getters and Setters
+  
     public int getId() {
         return id;
     }
