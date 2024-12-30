@@ -24,5 +24,6 @@ module com.example.skyline {
     requires jbcrypt;
     requires com.google.protobuf;
     requires java.mail;
+    requires java.management;
 
 }

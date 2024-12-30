@@ -1,0 +1,70 @@
+.form-container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0);
+}
+
+.text-field {
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+.toggle-button {
+    -fx-background-color: #e0e0e0;
+    -fx-border-radius: 5;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+.create-button {
+    -fx-background-color: #007bff;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+}
+
+.form-title {
+    -fx-font-size: 20px;
+    -fx-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+
+.role-button {
+    -fx-background-color: #f0f0f0;
+    -fx-border-radius: 5;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-max-width: 150px;
+}
+
+.role-button:hover {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.role-button.selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.role-buttons-container {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+
+.hbox-role-container {
+    -fx-spacing: 15px;
+    -fx-alignment: center;
+    -fx-padding: 10px 0;
+}

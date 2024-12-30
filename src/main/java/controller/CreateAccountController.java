@@ -2,14 +2,11 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javafx.event.ActionEvent;
+import model.Users;
 import java.util.regex.Pattern;
-import org.mindrot.jbcrypt.BCrypt;
 
-public class PasswordFiledController {
+public class CreateAccountController {
 
     @FXML
     private TextField firstNameField;
@@ -41,12 +38,21 @@ public class PasswordFiledController {
     @FXML
     private Button createAccountButton;
 
+    @FXML
+    private Button userButton;
+
+    @FXML
+    private Button adminButton;
+
+    @FXML
+    private Label userRoleLabel;
+
     private boolean isPasswordVisible = false;
     private boolean isConfirmPasswordVisible = false;
 
-    private final String DB_URL = "jdbc:mysql://localhost:3306/UserRegistration";
-    private final String DB_USER = "root";
-    private final String DB_PASSWORD = "Ali692004";
+
+    private String selectedRole = "";
+
 
     @FXML
     public void togglePasswordVisibility() {
@@ -65,6 +71,7 @@ public class PasswordFiledController {
         }
     }
 
+
     @FXML
     public void toggleConfirmPasswordVisibility() {
         if (isConfirmPasswordVisible) {
@@ -82,13 +89,29 @@ public class PasswordFiledController {
         }
     }
 
+
     @FXML
-    public void createAccount() {
+    public void setUser() {
+        selectedRole = "User";
+        userRoleLabel.setText("Selected Role: User");
+    }
+
+
+    @FXML
+    public void setAdmin() {
+        selectedRole = "Admin";
+        userRoleLabel.setText("Selected Role: Admin");
+    }
+
+
+    @FXML
+    public void createAccount(ActionEvent event) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
         String password = isPasswordVisible ? passwordTextField.getText() : passwordField.getText();
         String confirmPassword = isConfirmPasswordVisible ? confirmPasswordTextField.getText() : confirmPasswordField.getText();
+
 
         if (firstName.isEmpty() || lastName.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Missing Name", "Please enter both your first and last name.");
@@ -100,6 +123,7 @@ public class PasswordFiledController {
             return;
         }
 
+
         if (!isStrongPassword(password)) {
             showAlert(Alert.AlertType.WARNING, "Weak Password",
                     "Password must:\n" +
@@ -110,22 +134,27 @@ public class PasswordFiledController {
             return;
         }
 
+
         if (!password.equals(confirmPassword)) {
             showAlert(Alert.AlertType.ERROR, "Password Mismatch", "Passwords do not match. Please try again.");
             return;
         }
 
-        // Hash the password using BCrypt
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        try {
-            saveToDatabase(firstName, lastName, email, hashedPassword);
+        if (selectedRole.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Role Selection", "Please select whether you are a User or Admin.");
+            return;
+        }
+
+
+        Users user = new Users(firstName, lastName, email, password, selectedRole);
+        if (user.save()) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account created successfully!");
-        } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while saving your account. Please try again.");
-            e.printStackTrace();
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while saving your account.");
         }
     }
+
 
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
@@ -137,19 +166,6 @@ public class PasswordFiledController {
         return password != null && Pattern.compile(passwordRegex).matcher(password).matches();
     }
 
-    private void saveToDatabase(String firstName, String lastName, String email, String hashedPassword) throws SQLException {
-        String insertQuery = "INSERT INTO Users (first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?)";
-
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, hashedPassword); // Save the hashed password
-            preparedStatement.executeUpdate();
-        }
-    }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
