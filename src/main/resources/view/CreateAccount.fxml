@@ -41,7 +41,14 @@
                                 <Label fx:id="toggleConfirmPasswordLabel" text="Show" style="-fx-cursor: hand; -fx-text-fill: #007bff; -fx-padding: 5;" onMouseClicked="#toggleConfirmPasswordVisibility" />
                             </StackPane>
 
+                            <HBox spacing="20" alignment="CENTER">
+                                <Button fx:id="userButton" text="User" onAction="#setUser" styleClass="role-button"/>
+                                <Button fx:id="adminButton" text="Admin" onAction="#setAdmin" styleClass="role-button"/>
+                            </HBox>
+
                             <Button fx:id="createAccountButton" onAction="#createAccount" styleClass="create-button" text="Create Account" textFill="WHITE"/>
+
+                            <Label fx:id="userRoleLabel" text="Select Role: User or Admin" style="-fx-text-fill: #333333;"/>
                         </VBox>
 
                         <ImageView fitHeight="200" preserveRatio="true">
