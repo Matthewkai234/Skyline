@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SidebarController">
+<SplitPane dividerPositions="0.5" prefWidth="178.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SidebarController">
    <items>
       <!-- Sidebar -->
-      <VBox maxWidth="200" minWidth="150" spacing="10" style="-fx-background-color: #00affa; -fx-padding: 10;" stylesheets="@../styles/sidebar-nav-view.css">
+      <VBox maxWidth="200.0" minWidth="150" spacing="10" style="-fx-background-color: #00affa; -fx-padding: 10;" stylesheets="@../styles/sidebar-nav-view.css">
          <!-- Logo Section -->
          <StackPane VBox.vgrow="NEVER">
             <ImageView fitHeight="120.0" fitWidth="135.0" preserveRatio="true">
@@ -108,7 +108,7 @@
          </HBox>
       </VBox>
       <HBox>
-      <HBox fx:id="contentArea" alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+         <HBox fx:id="contentArea" alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
       </HBox>
    </items>
 </SplitPane>
