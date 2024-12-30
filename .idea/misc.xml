@@ -16,7 +16,7 @@
     <resource url="http://hibernate.sourceforge.net/hibernate-configuration" location="$PROJECT_DIR$" />
     <resource url="http://www.hibernate.org/dtd/hibernate-configuration" location="$USER_HOME$/AppData/Local/JetBrains/IntelliJIdea2024.3/extResources/9af1d8d0_hibernate-configuration.html" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="20" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

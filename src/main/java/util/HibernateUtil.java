@@ -3,6 +3,7 @@ package util;
 import database.AirLine;
 import database.FlightsBookingModel;
 import database.HotelsBookingModel;
+import model.Listing;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -10,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import database.Flight;
 import database.Booking;
 import database.FlightsBookingModel;
+import model.Listing;
 
 
 public class HibernateUtil {
@@ -23,6 +25,7 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(Flight.class);
         configuration.addAnnotatedClass(AirLine.class);
         configuration.addAnnotatedClass(Booking.class);
+        configuration.addAnnotatedClass(Listing.class); // Add the Listing model
         configuration.configure();
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
@@ -35,11 +38,15 @@ public class HibernateUtil {
         if (instance == null) {
             instance = new HibernateUtil();
         }
-
         return instance;
     }
 
-    public synchronized SessionFactory getSessionFactory() {
+    public static synchronized SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            instance = new HibernateUtil();  // Ensure the session factory is initialized
+        }
         return sessionFactory;
     }
+
 }
+
