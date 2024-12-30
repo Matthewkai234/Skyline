@@ -21,7 +21,7 @@ public class Permission {
     @ManyToMany(mappedBy = "permissions")
     private Set<Role> roles;
 
-    // Getters and Setters
+    ]
     public int getId() {
         return id;
     }
