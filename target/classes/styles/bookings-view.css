@@ -1,0 +1,43 @@
+.bookings-table {
+    -fx-background-color: linear-gradient(to right, #A6D8F5, #00aff0); /* Gradient background */
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2); /* Subtle shadow */
+    -fx-padding: 10px;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+
+    -fx-max-width: 100%;
+    -fx-min-width: 1100px;
+    -fx-pref-width: 100%;
+
+    -fx-border-color: #1E90FF;
+}
+
+.bookings-table .table-cell {
+    -fx-border-color: #00aff0;
+    -fx-border-width: 0 3px 3px 0;
+}
+
+.bookings-table-header {
+    -fx-background-color: white;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-border-color: #00aff0;
+    -fx-border-width: 0 3px 3px 0;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #000000;
+    -fx-font-size: 1.2em;
+}
+
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+}
+
+
+
+
+
+

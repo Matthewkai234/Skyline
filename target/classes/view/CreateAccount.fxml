@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane stylesheets="@../styles/CreateAccount.css" styleClass="form-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateAccountController">
+    <children>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <children>
+                <HBox alignment="CENTER" spacing="20">
+                    <children>
+                        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 10; -fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <Text styleClass="form-title" text="Create Account">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Text>
+                            <TextField fx:id="firstNameField" promptText="First Name*" styleClass="text-field"/>
+                            <TextField fx:id="lastNameField" promptText="Last Name*" styleClass="text-field"/>
+                            <TextField fx:id="emailField" promptText="Email Address*" styleClass="text-field"/>
+
+                            <StackPane alignment="CENTER_RIGHT">
+                                <PasswordField fx:id="passwordField" promptText="Password*" styleClass="text-field" />
+                                <TextField fx:id="passwordTextField" promptText="Password*" styleClass="text-field" visible="false" />
+                                <Label fx:id="togglePasswordLabel" text="Show" style="-fx-cursor: hand; -fx-text-fill: #007bff; -fx-padding: 5;" onMouseClicked="#togglePasswordVisibility" />
+                            </StackPane>
+
+                            <StackPane alignment="CENTER_RIGHT">
+                                <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password*" styleClass="text-field" />
+                                <TextField fx:id="confirmPasswordTextField" promptText="Confirm Password*" styleClass="text-field" visible="false" />
+                                <Label fx:id="toggleConfirmPasswordLabel" text="Show" style="-fx-cursor: hand; -fx-text-fill: #007bff; -fx-padding: 5;" onMouseClicked="#toggleConfirmPasswordVisibility" />
+                            </StackPane>
+
+                            <HBox spacing="20" alignment="CENTER">
+                                <Button fx:id="userButton" text="User" onAction="#setUser" styleClass="role-button"/>
+                                <Button fx:id="adminButton" text="Admin" onAction="#setAdmin" styleClass="role-button"/>
+                            </HBox>
+
+                            <Button fx:id="createAccountButton" onAction="#createAccount" styleClass="create-button" text="Create Account" textFill="WHITE"/>
+
+                            <Label fx:id="userRoleLabel" text="Select Role: User or Admin" style="-fx-text-fill: #333333;"/>
+                        </VBox>
+
+                        <ImageView fitHeight="200" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/CreateAccount.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

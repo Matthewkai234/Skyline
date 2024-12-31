@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="849.0" prefWidth="1366.0" style="-fx-background-color: white; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.page1ghcontroller">
+   <children>
+      <AnchorPane layoutX="28.0" layoutY="557.0" prefHeight="126.0" prefWidth="1210.0" style="-fx-border-color: #089cff;">
+
+         <children>
+            <Button fx:id="searchButton" layoutX="1046.0" layoutY="74.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="32.0" prefWidth="138.0" style="-fx-background-color: #089cff;" text="Search" textFill="#f7f1f1" />
+            <TextField layoutX="55.0" layoutY="47.0" prefHeight="30.0" prefWidth="200.0" promptText="           Where to go ? " style="-fx-border-color: black;">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="14.0" layoutY="42.0">
+               <image>
+                  <Image url="@images/1495574559-map-location-solid-style-01_84581.png" />
+               </image>
+            </ImageView>
+
+
+
+
+
+            <DatePicker layoutX="305.0" layoutY="47.0" prefHeight="30.0" prefWidth="200.0" promptText="                Dates" style="-fx-border-color: black;" />
+            <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="271.0" layoutY="46.0">
+               <image>
+                  <Image url="@images/date-71.png" />
+               </image>
+            </ImageView>
+            <ComboBox layoutX="555.0" layoutY="47.0" prefHeight="30.0" prefWidth="200.0" promptText="                Travelers" style="-fx-background-color: ffffff; -fx-border-color: black;" />
+            <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="515.0" layoutY="47.0">
+               <image>
+                  <Image url="@images/istockphoto-1332100919-612x612.png" />
+               </image>
+            </ImageView>
+            <ComboBox layoutX="808.0" layoutY="47.0" prefHeight="30.0" prefWidth="200.0" promptText="             Rooms" style="-fx-background-color: ffffff; -fx-border-color: black;" />
+            <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="755.0" layoutY="36.0">
+               <image>
+                  <Image url="@images/istockphoto-1160217929-612x612.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="440.0" fitWidth="585.0" layoutX="674.0" layoutY="81.0">
+         <image>
+            <Image url="@images/office-company-clay-cartoon-building-ai-generated_946993-5927.png" />
+         </image>
+      </ImageView>
+      <Text fill="#089cff" layoutX="261.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy Hotel Booking">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="50.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enjoy with us an easy and smooth hotel booking service through our platform that offers many advantages.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="303.0" layoutY="381.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="162.0" style="-fx-background-color: #089cff;" text="Let's go" textFill="#f7f1f1" />
+      <Text fill="#e48901" layoutX="109.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Hotels">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
