@@ -15,4 +15,5 @@ public interface UsersDAO {
     void deleteUser(Users user);
 
     List<Users> getUsersByRole(String roleName);
+    Users findByEmail(String email);
 }

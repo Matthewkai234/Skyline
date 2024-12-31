@@ -74,4 +74,9 @@ public class Users {
     public void setRole(Roles role) {
         this.role = role;
     }
+
+    public String getrole() {
+        return role.getName();
+
+    }
 }
