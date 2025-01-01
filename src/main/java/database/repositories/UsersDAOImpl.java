@@ -5,12 +5,17 @@ import database.interfaces.UsersDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import util.HibernateUtil;
 
 import java.util.List;
 
 public class UsersDAOImpl implements UsersDAO {
     private final SessionFactory sessionFactory;
-
+    HibernateUtil hibernateUtil;
+    public UsersDAOImpl() {
+        hibernateUtil = HibernateUtil.getInstance();
+        sessionFactory = hibernateUtil.getSessionFactory();
+    }
     public UsersDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -63,6 +68,18 @@ public class UsersDAOImpl implements UsersDAO {
                     "FROM Users u WHERE u.role.name = :roleName", Users.class);
             query.setParameter("roleName", roleName);
             return query.list();
+        }
+    }
+    @Override
+    public Users findByEmail(String email) {
+        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Users WHERE email = :email";
+            Query<Users> query = session.createQuery(hql, Users.class);
+            query.setParameter("email", email);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
