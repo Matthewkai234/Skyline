@@ -2,16 +2,19 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Flight;
-import model.Hotel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class EditlistingController {
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class EditFlightController {
 
 
     @FXML
@@ -21,20 +24,12 @@ public class EditlistingController {
     @FXML
     private TextField destinationField;
     @FXML
-    private TextField departureDateField;
+    private DatePicker departureDatePicker;
     @FXML
-    private TextField arrivalDateField;
-    @FXML
-    private TextField hotelIdField;
-    @FXML
-    private TextField hotelNameField;
-    @FXML
-    private TextField locationField;
+    private DatePicker arrivalDatePicker;
     @FXML
     private Button saveButton;
     private Flight flight;
-    private Hotel hotel;
-
     private ListingsController parentController;
     private SessionFactory sessionFactory;
 
@@ -43,47 +38,41 @@ public class EditlistingController {
         this.parentController = parentController;
     }
 
-    public void setFlight(Flight flight){
+    public void setFlight(Flight flight) {
         this.flight = flight;
         loadFlightData();
     }
-    public void setHotel(Hotel hotel){
-        this.hotel = hotel;
-        loadHotelData();
-    }
+
+
     @FXML
     public void initialize() {
-        try{
-            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Flight.class).addAnnotatedClass(Hotel.class);
+        try {
+            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Flight.class);
             sessionFactory = config.buildSessionFactory();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             System.out.println("failed to create the session");
         }
         saveButton.setOnAction(event -> saveEdit());
     }
-    private void loadFlightData(){
-        if(flight !=null){
+
+    private void loadFlightData() {
+        if (flight != null) {
             flightNumberField.setText(flight.getFlightNumber());
             airlineField.setText(flight.getAirline());
             destinationField.setText(flight.getDestination());
-            departureDateField.setText(flight.getDepartureDate());
-            arrivalDateField.setText(flight.getArrivalDate());
+            // Load date into the DatePicker if the date exists
+            if(flight.getDepartureDate() != null && !flight.getDepartureDate().isEmpty()){
+                departureDatePicker.setValue(LocalDate.parse(flight.getDepartureDate(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            }
+            if(flight.getArrivalDate() != null && !flight.getArrivalDate().isEmpty()){
+                arrivalDatePicker.setValue(LocalDate.parse(flight.getArrivalDate(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            }
         }
     }
-    private void loadHotelData(){
-        if(hotel !=null){
-            hotelIdField.setText(String.valueOf(hotel.getHotelId()));
-            hotelNameField.setText(hotel.getName());
-            locationField.setText(hotel.getLocation());
-        }
-    }
+
     private void saveEdit() {
-        if (flight != null) {
-            updateFlight();
-        } else if (hotel != null) {
-            updateHotel();
-        }
+        updateFlight();
         closeWindow();
 
     }
@@ -94,32 +83,24 @@ public class EditlistingController {
             flight.setFlightNumber(flightNumberField.getText());
             flight.setAirline(airlineField.getText());
             flight.setDestination(destinationField.getText());
-            flight.setDepartureDate(departureDateField.getText());
-            flight.setArrivalDate(arrivalDateField.getText());
+
+            if(departureDatePicker.getValue() != null){
+                flight.setDepartureDate(departureDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            }
+            if(arrivalDatePicker.getValue() != null){
+                flight.setArrivalDate(arrivalDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            }
+
 
             session.update(flight);
             transaction.commit();
-            parentController.loadFlightData(); // Refresh the table view in the parent controller
+            parentController.loadFlightData();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void updateHotel() {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            hotel.setName(hotelNameField.getText());
-            hotel.setLocation(locationField.getText());
-            session.update(hotel);
-            transaction.commit();
-            parentController.loadHotelData();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    private void closeWindow(){
+    private void closeWindow() {
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }
