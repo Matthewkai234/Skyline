@@ -90,7 +90,7 @@ public class SidebarController implements Initializable {
         loadPage("bookings.fxml");
     }
     public void loadAdminPanel(){loadPage("adminHome.fxml");}
-    public void loadLogin(){loadPage("login_page.fxml");}
+    public void loadLogin(){loadPageLogout("login_page.fxml");}
     public void loadFlights(){loadPage("SearchFlightBigFinal.fxml");}
 
 
@@ -100,6 +100,20 @@ public class SidebarController implements Initializable {
             Node content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/" + fxmlFile)));
             contentArea.getChildren().clear();
             contentArea.getChildren().add(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadPageLogout(String fxmlFile) {
+        try {
+            Stage currentStage = (Stage) contentArea.getScene().getWindow();
+            currentStage.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
+            Node content = loader.load();
+            Stage newStage = new Stage();
+            Scene newScene = new Scene((Parent) content);
+            newStage.setScene(newScene);
+            newStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -19,10 +19,14 @@ public class VerificationController {
 
     private String sentCode;
 
+    private String userEmail; // add the userEmail here
+
 
     public void setSentCode(String verificationCode) {
         this.sentCode = verificationCode;
     }
+
+    public void setUserEmail(String userEmail){this.userEmail = userEmail;}  //set the user email
 
     @FXML
     private void handleVerifyCode(ActionEvent event) {
@@ -42,6 +46,8 @@ public class VerificationController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ResetPassword .fxml"));
             Parent root = loader.load();
 
+            ResetPasswordController controller = loader.getController();
+            controller.setUserEmail(userEmail); //send email to resetPassword controller
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

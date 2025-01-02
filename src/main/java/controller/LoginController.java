@@ -1,6 +1,5 @@
 package controller;
 
-
 import database.Users;
 import database.repositories.UsersDAOImpl;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
+import java.io.IOException;
 
 public class LoginController {
     @FXML
@@ -26,8 +26,6 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-
-
         if (email == null || email.trim().isEmpty()) {
             showAlert("Error", "Please enter your email.");
             return;
@@ -40,33 +38,41 @@ public class LoginController {
 
         UsersDAOImpl userDAO = new UsersDAOImpl();
         Users user = userDAO.findByEmail(email);
+        if (user != null) {
+            boolean isPasswordMatch = BCrypt.checkpw(password, user.getPasswordHash());
 
-//      if (user != null) {
-//         boolean isPasswordMatch = BCrypt.checkpw(password, user.getPasswordHash());
-//
-//         if (isPasswordMatch) {
-//            String role = user.getrole();
-//
-//            if (role.equals("admin")) {
-//               loadPage("admin_page.fxml");
-//            } else  {
-//               loadPage("agent_page.fxml");
-//            }
-//         } else {
-//            showAlert("Error", "Invalid Email or Password.");
-//         }
-//      } else {
-//         showAlert("Error", "Invalid Email or Password.");
-//      }
+            if (isPasswordMatch) {
+                String role = user.getrole();
+
+                if (role.equals("admin")) {
+                    loadPage("./view/adminHome.fxml");
+                } else  {
+                    loadPage("./view/home.fxml");
+                }
+            } else {
+                showAlert("Error", "Invalid Email or Password.");
+            }
+        } else {
+            showAlert("Error", "Invalid Email or Password.");
+        }
     }
     @FXML
     public void forgetPasswordWindow() {
-//      System.out.println("Forget Password button clicked!");
-//      loadPage("reset_password.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ForgotPassword.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Forgot Password");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the Forgot Password window");
+        }
 
     }
     @FXML
-
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -91,6 +97,4 @@ public class LoginController {
             showAlert("Error", "Failed to load page: " + fxmlFile);
         }
     }
-
-
 }
