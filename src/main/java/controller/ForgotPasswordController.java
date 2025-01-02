@@ -1,10 +1,8 @@
 package controller;
 
-import application.SkylineApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -30,6 +28,7 @@ public class ForgotPasswordController {
     private final String senderEmail = "alideraralialiali@gmail.com";
     private final String senderPassword = "etcs xynt jxny vrnb";
     private String verificationCode;
+    private String recipientEmail;
 
     public void handleExitButtonAction(ActionEvent event) {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -38,7 +37,8 @@ public class ForgotPasswordController {
 
     @FXML
     private void handleSendEmail() {
-        String recipientEmail = emailField.getText().trim();
+        recipientEmail = emailField.getText().trim(); //get the email here
+
 
         if (recipientEmail.isEmpty() || !isValidEmail(recipientEmail)) {
             showAlert("Invalid Email", "Please enter a valid email address.");
@@ -54,7 +54,7 @@ public class ForgotPasswordController {
 
         if (sendEmail(recipientEmail, verificationCode)) {
             showAlert("Success", "Verification code sent successfully!");
-            navigateToNextPage("/view/verification.fxml", verificationCode);
+            navigateToNextPage("/view/verification.fxml", verificationCode, recipientEmail); // add here recipientEmail
         } else {
             showAlert("Error", "Failed to send the verification code. Please try again.");
         }
@@ -124,13 +124,14 @@ public class ForgotPasswordController {
         }
     }
 
-    private void navigateToNextPage(String fxmlPath, String verificationCode) {
+    private void navigateToNextPage(String fxmlPath, String verificationCode, String recipientEmail) { //add recipientEmail here
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
             VerificationController controller = loader.getController();
             controller.setSentCode(verificationCode);
+            controller.setUserEmail(recipientEmail); // add the email here to the verificationController
 
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(new Scene(root));

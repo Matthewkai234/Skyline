@@ -1,4 +1,5 @@
 package controller;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.Connection;
@@ -34,6 +35,12 @@ public class ResetPasswordController {
 
     private boolean isNewPasswordVisible = false;
     private boolean isConfirmPasswordVisible = false;
+    private String userEmail;
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
 
     @FXML
     public void toggleNewPassword() {
@@ -101,14 +108,14 @@ public class ResetPasswordController {
         String dbUrl = "jdbc:mysql://localhost:3306/skyline";
         String dbUser = "root";
         String dbPassword = "root1234";
-
-
-        String updateQuery = "UPDATE users SET password_hash = ? WHERE email = 'alideraralialiali@gmail.com'";
-
+        // String updateQuery = "UPDATE users SET password_hash = ? WHERE email = 'alideraralialiali@gmail.com'"; changed it here
+        String updateQuery = "UPDATE users SET password_hash = ? WHERE email = ?";
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
              PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
 
             preparedStatement.setString(1, newPassword);
+            preparedStatement.setString(2, userEmail); // Set email here
+
             int rowsUpdated = preparedStatement.executeUpdate();
             return rowsUpdated > 0;
 

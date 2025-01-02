@@ -38,23 +38,23 @@ public class LoginController {
 
         UsersDAOImpl userDAO = new UsersDAOImpl();
         Users user = userDAO.findByEmail(email);
-      if (user != null) {
-         boolean isPasswordMatch = BCrypt.checkpw(password, user.getPasswordHash());
+        if (user != null) {
+            boolean isPasswordMatch = BCrypt.checkpw(password, user.getPasswordHash());
 
-         if (isPasswordMatch) {
-            String role = user.getrole();
+            if (isPasswordMatch) {
+                String role = user.getrole();
 
-            if (role.equals("admin")) {
-               loadPage("./view/adminHome.fxml");
-            } else  {
-               loadPage("./view/home.fxml");
+                if (role.equals("admin")) {
+                    loadPage("./view/adminHome.fxml");
+                } else  {
+                    loadPage("./view/home.fxml");
+                }
+            } else {
+                showAlert("Error", "Invalid Email or Password.");
             }
-         } else {
+        } else {
             showAlert("Error", "Invalid Email or Password.");
-         }
-      } else {
-         showAlert("Error", "Invalid Email or Password.");
-      }
+        }
     }
     @FXML
     public void forgetPasswordWindow() {
