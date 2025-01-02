@@ -10,9 +10,9 @@ public class Users {
     private String passwordHash;
     private String role;
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/UserRegistration";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/skyline";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Ali692004";
+    private static final String DB_PASSWORD = "root1234";
 
 
     public Users(String firstName, String lastName, String email, String password, String selectedRole) {

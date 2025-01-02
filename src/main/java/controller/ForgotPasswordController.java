@@ -66,9 +66,9 @@ public class ForgotPasswordController {
     }
 
     private boolean isEmailInDatabase(String email) {
-        String dbUrl = "jdbc:mysql://localhost:3306/UserRegistration";
+        String dbUrl = "jdbc:mysql://localhost:3306/skyline";
         String dbUser = "root";
-        String dbPassword = "Ali692004";
+        String dbPassword = "root1234";
 
         String query = "SELECT COUNT(*) FROM users WHERE email = ?";
 

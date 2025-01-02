@@ -98,9 +98,9 @@ public class ResetPasswordController {
     }
 
     private boolean updatePasswordInDatabase(String newPassword) {
-        String dbUrl = "jdbc:mysql://localhost:3306/UserRegistration";
+        String dbUrl = "jdbc:mysql://localhost:3306/skyline";
         String dbUser = "root";
-        String dbPassword = "Ali692004";
+        String dbPassword = "root1234";
 
 
         String updateQuery = "UPDATE users SET password_hash = ? WHERE email = 'alideraralialiali@gmail.com'";
