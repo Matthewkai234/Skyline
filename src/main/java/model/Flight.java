@@ -28,13 +28,6 @@ public class Flight {
         this.actions = "Actions";
     }
 
-    public String getActions() {
-        return actions;
-    }
-
-    public void setActions(String actions) {
-        this.actions = actions;
-    }
 
     public int getFlightId() {
         return flightId;
@@ -68,14 +61,6 @@ public class Flight {
         this.destination = destination;
     }
 
-    public String getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(String departureDate) {
-        this.departureDate = departureDate;
-    }
-
     public String getArrivalDate() {
         return arrivalDate;
     }
@@ -84,6 +69,21 @@ public class Flight {
         this.arrivalDate = arrivalDate;
     }
 
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getActions() {
+        return actions;
+    }
+
+    public void setActions(String actions) {
+        this.actions = actions;
+    }
 
     @Override
     public String toString() {

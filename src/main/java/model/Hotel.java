@@ -26,14 +26,6 @@ public class Hotel {
     }
 
 
-    public String getActions() {
-        return actions;
-    }
-
-    public void setActions(String actions) {
-        this.actions = actions;
-    }
-
     public int getHotelId() {
         return hotelId;
     }
@@ -56,6 +48,14 @@ public class Hotel {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getActions() {
+        return actions;
+    }
+
+    public void setActions(String actions) {
+        this.actions = actions;
     }
 
     @Override
