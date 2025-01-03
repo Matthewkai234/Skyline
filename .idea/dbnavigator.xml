@@ -15,6 +15,7 @@
     <show-object-properties value="true" />
     <loaded-nodes />
   </component>
+<<<<<<< Updated upstream
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0601bdeb-01ac-48c6-862b-684afeba2637">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
@@ -32,6 +33,8 @@
       <console name="Connection 3" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
@@ -40,6 +43,7 @@
       <object connection-id="8a207596-3abe-42e8-b372-46884b0c8d5b" object-ref="consoles/dbtest" />
     </open-files>
   </component>
+<<<<<<< Updated upstream
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="0601bdeb-01ac-48c6-862b-684afeba2637" />
     <connection id="b17a5883-336e-490f-bc5e-c325e89e5375" />
@@ -47,6 +51,8 @@
     <connection id="8a207596-3abe-42e8-b372-46884b0c8d5b" />
     <connection id="3e1433b0-201b-4060-9887-409edd52386f" />
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
