@@ -105,5 +105,3 @@ public class SidebarController implements Initializable {
         }
     }
 }
-
-

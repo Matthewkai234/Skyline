@@ -6,7 +6,7 @@ import java.util.Set;
 
 @SuppressWarnings("ALL")
 @Entity
-@Table(name = "Roles")
+@Table(name = "roles")
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

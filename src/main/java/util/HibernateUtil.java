@@ -28,9 +28,9 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(AirLine.class);
         configuration.addAnnotatedClass(Booking.class);
         configuration.addAnnotatedClass(Users.class);
-        configuration.addAnnotatedClass(Roles.class);
-        configuration.addAnnotatedClass(Permission.class);
-        configuration.addAnnotatedClass(RolePermission.class);
+//        configuration.addAnnotatedClass(Roles.class);
+//        configuration.addAnnotatedClass(Permission.class);
+//        configuration.addAnnotatedClass(RolePermission.class);
 
 
         configuration.configure();

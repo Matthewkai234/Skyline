@@ -10,9 +10,9 @@ public class Users {
     private String passwordHash;
     private String role;
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/UserRegistration";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Ali692004";
+    private static final String DB_URL = "jdbc:mysql://srv1467.hstgr.io:3306/u687850034_recordings";
+    private static final String DB_USER = "u687850034_mytest22";
+    private static final String DB_PASSWORD = "Qwe102030@";
 
 
     public Users(String firstName, String lastName, String email, String password, String selectedRole) {
@@ -68,7 +68,7 @@ public class Users {
 
 
     public boolean save() {
-        String insertQuery = "INSERT INTO Users (first_name, last_name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {

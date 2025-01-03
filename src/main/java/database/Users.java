@@ -22,9 +22,17 @@ public class Users {
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Roles role;
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    //    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "role_id", nullable = false)
+    private String role;
 
 
     public int getId() {
@@ -67,16 +75,13 @@ public class Users {
         this.passwordHash = passwordHash;
     }
 
-    public Roles getRole() {
-        return role;
-    }
+//    public Roles getRole() {
+//        return role;
+//    }
 
-    public void setRole(Roles role) {
-        this.role = role;
-    }
+//    public void setRole(Roles role) {
+//        this.role = role;
+//    }
 
-    public String getrole() {
-        return role.getName();
 
-    }
 }
