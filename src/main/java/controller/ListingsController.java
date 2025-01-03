@@ -116,6 +116,7 @@ public class ListingsController {
 
         Button editButton = new Button("Edit");
         editButton.setStyle("-fx-background-color: #00affa; -fx-text-fill: white;");
+        editButton.setOnAction(event -> openFlightEditor(flight));
 
         HBox buttons = new HBox(5); // 5 pixel spacing between buttons
         buttons.getChildren().addAll(deleteButton, editButton);
@@ -129,12 +130,45 @@ public class ListingsController {
 
         Button editButton = new Button("Edit");
         editButton.setStyle("-fx-background-color: #00affa; -fx-text-fill: white;");
+        editButton.setOnAction(event -> openHotelEditor(hotel));
 
 
         HBox buttons = new HBox(5);
         buttons.getChildren().addAll(deleteButton, editButton);
         return buttons;
     }
+
+    // Method to open Flight Editor Window
+    private void openFlightEditor(Flight flight) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditFlight.fxml")); // Make sure the path is correct
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            EditFlightController controller = loader.getController();
+            controller.setFlight(flight); //Pass the flight data to the controller
+            controller.setParentController(this); // Pass the parent controller to refresh the table view after update
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    // Method to open Hotel Editor Window
+    private void openHotelEditor(Hotel hotel) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml")); // Make sure the path is correct
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            EditHotelController controller = loader.getController();
+            controller.setHotel(hotel); //Pass the hotel data to the controller
+            controller.setParentController(this); // Pass the parent controller to refresh the table view after update
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void deleteFlight(Flight flight) {
         try (Session session = sessionFactory.openSession()) {
