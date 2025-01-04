@@ -1,13 +1,12 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Flight;
-import model.Hotel;
+import model.AdminListingFlightModel;
+import model.AdminListingHotelModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -89,8 +88,8 @@ public class AddListingController {
         toggleFields("Flight");
         try {
             Configuration config = new Configuration().configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(Hotel.class)
-                    .addAnnotatedClass(Flight.class);
+                    .addAnnotatedClass(AdminListingHotelModel.class)
+                    .addAnnotatedClass(AdminListingFlightModel.class);
             sessionFactory = config.buildSessionFactory();
         } catch (Exception ex) {
             System.out.println("Failed to create session factory: " + ex.getMessage());
@@ -167,7 +166,7 @@ public class AddListingController {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             if ("Hotel".equalsIgnoreCase(selectedType)) {
-                Hotel hotel = new Hotel();
+                AdminListingHotelModel hotel = new AdminListingHotelModel();
                 hotel.setHotelId(Integer.parseInt(hotelIdField.getText()));
                 hotel.setName(nameField.getText());
                 hotel.setLocation(locationField.getText());
@@ -176,7 +175,7 @@ public class AddListingController {
                     parentController.loadHotelData();
                 }
             } else if ("Flight".equalsIgnoreCase(selectedType)) {
-                Flight flight = new Flight();
+                AdminListingFlightModel flight = new AdminListingFlightModel();
                 flight.setFlightNumber(flightIdField.getText());
                 flight.setAirline(airlineField.getText());
                 flight.setDestination(destinationField.getText());

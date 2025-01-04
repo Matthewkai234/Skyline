@@ -1,3 +1,4 @@
+
 package database;
 
 import javax.persistence.*;
@@ -6,7 +7,7 @@ import java.util.Set;
 
 @SuppressWarnings("ALL")
 @Entity
-@Table(name = "Roles")
+@Table(name = "roles")
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +22,13 @@ public class Roles {
 
     @ManyToMany
     @JoinTable(
-            name = "role_permission", 
+            name = "role_permission",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
     private Set<Permissions> permissions;
 
-  
+
     public int getId() {
         return id;
     }

@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Flight;
+import model.AdminListingFlightModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,7 +29,7 @@ public class EditFlightController {
     private DatePicker arrivalDatePicker;
     @FXML
     private Button saveButton;
-    private Flight flight;
+    private AdminListingFlightModel flight;
     private ListingsController parentController;
     private SessionFactory sessionFactory;
 
@@ -38,7 +38,7 @@ public class EditFlightController {
         this.parentController = parentController;
     }
 
-    public void setFlight(Flight flight) {
+    public void setFlight(AdminListingFlightModel flight) {
         this.flight = flight;
         loadFlightData();
     }
@@ -47,7 +47,7 @@ public class EditFlightController {
     @FXML
     public void initialize() {
         try {
-            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Flight.class);
+            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(AdminListingFlightModel.class);
             sessionFactory = config.buildSessionFactory();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

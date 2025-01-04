@@ -11,8 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Flight;
-import model.Hotel;
+import model.AdminListingFlightModel;
+import model.AdminListingHotelModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,40 +29,40 @@ public class ListingsController {
     private TabPane tabPane;
 
     @FXML
-    private TableView<Flight> flightTable;
+    private TableView<AdminListingFlightModel> flightTable;
 
     @FXML
-    private TableColumn<Flight, String> flightNumberColumn;
+    private TableColumn<AdminListingFlightModel, String> flightNumberColumn;
 
     @FXML
-    private TableColumn<Flight, String> airlineColumn;
+    private TableColumn<AdminListingFlightModel, String> airlineColumn;
 
     @FXML
-    private TableColumn<Flight, String> destinationColumn;
+    private TableColumn<AdminListingFlightModel, String> destinationColumn;
 
     @FXML
-    private TableColumn<Flight, String> departureDateColumn;
+    private TableColumn<AdminListingFlightModel, String> departureDateColumn;
 
     @FXML
-    private TableColumn<Flight, String> arrivalDateColumn;
+    private TableColumn<AdminListingFlightModel, String> arrivalDateColumn;
 
     @FXML
-    private TableColumn<Flight, HBox> flightActionsColumn; // Changed to HBox
+    private TableColumn<AdminListingFlightModel, HBox> flightActionsColumn; // Changed to HBox
 
     @FXML
-    private TableView<Hotel> hotelTable;
+    private TableView<AdminListingHotelModel> hotelTable;
 
     @FXML
-    private TableColumn<Hotel, Integer> hotelIdColumn;
+    private TableColumn<AdminListingHotelModel, Integer> hotelIdColumn;
 
     @FXML
-    private TableColumn<Hotel, String> hotelNameColumn;
+    private TableColumn<AdminListingHotelModel, String> hotelNameColumn;
 
     @FXML
-    private TableColumn<Hotel, String> locationColumn;
+    private TableColumn<AdminListingHotelModel, String> locationColumn;
 
     @FXML
-    private TableColumn<Hotel, HBox> hotelActionsColumn;  // Changed to HBox
+    private TableColumn<AdminListingHotelModel, HBox> hotelActionsColumn;  // Changed to HBox
 
     private SessionFactory sessionFactory;
 
@@ -70,7 +70,7 @@ public class ListingsController {
     public void initialize() {
         //Configure hibernate Session
         try{
-            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Flight.class).addAnnotatedClass(Hotel.class);
+            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(AdminListingFlightModel.class).addAnnotatedClass(AdminListingHotelModel.class);
             sessionFactory = config.buildSessionFactory();
         }catch (Exception ex){
             System.out.println(ex.getMessage());
@@ -109,7 +109,7 @@ public class ListingsController {
     }
 
     // Updated methods to return an HBox containing both buttons
-    private HBox createActionButtonsForFlight(Flight flight) {
+    private HBox createActionButtonsForFlight(AdminListingFlightModel flight) {
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
         deleteButton.setOnAction(event -> deleteFlight(flight));
@@ -123,7 +123,7 @@ public class ListingsController {
         return buttons;
     }
 
-    private HBox createActionButtonsForHotel(Hotel hotel) {
+    private HBox createActionButtonsForHotel(AdminListingHotelModel hotel) {
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
         deleteButton.setOnAction(event -> deleteHotel(hotel));
@@ -139,7 +139,7 @@ public class ListingsController {
     }
 
     // Method to open Flight Editor Window
-    private void openFlightEditor(Flight flight) {
+    private void openFlightEditor(AdminListingFlightModel flight) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditFlight.fxml")); // Make sure the path is correct
             Stage stage = new Stage();
@@ -154,7 +154,7 @@ public class ListingsController {
         }
     }
     // Method to open Hotel Editor Window
-    private void openHotelEditor(Hotel hotel) {
+    private void openHotelEditor(AdminListingHotelModel hotel) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml")); // Make sure the path is correct
             Stage stage = new Stage();
@@ -170,7 +170,7 @@ public class ListingsController {
     }
 
 
-    private void deleteFlight(Flight flight) {
+    private void deleteFlight(AdminListingFlightModel flight) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.delete(flight);
@@ -180,7 +180,7 @@ public class ListingsController {
             System.out.println(e.getMessage());
         }
     }
-    private void deleteHotel(Hotel hotel) {
+    private void deleteHotel(AdminListingHotelModel hotel) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.delete(hotel);
@@ -215,21 +215,21 @@ public class ListingsController {
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
         // Load data from database
-        ObservableList<Hotel> hotelList = loadHotelsFromDatabase();
+        ObservableList<AdminListingHotelModel> hotelList = loadHotelsFromDatabase();
         hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForHotel(param.getValue())));
         // Set items to the table
         hotelTable.setItems(hotelList);
 
     }
 
-    private ObservableList<Hotel> loadHotelsFromDatabase() {
-        ObservableList<Hotel> hotels = FXCollections.observableArrayList();
+    private ObservableList<AdminListingHotelModel> loadHotelsFromDatabase() {
+        ObservableList<AdminListingHotelModel> hotels = FXCollections.observableArrayList();
         try(Session session = sessionFactory.openSession()){
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Hotel> criteriaQuery = builder.createQuery(Hotel.class);
-            Root<Hotel> root = criteriaQuery.from(Hotel.class);
+            CriteriaQuery<AdminListingHotelModel> criteriaQuery = builder.createQuery(AdminListingHotelModel.class);
+            Root<AdminListingHotelModel> root = criteriaQuery.from(AdminListingHotelModel.class);
             criteriaQuery.select(root);
-            List<Hotel> hotelData = session.createQuery(criteriaQuery).getResultList();
+            List<AdminListingHotelModel> hotelData = session.createQuery(criteriaQuery).getResultList();
             hotels.addAll(hotelData);
         }catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -245,20 +245,20 @@ public class ListingsController {
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalDate"));
 
         // Load data from database
-        ObservableList<Flight> flightList = loadFlightsFromDatabase();
+        ObservableList<AdminListingFlightModel> flightList = loadFlightsFromDatabase();
         flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForFlight(param.getValue())));
 
         flightTable.setItems(flightList);
     }
 
-    private ObservableList<Flight> loadFlightsFromDatabase() {
-        ObservableList<Flight> flights = FXCollections.observableArrayList();
+    private ObservableList<AdminListingFlightModel> loadFlightsFromDatabase() {
+        ObservableList<AdminListingFlightModel> flights = FXCollections.observableArrayList();
         try(Session session = sessionFactory.openSession()){
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Flight> criteriaQuery = builder.createQuery(Flight.class);
-            Root<Flight> root = criteriaQuery.from(Flight.class);
+            CriteriaQuery<AdminListingFlightModel> criteriaQuery = builder.createQuery(AdminListingFlightModel.class);
+            Root<AdminListingFlightModel> root = criteriaQuery.from(AdminListingFlightModel.class);
             criteriaQuery.select(root);
-            List<Flight> flightData = session.createQuery(criteriaQuery).getResultList();
+            List<AdminListingFlightModel> flightData = session.createQuery(criteriaQuery).getResultList();
             flights.addAll(flightData);
         }catch (Exception ex){
             System.out.println(ex.getMessage());

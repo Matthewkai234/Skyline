@@ -1,7 +1,7 @@
 package controller;
 
 import database.Hotels;
-import database.repositories.HotelsService;
+import database.services.HotelsService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

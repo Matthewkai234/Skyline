@@ -3,7 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import model.Users;
+import model.RegisterModel;
 import java.util.regex.Pattern;
 
 public class CreateAccountController {
@@ -147,7 +147,7 @@ public class CreateAccountController {
         }
 
 
-        Users user = new Users(firstName, lastName, email, password, selectedRole);
+        RegisterModel user = new RegisterModel(firstName, lastName, email, password, selectedRole);
         if (user.save()) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account created successfully!");
         } else {

@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.Booking;
+import model.LatestBookingModel;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -41,22 +41,22 @@ public class AdminHomeController {
     }
 
     @FXML
-    private TableView<Booking> bookingTable;
+    private TableView<LatestBookingModel> bookingTable;
     @FXML
-    private TableColumn<Booking, String> bookingIdColumn;
+    private TableColumn<LatestBookingModel, String> bookingIdColumn;
     @FXML
-    private TableColumn<Booking, String> typeColumn;
+    private TableColumn<LatestBookingModel, String> typeColumn;
     @FXML
-    private TableColumn<Booking, String> customerNameColumn;
+    private TableColumn<LatestBookingModel, String> customerNameColumn;
     @FXML
-    private TableColumn<Booking, String> detailsColumn;
+    private TableColumn<LatestBookingModel, String> detailsColumn;
 
     @FXML
     private Label airBookingLabel;
     @FXML
     private Label hotelBookingLabel;
 
-    private final ObservableList<Booking> bookingList = FXCollections.observableArrayList();
+    private final ObservableList<LatestBookingModel> bookingList = FXCollections.observableArrayList();
 
     public void initialize() {
         setupBookingTable();
@@ -76,7 +76,7 @@ public class AdminHomeController {
     private void loadLatestBookingsFromDatabase() {
         String url = "jdbc:mysql://localhost:3306/skyline";
         String user = "root";
-        String password = "root1234";
+        String password = "";
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement()) {
@@ -87,7 +87,7 @@ public class AdminHomeController {
             ResultSet airResultSet = statement.executeQuery(airBookingQuery);
 
             while (airResultSet.next()) {
-                bookingList.add(new Booking(
+                bookingList.add(new LatestBookingModel(
                         airResultSet.getString("booking_id"),
                         airResultSet.getString("type"),
                         airResultSet.getString("customer_name"),
@@ -101,7 +101,7 @@ public class AdminHomeController {
             ResultSet hotelResultSet = statement.executeQuery(hotelBookingQuery);
 
             while (hotelResultSet.next()) {
-                bookingList.add(new Booking(
+                bookingList.add(new LatestBookingModel(
                         hotelResultSet.getString("booking_id"),
                         hotelResultSet.getString("type"),
                         hotelResultSet.getString("customer_name"),
@@ -117,7 +117,7 @@ public class AdminHomeController {
     private void updateBookingCounts() {
         String url = "jdbc:mysql://localhost:3306/skyline";
         String user = "root";
-        String password = "root1234";
+        String password = "";
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement()) {

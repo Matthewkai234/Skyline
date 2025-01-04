@@ -1,23 +1,62 @@
+/* Tabs */
+.tab-header-area {
+    -fx-padding: 0;
+}
+
+.tab-header-background {
+    -fx-background-color: #e1f0f7;
+}
+
+.tab {
+    -fx-background-color: #e1f0f7;
+    -fx-font-weight: bold;
+    -fx-pref-height: 30;
+    -fx-border-color: #e1f0f7;
+    -fx-border-width: 0 0 0 0;
+}
+
+.tab:selected {
+    -fx-background-color: #fff;
+    -fx-border-color: #00aff0;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Table Styles */
 .bookings-table {
     -fx-background-color: linear-gradient(to right, #A6D8F5, #00aff0); /* Gradient background */
-
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2); /* Subtle shadow */
     -fx-padding: 10px;
     -fx-border-width: 1px;
     -fx-font-size: 14px;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
-
     -fx-max-width: 100%;
     -fx-min-width: 1100px;
     -fx-pref-width: 100%;
-
     -fx-border-color: #1E90FF;
 }
 
 .bookings-table .table-cell {
     -fx-border-color: #00aff0;
     -fx-border-width: 0 3px 3px 0;
+    -fx-alignment: center; /* Add this for centered text */
 }
+
+.bookings-table .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.bookings-table .table-row-cell:odd {
+    -fx-background-color: #f0f0f0;
+}
+.bookings-table .table-row-cell:filled:selected:focused,
+.bookings-table .table-row-cell:filled:selected {
+    -fx-background-color: #00aff0;
+    -fx-text-fill: white;
+}
+.bookings-table .table-row-cell:filled:hover {
+    -fx-background-color: #e1f0f7;
+}
+
 
 .bookings-table-header {
     -fx-background-color: white;
@@ -29,15 +68,3 @@
     -fx-text-fill: #000000;
     -fx-font-size: 1.2em;
 }
-
-.tab-pane {
-    -fx-background-color: transparent;
-    -fx-background-radius: 10px;
-    -fx-padding: 10px;
-}
-
-
-
-
-
-

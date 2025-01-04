@@ -61,26 +61,12 @@ public class SidebarController implements Initializable {
         loadLogin();
     }
     public void flights(ActionEvent actionEvent) throws IOException {
-        /*
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/SearchFlight.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("two!");
-            stage.setScene(scene);
-            stage.show();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-
-         */
         loadFlights();
     }
 
 
     public void loadHome() {
-        loadPage("home.fxml");
+        loadPage("HomeDashboard.fxml");
     }
     public void loadListings() {
         loadPage("listings-view.fxml");
@@ -104,6 +90,7 @@ public class SidebarController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private void loadPageLogout(String fxmlFile) {
         try {
             Stage currentStage = (Stage) contentArea.getScene().getWindow();

@@ -2,14 +2,11 @@ package controller;
 
 import application.SkylineApplication;
 import database.Flight;
-import database.repositories.SearshFlightDOAImp;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import database.services.SearshFlightDOAImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;

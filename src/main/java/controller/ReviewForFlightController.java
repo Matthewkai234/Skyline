@@ -1,7 +1,7 @@
 package controller;
 import application.SkylineApplication;
 import database.Flight;
-import database.repositories.SearshFlightDOAImp;
+import database.services.SearshFlightDOAImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

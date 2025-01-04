@@ -1,7 +1,7 @@
 package controller;
 
 import database.Flight;
-import database.repositories.SearshFlightDOAImp;
+import database.services.SearshFlightDOAImp;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

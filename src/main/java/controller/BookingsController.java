@@ -1,9 +1,10 @@
 package controller;
 
-import database.FlightsBookingModel;
-import database.HotelsBookingModel;
-import database.repositories.FlightsBookingRepository;
-import database.repositories.HotelsBookingRepository;
+import model.BookingHistoryModel;
+import model.FlightsBookingModel;
+import model.HotelsBookingModel;
+import database.services.FlightsBookingDAOImp;
+import database.services.HotelsBookingDAOImp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,12 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.awt.*;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -54,42 +54,88 @@ public class BookingsController implements Initializable {
     private TableColumn<HotelsBookingModel, String> hHotelNameBookingColumn;
     @FXML
     private TableColumn<HotelsBookingModel, String> hCustomerNameColumn;
+    //-------------------------------------------------------------------//
+    @FXML
+    TableView<BookingHistoryModel> bookingHistoryTableView;
+    @FXML
+    private TableColumn<BookingHistoryModel, Integer> bhBookingIdColumn;
+    @FXML
+    private TableColumn<BookingHistoryModel, LocalDate> bhBookingDateColumn;
+    @FXML
+    private TableColumn<BookingHistoryModel, String> bhTypeColumn;
+    @FXML
+    private TableColumn<BookingHistoryModel, String> bhItemNameColumn;
 
+    @FXML
+    private TableColumn<BookingHistoryModel, String> bhCustomerNameColumn;
     //-------------------------------------------------------------------//
     private ObservableList<FlightsBookingModel> flightsBookingsList;
-    FlightsBookingRepository flightsBookingRepository = new FlightsBookingRepository();
+    FlightsBookingDAOImp flightsBookingRepository = new FlightsBookingDAOImp();
     ObservableList<FlightsBookingModel> initialFlightsData() {
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Grigori Rasputin ","Moscow", "Athens", "Poseidon",FlightsBookingModel.Status.BOOKED));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Kai Fiennes","Tokyo", "Beijing", "深圳航空",FlightsBookingModel.Status.BOOKED));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Aang Chaichana","Jakarta", "Bangkok", "Bangkok Airways",FlightsBookingModel.Status.BOOKED));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Katerina Petrova","Rome", "Sofia", "Fly2Sky",FlightsBookingModel.Status.PENDING));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Defne Topal","Istanbul", "Amman", "Turkish Airlines",FlightsBookingModel.Status.PENDING));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Matthew Halim","Amman", "London", "Spartan Airlines",FlightsBookingModel.Status.PENDING));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Jam Lee","Amman", "Dublin", "CityJet ",FlightsBookingModel.Status.CANCELLED));
-//            flightsBookingRepository.insert(new FlightsBookingModel(LocalDate.now(),"Guy Lian","London", "Singapore", "Scoot Pte. Ltd",FlightsBookingModel.Status.CANCELLED));
         var bookings = flightsBookingRepository.getAll();
         return FXCollections.<FlightsBookingModel>observableArrayList(bookings);
     }
     //-------------------------------------------------------------------//
     private ObservableList<HotelsBookingModel> hotelsBookingList;
-    HotelsBookingRepository hotelsBookingRepository = new HotelsBookingRepository();
+    HotelsBookingDAOImp hotelsBookingRepository = new HotelsBookingDAOImp();
     ObservableList<HotelsBookingModel> initialHotelsData(){
-//        hotelsBookingRepository.insert(new HotelsBookingModel(LocalDate.now(),"Angelina Jolie","Paradise","London",HotelsBookingModel.Status.BOOKED));
-//        hotelsBookingRepository.insert(new HotelsBookingModel(LocalDate.now(),"Jenna Ortega","Paradise","Transylvania",HotelsBookingModel.Status.PENDING));
-//        hotelsBookingRepository.insert(new HotelsBookingModel(LocalDate.now(),"Tyler Hoechlin","Paradise","California",HotelsBookingModel.Status.CANCELLED));
         var bookings = hotelsBookingRepository.getAll();
         return FXCollections.<HotelsBookingModel>observableArrayList(bookings);
     }
+    //-------------------------------------------------------------------//
+    private ObservableList<BookingHistoryModel> bookingHistoryList;
+
+
     //-------------------------------------------------------------------//
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeFlightsBookings(url, resourceBundle);
         initializeHotelsBookings(url, resourceBundle);
+        initializeBookingHistory(url,resourceBundle);
+    }
+
+    //-------------------------------------------------------------------//
+    public void initializeBookingHistory(URL url, ResourceBundle resourceBundle){
+        bhBookingIdColumn.setCellValueFactory (new PropertyValueFactory<BookingHistoryModel, Integer>( "bookingId"));
+        bhBookingDateColumn.setCellValueFactory (new PropertyValueFactory<BookingHistoryModel, LocalDate>( "bookingDate"));
+        bhTypeColumn.setCellValueFactory(new PropertyValueFactory<BookingHistoryModel, String>("type"));
+        bhItemNameColumn.setCellValueFactory (new PropertyValueFactory<BookingHistoryModel, String>( "itemName"));
+        bhCustomerNameColumn.setCellValueFactory (new PropertyValueFactory<BookingHistoryModel, String>( "customerName"));
+        bookingHistoryTableView.setItems(initialBookingHistoryData());
     }
     //-------------------------------------------------------------------//
+    private ObservableList<BookingHistoryModel> initialBookingHistoryData() {
+        ObservableList<BookingHistoryModel> history = FXCollections.observableArrayList();
 
+        List<FlightsBookingModel> flightBookings = flightsBookingRepository.getAll().stream()
+                .filter(booking -> booking.getStatus().equals(FlightsBookingModel.Status.BOOKED.toString()))
+                .collect(Collectors.toList());
 
+        for (FlightsBookingModel booking : flightBookings) {
+            history.add(new BookingHistoryModel(
+                            booking.getBooking_id(),
+                            booking.getBookingDate(),
+                            "flight",
+                            booking.getAirline(),
+                            booking.getCustomerName()
+                    )
+            );
+        }
+        List<HotelsBookingModel> hotelBookings = hotelsBookingRepository.getAll().stream()
+                .filter(booking -> booking.getStatus().equals(HotelsBookingModel.Status.BOOKED.toString()))
+                .collect(Collectors.toList());
 
+        for (HotelsBookingModel booking : hotelBookings){
+            history.add(new BookingHistoryModel(
+                    booking.getBooking_id(),
+                    booking.getBookingDate(),
+                    "hotel",
+                    booking.getHotelName(),
+                    booking.getCustomerName()
+            ));
+        }
+        return history;
+    }
     //-------------------------------------------------------------------//
     public void initializeFlightsBookings(URL url, ResourceBundle resourceBundle) {
         bookingIdColumn.setCellValueFactory (new PropertyValueFactory<FlightsBookingModel, Integer>( "booking_id"));
@@ -195,8 +241,7 @@ public class BookingsController implements Initializable {
 
         hotelsTableView.setItems(initialHotelsData());
     }
-//-------------------------------------------------------------------//
-
+    //-------------------------------------------------------------------//
     public void refreshTableData() {
         ObservableList<FlightsBookingModel> allBookings = FXCollections.observableArrayList(flightsBookingRepository.getAll());
         ObservableList<FlightsBookingModel> filteredBookings = allBookings.stream()
@@ -204,6 +249,7 @@ public class BookingsController implements Initializable {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         tableView.setItems(filteredBookings);
+        refreshBookingHistoryData();
     }
 
     public void refreshHotelsTableData() {
@@ -213,8 +259,11 @@ public class BookingsController implements Initializable {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         hotelsTableView.setItems(filteredBookings);
+        refreshBookingHistoryData();
+    }
+
+    private void refreshBookingHistoryData(){
+        bookingHistoryTableView.setItems(initialBookingHistoryData());
     }
 
 }
-
-

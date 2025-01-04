@@ -2,15 +2,10 @@ package controller;
 
 import database.Booking;
 import database.FlightBooking;
-import database.repositories.BookingDOAImp;
-import database.repositories.FlightBookingDOAImp;
+import database.services.BookingDOAImp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
-import java.awt.print.Book;
 
 public class FlightBookingController {
 
@@ -70,13 +65,9 @@ public class FlightBookingController {
     @FXML
     public void Booking() {
 
-
-
         BookingDOAImp bookingDOAImp = new BookingDOAImp();
-        FlightBookingDOAImp flightBookingDOAImp = new FlightBookingDOAImp();
         Booking book = new Booking();
         FlightBooking flightBooking = new FlightBooking();
-
 
 
         String userName = this.userName.getText();
@@ -91,30 +82,7 @@ public class FlightBookingController {
 
         //flightBooking.setFlight();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         bookingDOAImp.AddBooking(book);
-
-
-
-
-
-
-
 
     }
 }

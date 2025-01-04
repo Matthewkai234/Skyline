@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Hotel;
+import model.AdminListingHotelModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,7 +20,7 @@ public class EditHotelController {
     private TextField locationField;
     @FXML
     private Button saveButton;
-    private Hotel hotel;
+    private AdminListingHotelModel hotel;
     private ListingsController parentController;
     private SessionFactory sessionFactory;
 
@@ -29,7 +29,7 @@ public class EditHotelController {
         this.parentController = parentController;
     }
 
-    public void setHotel(Hotel hotel) {
+    public void setHotel(AdminListingHotelModel hotel) {
         this.hotel = hotel;
         loadHotelData();
     }
@@ -37,7 +37,7 @@ public class EditHotelController {
     @FXML
     public void initialize() {
         try {
-            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Hotel.class);
+            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(AdminListingHotelModel.class);
             sessionFactory = config.buildSessionFactory();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
