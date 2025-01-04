@@ -16,7 +16,7 @@ import model.AdminListingHotelModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import util.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -64,19 +64,9 @@ public class ListingsController {
     @FXML
     private TableColumn<AdminListingHotelModel, HBox> hotelActionsColumn;  // Changed to HBox
 
-    private SessionFactory sessionFactory;
 
     @FXML
     public void initialize() {
-        //Configure hibernate Session
-        try{
-            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(AdminListingFlightModel.class).addAnnotatedClass(AdminListingHotelModel.class);
-            sessionFactory = config.buildSessionFactory();
-        }catch (Exception ex){
-            System.out.println(ex.getMessage());
-            System.out.println("failed to create the session");
-        }
-
         // Handle flight actions
         flightActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForFlight(param.getValue())));
         // Handle hotel actions
@@ -171,7 +161,7 @@ public class ListingsController {
 
 
     private void deleteFlight(AdminListingFlightModel flight) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.delete(flight);
             transaction.commit();
@@ -181,7 +171,7 @@ public class ListingsController {
         }
     }
     private void deleteHotel(AdminListingHotelModel hotel) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.delete(hotel);
             transaction.commit();
@@ -224,7 +214,7 @@ public class ListingsController {
 
     private ObservableList<AdminListingHotelModel> loadHotelsFromDatabase() {
         ObservableList<AdminListingHotelModel> hotels = FXCollections.observableArrayList();
-        try(Session session = sessionFactory.openSession()){
+        try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()){
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<AdminListingHotelModel> criteriaQuery = builder.createQuery(AdminListingHotelModel.class);
             Root<AdminListingHotelModel> root = criteriaQuery.from(AdminListingHotelModel.class);
@@ -253,7 +243,7 @@ public class ListingsController {
 
     private ObservableList<AdminListingFlightModel> loadFlightsFromDatabase() {
         ObservableList<AdminListingFlightModel> flights = FXCollections.observableArrayList();
-        try(Session session = sessionFactory.openSession()){
+        try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()){
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<AdminListingFlightModel> criteriaQuery = builder.createQuery(AdminListingFlightModel.class);
             Root<AdminListingFlightModel> root = criteriaQuery.from(AdminListingFlightModel.class);

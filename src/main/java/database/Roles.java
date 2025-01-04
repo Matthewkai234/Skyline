@@ -1,8 +1,6 @@
-
 package database;
 
 import javax.persistence.*;
-import java.security.Permissions;
 import java.util.Set;
 
 @SuppressWarnings("ALL")

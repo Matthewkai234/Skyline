@@ -68,8 +68,8 @@ public class UsersDAOImp implements UsersDAO {
 //    }
     @Override
     public Users findByEmail(String email) {
-        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM Users WHERE email = :email";
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM database.Users WHERE email = :email";
             Query<Users> query = session.createQuery(hql, Users.class);
             query.setParameter("email", email);
             return query.uniqueResult();

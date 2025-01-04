@@ -76,7 +76,7 @@ public class AdminHomeController {
     private void loadLatestBookingsFromDatabase() {
         String url = "jdbc:mysql://localhost:3306/skyline";
         String user = "root";
-        String password = "";
+        String password = "root1234";
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement()) {
@@ -117,7 +117,7 @@ public class AdminHomeController {
     private void updateBookingCounts() {
         String url = "jdbc:mysql://localhost:3306/skyline";
         String user = "root";
-        String password = "";
+        String password = "root1234";
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement()) {

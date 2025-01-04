@@ -26,8 +26,7 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
 
         try {
             session.beginTransaction();
-            String hql = "FROM AdminListingFlightModel WHERE TakeoffContry = :TakeoffContry AND LandingCountry = :LandingCountry";
-
+            String hql = "FROM Flight WHERE TakeoffContry = :TakeoffContry AND LandingCountry = :LandingCountry";
             flights = session.createQuery(hql, Flight.class)
                     .setParameter("TakeoffContry", TakeoffContry)
                     .setParameter("LandingCountry", LandingCountry)
