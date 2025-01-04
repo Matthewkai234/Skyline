@@ -33,25 +33,14 @@ public class SearchFlightController {
     private TableView<Flight> Table;
 
     @FXML
+
     protected void handelSearchBtn(ActionEvent event) {
         String from = fromContry.getText();
         String to = toContry.getText();
         String date = dateFlight.getValue() != null ? dateFlight.getValue().toString() : "Not Selected";
+        System.out.println("date: " + date);
 
-        System.out.println("from = " + from);
-        System.out.println("to = " + to);
-        System.out.println("date = " + date);
-
-        List<Flight> flights = searshFlightDOAImp.searchFlights(from, to);
-
-        System.out.println("befor send = " + flights);
-
-        flights.stream().forEach(flight -> {
-            System.out.println("Flight ID: " + flight.getFlightId());
-            System.out.println("Takeoff Country: " + flight.getTakeoffContry());
-            System.out.println("Landing Country: " + flight.getLandingCountry());
-            System.out.println("-----------------------------------");
-        });
+        List<Flight> flights = searshFlightDOAImp.searchFlights(from, to,date);
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/flightSearshResultTaple.fxml"));
@@ -59,7 +48,7 @@ public class SearchFlightController {
 
             FlightSearshResultTapleController resultController = fxmlLoader.getController();
 
-            resultController.setFlightData(flights);
+            resultController.setSearchCriteria(from, to, flights);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

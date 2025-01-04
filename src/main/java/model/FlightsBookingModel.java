@@ -8,16 +8,22 @@ public class FlightsBookingModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int booking_id;
+
     @Column(name = "booking_date")
     private LocalDate bookingDate;
+
     @Column(name = "take_off")
     private String takeOff;
+
     @Column(name = "destination")
     private String destination;
+
     @Column(name = "airline")
     private String airline;
+
     @Column(name = "customer_name")
     private String customerName;
+
     @Column(name = "status")
     private String status;
 

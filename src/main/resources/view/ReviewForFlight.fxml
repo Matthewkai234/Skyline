@@ -125,7 +125,7 @@
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
                     </clip>
                 </ImageView>
-                <Text fx:id="AirLineSymary" fill="#040539" layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirates Airline" wrappingWidth="137.5999755859375">
+                <Text fx:id="airlineSummary" fill="#040539" layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirates Airline" wrappingWidth="137.5999755859375">
                     <font>
                         <Font size="14.0" />
                     </font>

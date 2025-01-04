@@ -1,7 +1,7 @@
 package database.interfaces;
 
-import database.FlightBooking;
+import model.FlightsBookingModel;
 
 public interface FlightBookingDOA {
-    public void save(FlightBooking booking);
+    public void save(FlightsBookingModel booking);
 }

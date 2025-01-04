@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class FlightSearshResultTapleController {
+    private String from;
+    private String to;
+
+
     @FXML
     private TableColumn<Flight, Integer> FlightId;
 
@@ -55,6 +59,17 @@ public class FlightSearshResultTapleController {
     private TableView<Flight> Table;
 
     private final ObservableList<Flight> flightList = FXCollections.observableArrayList();
+
+    @FXML
+    public void setSearchCriteria(String from, String to, List<Flight> flights) {
+        this.from = from;
+        this.to = to;
+
+        flightList.clear();
+        flightList.addAll(flights);
+
+        Table.setItems(flightList);
+    }
 
     @FXML
     public void initialize() {
@@ -107,12 +122,12 @@ public class FlightSearshResultTapleController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("No flight selected!");
         }
+
     }
 
     @FXML
+    /*
     void FilterData(){
 
         System.out.println("Filter Data Func");
@@ -144,4 +159,33 @@ public class FlightSearshResultTapleController {
 
 
     }
+
+     */
+    void FilterData() {
+        System.out.println("Filter Data Func");
+
+        SearshFlightDOAImp searshFlightDOAImp = new SearshFlightDOAImp();
+
+        String startPriceText = StartPrice.getText();
+        String endPriceText = EndPrice.getText();
+
+        String airline = Airline.getText();
+        Integer startPrice = (startPriceText.isEmpty()) ? null : Integer.parseInt(startPriceText);
+        Integer endPrice = (endPriceText.isEmpty()) ? null : Integer.parseInt(endPriceText);
+
+        System.out.println("From: " + from);
+        System.out.println("To: " + to);
+        System.out.println("Start Price: " + startPrice);
+        System.out.println("End Price: " + endPrice);
+        System.out.println("Airline: " + airline);
+
+        // استخدم القيم المدخلة في البحث
+        List<Flight> filteredFlights = searshFlightDOAImp.Filter(from, to, startPrice, endPrice, airline);
+
+        flightList.clear();
+        flightList.addAll(filteredFlights);
+
+        Table.setItems(flightList);
+    }
+
 }
