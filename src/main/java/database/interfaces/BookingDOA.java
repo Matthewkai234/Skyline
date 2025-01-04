@@ -1,6 +1,6 @@
 package database.interfaces;
 
-import database.Booking;
+import model.Booking;
 
 
 public interface BookingDOA {

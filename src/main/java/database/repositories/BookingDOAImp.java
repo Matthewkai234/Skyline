@@ -1,6 +1,6 @@
 package database.repositories;
 
-import database.Booking;
+import model.Booking;
 import database.interfaces.BookingDOA;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

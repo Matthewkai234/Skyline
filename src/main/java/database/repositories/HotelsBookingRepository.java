@@ -8,7 +8,6 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-
 public class HotelsBookingRepository implements IBookingRepository <HotelsBookingModel> {
 
     private final SessionFactory sessionFactory;

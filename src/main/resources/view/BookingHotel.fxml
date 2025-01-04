@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookingHotelcontroller">
+   <children>
+      <AnchorPane layoutX="285.0" layoutY="162.0" prefHeight="558.0" prefWidth="796.0" style="-fx-background-color: dedde1;">
+         <children>
+            <Text fill="#089cff" layoutX="45.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter booking details :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="firstNameField" layoutX="22.0" layoutY="106.0" prefHeight="39.0" prefWidth="266.0" />
+            <TextField fx:id="lastNameField" layoutX="357.0" layoutY="106.0" prefHeight="39.0" prefWidth="266.0" />
+            <TextField fx:id="emailField" layoutX="22.0" layoutY="200.0" prefHeight="39.0" prefWidth="266.0" />
+            <TextField fx:id="phoneNumberField" layoutX="22.0" layoutY="388.0" prefHeight="39.0" prefWidth="266.0" />
+            <TextField fx:id="specialRequestsField" layoutX="357.0" layoutY="200.0" prefHeight="134.0" prefWidth="266.0" promptText="Please write your requests in English . ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="50.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name*">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="378.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name*" wrappingWidth="66.568359375">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="50.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address*">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="378.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special requests (optional)">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="50.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number*">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="countryField" editable="true" layoutX="22.0" layoutY="482.0" prefHeight="39.0" prefWidth="266.0" promptText="Palestine" style="-fx-background-color: ffffff;" />
+            <Text layoutX="50.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country/Region*">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="50.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="arrival time" wrappingWidth="87.2578125">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="arrivalDateField" layoutX="22.0" layoutY="294.0" prefHeight="39.0" prefWidth="266.0" />
+            <Button layoutX="665.0" layoutY="497.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" prefHeight="48.0" prefWidth="106.0" style="-fx-background-color: blue;" text="Reserve" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="hotelNameField" layoutX="357.0" layoutY="388.0" prefHeight="39.0" prefWidth="266.0" />
+            <Text layoutX="370.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotel Name" wrappingWidth="106.40000000000009">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="#e4a001" layoutX="51.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skyline">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Text>
+      <Button layoutX="2.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleBackButtonAction" style="-fx-background-color: 000000;" text="&lt;" textFill="#089cff">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

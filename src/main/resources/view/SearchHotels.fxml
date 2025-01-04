@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="849.0" prefWidth="1366.0" style="-fx-background-color: white; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchHotelscontroller">
+   <children>
+      <AnchorPane layoutX="43.0" layoutY="600.0" prefHeight="126.0" prefWidth="560.0" style="-fx-border-color: #089cff;">
+
+         <children>
+            <Button fx:id="searchButton" layoutX="325.0" layoutY="43.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="32.0" prefWidth="138.0" style="-fx-background-color: #089cff;" text="Search" textFill="#f7f1f1" />
+            <TextField fx:id="searchTextField" layoutX="84.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="    Where to go ? " style="-fx-border-color: black;">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="41.0" layoutY="41.0">
+               <image>
+                  <Image url="@../images/1495574559-map-location-solid-style-01_84581.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="706.0" fitWidth="656.0" layoutX="669.0" layoutY="52.0">
+         <image>
+            <Image url="@../images/office-company-clay-cartoon-building-ai-generated_946993-5927.png" />
+         </image>
+      </ImageView>
+      <Text fill="#e48901" layoutX="159.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy Hotel Booking">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#969490" layoutX="123.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enjoy with us an easy and smooth hotel booking service through our ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#e48901" layoutX="92.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Hotels">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#969490" layoutX="123.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="distinguished platform that will provide you with many services .">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#089cff" layoutX="90.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Journey Begins Here – Let Us Handle Your Stay!">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

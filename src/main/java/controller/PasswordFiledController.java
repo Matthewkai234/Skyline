@@ -146,7 +146,7 @@ public class PasswordFiledController {
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, email);
-            preparedStatement.setString(4, hashedPassword); // Save the hashed password
+            preparedStatement.setString(4, hashedPassword);
             preparedStatement.executeUpdate();
         }
     }

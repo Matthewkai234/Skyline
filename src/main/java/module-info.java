@@ -11,7 +11,7 @@ module com.example.skyline {
     exports controller;
     opens controller to javafx.fxml;
     opens database to javafx.base, javafx.fxml, org.hibernate.orm.core;
-    opens model to javafx.base, org.hibernate.orm.core;
+    opens model to javafx.base, javafx.fxml, org.hibernate.orm.core;
 
 
     requires java.naming;

@@ -1,15 +1,47 @@
 package database.repositories;
 
-import database.Hotels;
-import database.interfaces.HotelsDao;
+import model.Hotels;
+import database.interfaces.HotelsDoa;
 import util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class HotelsService implements HotelsDao {
+public class HotelsService implements HotelsDoa {
+
+    public List<Hotels> getHotelsListByLocation(String location) {
+        Session session = sessionFactory.openSession();
+        List<Hotels> hotels = null;
+        try {
+            session.beginTransaction();
+
+            Query<Hotels> query = session.createQuery("FROM Hotels WHERE Location LIKE :location", Hotels.class);
+            query.setParameter("location", "%" + location + "%");
+
+            List<Hotels> hotelList = query.getResultList();
+
+            if (hotelList != null && !hotelList.isEmpty()) {
+                System.out.println("Found " + hotelList.size() + " hotels.");
+                hotels = hotelList;
+            } else {
+                System.out.println("ghaith .");
+            }
+
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return hotels != null ? hotels : new ArrayList<>();
+    }
+
+
+
 
     private final SessionFactory sessionFactory;
 
@@ -30,7 +62,7 @@ public class HotelsService implements HotelsDao {
             if (hotels != null) {
                 System.out.println("Found " + hotels.size() + " hotels.");
             } else {
-                System.out.println("No hotels found.");
+                System.out.println("ghaith here");
             }
 
             session.getTransaction().commit();
