@@ -1,88 +1,104 @@
 package controller;
 
-import database.Booking;
-import database.FlightBooking;
-import database.services.BookingDOAImp;
+import database.Flight;
+import database.services.SearshFlightDOAImp;
+import database.services.FlightsBookingDAOImp;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import model.FlightsBookingModel;
+
+import java.time.LocalDate;
 
 public class FlightBookingController {
 
-    // TextField variables
     @FXML
     private TextField userName;
 
     @FXML
-    private TextField FlightId;
+    private TextField StartDate;
 
     @FXML
-    private TextField NumberOfPasenger;
+    private TextField ArriveDate;
 
     @FXML
-    private TextField From;
+    private TextField destination;
 
     @FXML
-    private TextField To;
+    private TextField AirLine;
 
     @FXML
-    private TextField AgentId;
+    private TextField status;
 
-    @FXML
-    private Button bookButton;
+    private int flightId;
 
-    /*
-    // TableView and its columns
-    @FXML
-    private TableView<?> flightTable;
+    private final SearshFlightDOAImp searchFlightDAO = new SearshFlightDOAImp();
 
-    @FXML
-    private TableColumn<?, ?> flightIdColumn;
+    public void initFlightDetails(int flightId) {
+        this.flightId = flightId;
 
-    @FXML
-    private TableColumn<?, ?> fromCountryColumn;
+        Flight flight = searchFlightDAO.getFlight(flightId);
 
-    @FXML
-    private TableColumn<?, ?> toCountryColumn;
+        System.out.println("ddd = = = = "+flight.getStartDate());
 
-    @FXML
-    private TableColumn<?, ?> airLineColumn;
 
-    @FXML
-    private TableColumn<?, ?> userNameColumn;
+        if (flight != null) {
+            System.out.println("Flight found: " + flight.getAirline());
 
-    @FXML
-    private TableColumn<?, ?> agentNameColumn;
+            StartDate.setText(flight.getStartDate().toString());
+            ArriveDate.setText(flight.getArriveDate().toString());
+            AirLine.setText(flight.getAirline());
+            destination.setText(flight.getTakeoffContry());
+            status.setText("Pending");
+        }
 
-    @FXML
-    private TableColumn<?, ?> startDateColumn;
 
-    @FXML
-    private TableColumn<?, ?> endDateColumn;
 
-     */
+    }
 
     @FXML
     public void Booking() {
+        String userNameValue = userName.getText();
+        String startDateValue = StartDate.getText();
+        String arriveDateValue = ArriveDate.getText();
+        String destinationValue = destination.getText();
+        String airlineValue = AirLine.getText();
+        String statusValue = status.getText();
 
-        BookingDOAImp bookingDOAImp = new BookingDOAImp();
-        Booking book = new Booking();
-        FlightBooking flightBooking = new FlightBooking();
+
+        if (userNameValue.isEmpty() || startDateValue.isEmpty() || arriveDateValue.isEmpty() ||
+                destinationValue.isEmpty() || airlineValue.isEmpty() || statusValue.isEmpty()) {
+            return;
+        }
+
+        LocalDate startDate;
+        LocalDate arriveDate;
+
+        try {
+            startDate = LocalDate.parse(startDateValue);
+            arriveDate = LocalDate.parse(arriveDateValue);
+        } catch (Exception e) {
+            return;
+        }
+
+        FlightsBookingModel.Status bookingStatus;
+        try {
+            bookingStatus = FlightsBookingModel.Status.valueOf(statusValue.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return;
+        }
+
+        FlightsBookingModel booking = new FlightsBookingModel();
+        booking.setBookingDate(startDate);
+        booking.setAirline(airlineValue);
+        booking.setDestination(destinationValue);
+        booking.setStatus(bookingStatus);
+        booking.setCustomerName(userNameValue);
+        booking.setTakeOff("aaa");
 
 
-        String userName = this.userName.getText();
-        int flightId = Integer.parseInt(FlightId.getText());
-        int numberOfPassengers = Integer.parseInt(NumberOfPasenger.getText());
-        String from = From.getText();
-        String to = To.getText();
-        int agentId = Integer.parseInt(AgentId.getText());
 
-        book.setUserName(userName);
-        book.setAgentId(agentId);
-
-        //flightBooking.setFlight();
-
-        bookingDOAImp.AddBooking(book);
+        FlightsBookingDAOImp bookingDAO = new FlightsBookingDAOImp();
+        bookingDAO.insert(booking);
 
     }
 }
