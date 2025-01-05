@@ -1,9 +1,6 @@
 package util;
 
-import model.FlightsBookingModel;
-import model.HotelsBookingModel;
-import model.AirBookingTotalModel;
-import model.HotelBookingTotalModel;
+import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -24,6 +21,9 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(Booking.class);
         configuration.addAnnotatedClass(AirBookingTotalModel.class);
         configuration.addAnnotatedClass(HotelBookingTotalModel.class);
+        configuration.addAnnotatedClass(Hotels.class);
+        configuration.addAnnotatedClass(BookingHotels.class);
+
 
         configuration.configure();
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
