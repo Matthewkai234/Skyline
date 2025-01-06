@@ -12,7 +12,7 @@ public class RegisterModel {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/skyline";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_PASSWORD = "root1234";
 
 
     public RegisterModel(String firstName, String lastName, String email, String password, String selectedRole) {

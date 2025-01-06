@@ -42,6 +42,6 @@
                 <TextField fx:id="locationField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
-        <Button fx:id="saveButton" layoutX="155.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #00affa;" text="Save Changes" textFill="WHITE" />
+        <Button fx:id="saveButton" onAction="#saveEdit" layoutX="155.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #00affa;" text="Save Changes" textFill="WHITE" />
     </children>
 </AnchorPane>

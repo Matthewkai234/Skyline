@@ -125,7 +125,7 @@
                         <Circle centerX="16.5" centerY="16.5" radius="15.0" />
                     </clip>
                 </ImageView>
-                <Text fx:id="AirLineSymary" fill="#040539" layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirates Airline" wrappingWidth="137.5999755859375">
+                <Text fx:id="airlineSummary" fill="#040539" layoutX="43.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emirates Airline" wrappingWidth="137.5999755859375">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -164,17 +164,17 @@
                         <Font size="11.0" />
                     </font>
                 </Text>
-            <Text fill="#040539" layoutX="112.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD" wrappingWidth="25.800048828124943" />
-            <Text fx:id="price" fill="#040539" layoutX="138.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="25.800048828125" />
-            <Text fill="#040539" layoutX="159.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" wrappingWidth="9.800048828124943" />
-            <Text fill="#777789" layoutX="133.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="52.79998779296875">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </Text>
-            <Text fill="#040539" layoutX="112.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD" wrappingWidth="25.800048828124943" />
-            <Text fx:id="finalPrise" fill="#040539" layoutX="138.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="25.800048828125" />
-            <Text fill="#040539" layoutX="159.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" wrappingWidth="9.800048828124943" />
+                <Text fill="#040539" layoutX="112.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD" wrappingWidth="25.800048828124943" />
+                <Text fx:id="price" fill="#040539" layoutX="138.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="25.800048828125" />
+                <Text fill="#040539" layoutX="159.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" wrappingWidth="9.800048828124943" />
+                <Text fill="#777789" layoutX="133.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="52.79998779296875">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Text>
+                <Text fill="#040539" layoutX="112.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USD" wrappingWidth="25.800048828124943" />
+                <Text fx:id="finalPrise" fill="#040539" layoutX="138.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="25.800048828125" />
+                <Text fill="#040539" layoutX="159.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" wrappingWidth="9.800048828124943" />
             </children>
         </Pane>
         <Button layoutX="493.0" layoutY="313.0" mnemonicParsing="false" onAction="#handelBookBtn" prefHeight="33.0" prefWidth="167.0" style="-fx-background-color: #148fff; -fx-border-radius: 80px;" text="BOOK NOW" textFill="WHITE">

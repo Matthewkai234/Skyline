@@ -1,27 +1,22 @@
 package database;
 
-
-
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.Set;
 
 @SuppressWarnings("ALL")
 @Entity
 @Table(name = "permissions")
-public class Permission {
-
+public class Permissions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "permissions")
-    private Set<Role> roles;
-
-
+    @ManyToMany(mappedBy = "permissions", fetch = FetchType.LAZY)
+    private Set<Roles> roles;
     public int getId() {
         return id;
     }
@@ -38,11 +33,11 @@ public class Permission {
         this.name = name;
     }
 
-    public Set<Role> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
 }

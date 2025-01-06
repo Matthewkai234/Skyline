@@ -1,17 +1,15 @@
 package controller;
 
-import application.SkylineApplication;
+import application.SessionManager;
+import database.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
@@ -19,8 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SidebarController implements Initializable {
 
@@ -30,17 +26,15 @@ public class SidebarController implements Initializable {
     @FXML
     private HBox contentArea;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadHome();
+        loadHomePage();
     }
 
     @FXML
-    public void home(ActionEvent actionEvent) throws IOException {
-        loadHome();
+    public void home(ActionEvent actionEvent) {
+        loadHomePage();
     }
-
     public void bookings(ActionEvent actionEvent) throws IOException {
         loadBookings();
     }
@@ -48,11 +42,6 @@ public class SidebarController implements Initializable {
     public void hotels(ActionEvent actionEvent) throws IOException {
         loadHotels();
     }
-
-    public void adminPanel(ActionEvent actionEvent) throws IOException {
-        loadAdminPanel();
-    }
-
     public void listings(ActionEvent actionEvent) throws IOException {
         loadListings();
     }
@@ -64,22 +53,25 @@ public class SidebarController implements Initializable {
         loadFlights();
     }
 
-
-    public void loadHome() {
-        loadPage("HomeDashboard.fxml");
-    }
     public void loadListings() {
         loadPage("listings-view.fxml");
     }
-    public void loadHotels(){loadPage("page1gh.fxml");}
+    public void loadHotels(){loadPage("SearchHotel.fxml");}
     public void loadBookings(){
         loadPage("bookings.fxml");
     }
-    public void loadAdminPanel(){loadPage("adminHome.fxml");}
+
     public void loadLogin(){loadPageLogout("login_page.fxml");}
     public void loadFlights(){loadPage("SearchFlightBigFinal.fxml");}
 
 
+    private void loadHomePage() {
+        if (isUserAdmin()) {
+            loadPage("adminHome.fxml");
+        } else {
+            loadPage("HomeDashboard.fxml");
+        }
+    }
 
     private void loadPage(String fxmlFile) {
         try {
@@ -91,8 +83,10 @@ public class SidebarController implements Initializable {
         }
     }
 
+
     private void loadPageLogout(String fxmlFile) {
         try {
+            SessionManager.getInstance().logout();
             Stage currentStage = (Stage) contentArea.getScene().getWindow();
             currentStage.close();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
@@ -105,6 +99,9 @@ public class SidebarController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private boolean isUserAdmin() {
+        Users loggedInUser = SessionManager.getInstance().getLoggedInUser();
+        return loggedInUser != null && "Admin".equals(loggedInUser.getRole());
+    }
 }
-
-

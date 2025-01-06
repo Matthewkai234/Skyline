@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface SearshFlightDOA {
-    public List<Flight> searchFlights(String origin, String LandingCountry);
+    public List<Flight> searchFlights(String origin, String LandingCountry,String date);
 
     public Flight getFlight(int flightId);
 

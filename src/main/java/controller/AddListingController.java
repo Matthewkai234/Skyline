@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.AdminListingFlightModel;
-import model.AdminListingHotelModel;
+import model.Hotels;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -36,23 +36,10 @@ public class AddListingController {
     @FXML
     private TextField locationField;
     @FXML
-    private Label flightIdLabel;
+    private TextField hotelPriceField;
     @FXML
-    private Label airlineLabel;
-    @FXML
-    private Label destinationLabel;
-    @FXML
-    private Label departureDateLabel;
-    @FXML
-    private Label arrivalDateLabel;
-    @FXML
-    private Label priceLabel;
-    @FXML
-    private Label hotelIdLabel;
-    @FXML
-    private Label nameLabel;
-    @FXML
-    private Label locationLabel;
+    private TextField hotelRateField;
+
     @FXML
     private Label flightIdErrorLabel;
     @FXML
@@ -69,6 +56,10 @@ public class AddListingController {
     private Label nameErrorLabel;
     @FXML
     private Label locationErrorLabel;
+    @FXML
+    private Label hotelPriceErrorLabel;
+    @FXML
+    private Label hotelRateErrorLabel;
 
     @FXML
     private AnchorPane fieldsPane;
@@ -88,14 +79,13 @@ public class AddListingController {
         toggleFields("Flight");
         try {
             Configuration config = new Configuration().configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(AdminListingHotelModel.class)
-                    .addAnnotatedClass(AdminListingFlightModel.class);
+                    .addAnnotatedClass(AdminListingFlightModel.class)
+                    .addAnnotatedClass(Hotels.class);
             sessionFactory = config.buildSessionFactory();
         } catch (Exception ex) {
             System.out.println("Failed to create session factory: " + ex.getMessage());
         }
     }
-
 
     private void toggleFields(String listingType) {
         clearErrorMessages();
@@ -104,30 +94,27 @@ public class AddListingController {
         hotelFieldsContainer.setVisible(isHotel);
     }
 
-    //Helper method to validate required fields
-    private boolean validateInput(String selectedType){
+    private boolean validateInput(String selectedType) {
         clearErrorMessages();
         boolean isValid = true;
         if ("Hotel".equalsIgnoreCase(selectedType)) {
-            if (hotelIdField.getText().trim().isEmpty()){
-                hotelIdErrorLabel.setText("Hotel ID is required");
-                isValid = false;
-            }else if (!hotelIdField.getText().matches("\\d+")){
-                hotelIdErrorLabel.setText("Hotel ID must be a number");
-                isValid = false;
-            }
-
-            if(nameField.getText().trim().isEmpty()){
+            if (nameField.getText().trim().isEmpty()) {
                 nameErrorLabel.setText("Hotel name is required");
                 isValid = false;
             }
-
-            if(locationField.getText().trim().isEmpty()){
+            if (locationField.getText().trim().isEmpty()) {
                 locationErrorLabel.setText("Location is required");
                 isValid = false;
             }
-        }else if("Flight".equalsIgnoreCase(selectedType)){
-
+            if (hotelPriceField.getText().trim().isEmpty() || !hotelPriceField.getText().matches("\\d+(\\.\\d+)?")) {
+                hotelPriceErrorLabel.setText("Valid price is required");
+                isValid = false;
+            }
+            if (hotelRateField.getText().trim().isEmpty() || !hotelRateField.getText().matches("\\d+(\\.\\d+)?")) {
+                hotelRateErrorLabel.setText("Valid rate is required");
+                isValid = false;
+            }
+        } else if ("Flight".equalsIgnoreCase(selectedType)) {
             if (flightIdField.getText().trim().isEmpty()) {
                 flightIdErrorLabel.setText("Flight ID is required");
                 isValid = false;
@@ -151,6 +138,7 @@ public class AddListingController {
         }
         return isValid;
     }
+
     @FXML
     private void addListing() {
         String selectedType = listingTypeComboBox.getValue();
@@ -158,19 +146,23 @@ public class AddListingController {
             showAlert("Error", "Please select a listing type.");
             return;
         }
-        if(!validateInput(selectedType)){
+        if (!validateInput(selectedType)) {
             return;
         }
-
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             if ("Hotel".equalsIgnoreCase(selectedType)) {
-                AdminListingHotelModel hotel = new AdminListingHotelModel();
-                hotel.setHotelId(Integer.parseInt(hotelIdField.getText()));
-                hotel.setName(nameField.getText());
+                Hotels hotel = new Hotels();
+                hotel.setHotelName(nameField.getText());
                 hotel.setLocation(locationField.getText());
+                hotel.setHotelPrice(Double.parseDouble(hotelPriceField.getText()));
+                hotel.setHotelRate(Float.parseFloat(hotelRateField.getText()));
+
+                System.out.println("Saving hotel: " + hotel);
                 session.save(hotel);
+                System.out.println("Hotel saved successfully");
+
                 if (parentController != null) {
                     parentController.loadHotelData();
                 }
@@ -179,24 +171,22 @@ public class AddListingController {
                 flight.setFlightNumber(flightIdField.getText());
                 flight.setAirline(airlineField.getText());
                 flight.setDestination(destinationField.getText());
-                LocalDate departureDate = departureDateField.getValue();
-                if (departureDate != null) {
-                    flight.setDepartureDate(departureDate.toString());
-                }
-                LocalDate arrivalDate = arrivalDateField.getValue();
-                if (arrivalDate != null) {
-                    flight.setArrivalDate(arrivalDate.toString());
-                }
+                flight.setDepartureDate(departureDateField.getValue().toString());
+                flight.setArrivalDate(arrivalDateField.getValue().toString());
+
+                System.out.println("Saving flight: " + flight);
                 session.save(flight);
+                System.out.println("Flight saved successfully");
+
                 if (parentController != null) {
                     parentController.loadFlightData();
                 }
             }
             session.getTransaction().commit();
-            Stage stage = (Stage) listingTypeComboBox.getScene().getWindow();
-            stage.close();
+            closeWindow();
         } catch (Exception e) {
             showAlert("Error", "Failed to save listing: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -207,9 +197,6 @@ public class AddListingController {
         alert.showAndWait();
     }
 
-    public void setParentController(ListingsController parentController) {
-        this.parentController = parentController;
-    }
     private void clearErrorMessages() {
         flightIdErrorLabel.setText("");
         airlineErrorLabel.setText("");
@@ -219,5 +206,17 @@ public class AddListingController {
         hotelIdErrorLabel.setText("");
         nameErrorLabel.setText("");
         locationErrorLabel.setText("");
+        hotelPriceErrorLabel.setText("");
+        hotelRateErrorLabel.setText("");
+    }
+
+    private void closeWindow() {
+        Stage stage = (Stage) listingTypeComboBox.getScene().getWindow();
+        stage.close();
+    }
+
+    public void setParentController(ListingsController parentController) {
+
+        this.parentController = parentController;
     }
 }

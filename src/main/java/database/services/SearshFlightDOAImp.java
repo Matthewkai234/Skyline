@@ -18,7 +18,8 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
     }
 
     @Override
-    public List<Flight> searchFlights(String TakeoffContry, String LandingCountry){
+
+    public List<Flight> searchFlights(String TakeoffContry, String LandingCountry,String date){
         Session session = sessionFactory.openSession();
 
         List<Flight> flights = null;
@@ -26,7 +27,7 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
 
         try {
             session.beginTransaction();
-            String hql = "FROM AdminListingFlightModel WHERE TakeoffContry = :TakeoffContry AND LandingCountry = :LandingCountry";
+            String hql = "FROM Flight WHERE TakeoffContry = :TakeoffContry AND LandingCountry = :LandingCountry";
 
             flights = session.createQuery(hql, Flight.class)
                     .setParameter("TakeoffContry", TakeoffContry)
@@ -105,7 +106,7 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
 
             if (from != null && !from.isEmpty()) query.setParameter("from", from);
             if (to != null && !to.isEmpty()) query.setParameter("to", to);
-           // if (date != null) query.setParameter("date", date);
+            // if (date != null) query.setParameter("date", date);
             if (startPrice != null) query.setParameter("startPrice", startPrice);
             if (endPrice != null) query.setParameter("endPrice", endPrice);
             if (Airline != null && !Airline.isEmpty()) query.setParameter("Airline", Airline);

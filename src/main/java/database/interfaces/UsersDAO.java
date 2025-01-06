@@ -1,7 +1,6 @@
 package database.interfaces;
 
 import database.Users;
-import java.util.List;
 
 public interface UsersDAO {
     //    List<Users> getAllUsers();

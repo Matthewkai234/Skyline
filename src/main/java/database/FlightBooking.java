@@ -10,7 +10,6 @@ public class FlightBooking extends Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer flightBookingId;
-
     @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 

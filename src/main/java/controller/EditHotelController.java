@@ -4,73 +4,61 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.AdminListingHotelModel;
+import model.Hotels;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import util.HibernateUtil;
 
 public class EditHotelController {
 
     @FXML
-    private TextField hotelIdField;
-    @FXML
     private TextField hotelNameField;
+
     @FXML
     private TextField locationField;
+
     @FXML
     private Button saveButton;
-    private AdminListingHotelModel hotel;
-    private ListingsController parentController;
-    private SessionFactory sessionFactory;
 
+    private Hotels hotel;
+
+    private ListingsController parentController;
+
+    public void setHotel(Hotels hotel) {
+        this.hotel = hotel;
+        loadHotelData();
+    }
 
     public void setParentController(ListingsController parentController) {
         this.parentController = parentController;
     }
 
-    public void setHotel(AdminListingHotelModel hotel) {
-        this.hotel = hotel;
-        loadHotelData();
-    }
-
-    @FXML
-    public void initialize() {
-        try {
-            Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(AdminListingHotelModel.class);
-            sessionFactory = config.buildSessionFactory();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("failed to create the session");
-        }
-        saveButton.setOnAction(event -> saveEdit());
-    }
-
     private void loadHotelData() {
         if (hotel != null) {
-            hotelIdField.setText(String.valueOf(hotel.getHotelId()));
-            hotelNameField.setText(hotel.getName());
+            hotelNameField.setText(hotel.getHotelName());
             locationField.setText(hotel.getLocation());
         }
     }
 
+    @FXML
     private void saveEdit() {
-        updateHotel();
-        closeWindow();
-
-    }
-    private void updateHotel() {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            hotel.setName(hotelNameField.getText());
-            hotel.setLocation(locationField.getText());
-            session.update(hotel);
+
+            // Check and reattach the hotel object if necessary
+            Hotels managedHotel = session.find(Hotels.class, hotel.getHotelId());
+            if (managedHotel != null) {
+                managedHotel.setHotelName(hotelNameField.getText());
+                managedHotel.setLocation(locationField.getText());
+                session.update(managedHotel); // Hibernate will detect changes and persist them
+            }
+
             transaction.commit();
             parentController.loadHotelData();
+            closeWindow();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-
     }
 
     private void closeWindow() {

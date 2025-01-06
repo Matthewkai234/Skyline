@@ -25,7 +25,8 @@
                 <Label text="Listing Type">
                     <font>
                         <Font size="14.0" />
-                    </font></Label>
+                    </font>
+                </Label>
                 <ComboBox fx:id="listingTypeComboBox" promptText="Flight" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
 
                 <!-- Fields Pane -->
@@ -65,6 +66,13 @@
                         <TextField fx:id="locationField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
                         <Label fx:id="locationErrorLabel" style="-fx-text-fill: red;" />
 
+                        <Label fx:id="hotelPriceLabel" text="Price" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="hotelPriceField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
+                        <Label fx:id="hotelPriceErrorLabel" style="-fx-text-fill: red;" />
+
+                        <Label fx:id="hotelRateLabel" text="Rate" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="hotelRateField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
+                        <Label fx:id="hotelRateErrorLabel" style="-fx-text-fill: red;" />
                     </VBox>
                 </AnchorPane>
 

@@ -2,7 +2,6 @@ package controller;
 
 import database.Booking;
 import database.FlightBooking;
-import database.services.BookingDOAImp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -65,7 +64,7 @@ public class FlightBookingController {
     @FXML
     public void Booking() {
 
-        BookingDOAImp bookingDOAImp = new BookingDOAImp();
+
         Booking book = new Booking();
         FlightBooking flightBooking = new FlightBooking();
 
@@ -82,7 +81,7 @@ public class FlightBookingController {
 
         //flightBooking.setFlight();
 
-        bookingDOAImp.AddBooking(book);
+
 
     }
 }
