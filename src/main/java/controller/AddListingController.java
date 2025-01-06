@@ -30,8 +30,6 @@ public class AddListingController {
     @FXML
     private TextField priceField;
     @FXML
-    private TextField hotelIdField;
-    @FXML
     private TextField nameField;
     @FXML
     private TextField locationField;
@@ -50,8 +48,6 @@ public class AddListingController {
     private Label departureDateErrorLabel;
     @FXML
     private Label arrivalDateErrorLabel;
-    @FXML
-    private Label hotelIdErrorLabel;
     @FXML
     private Label nameErrorLabel;
     @FXML
@@ -77,13 +73,21 @@ public class AddListingController {
         listingTypeComboBox.setValue("Flight"); // Set default value
         listingTypeComboBox.valueProperty().addListener((observable, oldValue, newValue) -> toggleFields(newValue));
         toggleFields("Flight");
+
         try {
             Configuration config = new Configuration().configure("hibernate.cfg.xml")
                     .addAnnotatedClass(AdminListingFlightModel.class)
                     .addAnnotatedClass(Hotels.class);
             sessionFactory = config.buildSessionFactory();
+
+            if (sessionFactory == null) {
+                System.err.println("SessionFactory is null. Initialization failed.");
+            } else {
+                System.out.println("SessionFactory initialized successfully.");
+            }
         } catch (Exception ex) {
-            System.out.println("Failed to create session factory: " + ex.getMessage());
+            System.err.println("Failed to create session factory: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -97,6 +101,7 @@ public class AddListingController {
     private boolean validateInput(String selectedType) {
         clearErrorMessages();
         boolean isValid = true;
+
         if ("Hotel".equalsIgnoreCase(selectedType)) {
             if (nameField.getText().trim().isEmpty()) {
                 nameErrorLabel.setText("Hotel name is required");
@@ -152,6 +157,7 @@ public class AddListingController {
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+
             if ("Hotel".equalsIgnoreCase(selectedType)) {
                 Hotels hotel = new Hotels();
                 hotel.setHotelName(nameField.getText());
@@ -160,8 +166,8 @@ public class AddListingController {
                 hotel.setHotelRate(Float.parseFloat(hotelRateField.getText()));
 
                 System.out.println("Saving hotel: " + hotel);
-                session.save(hotel);
-                System.out.println("Hotel saved successfully");
+                session.save(hotel); // ID will be auto-generated
+                System.out.println("Hotel saved successfully with ID: " + hotel.getHotelId());
 
                 if (parentController != null) {
                     parentController.loadHotelData();
@@ -203,7 +209,6 @@ public class AddListingController {
         destinationErrorLabel.setText("");
         departureDateErrorLabel.setText("");
         arrivalDateErrorLabel.setText("");
-        hotelIdErrorLabel.setText("");
         nameErrorLabel.setText("");
         locationErrorLabel.setText("");
         hotelPriceErrorLabel.setText("");
@@ -216,7 +221,6 @@ public class AddListingController {
     }
 
     public void setParentController(ListingsController parentController) {
-
         this.parentController = parentController;
     }
 }
