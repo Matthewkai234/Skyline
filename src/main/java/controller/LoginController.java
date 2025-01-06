@@ -21,8 +21,6 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    private UsersDAOImp userService;
-
     @FXML
     private void onLoginClick() {
         String email = emailField.getText();

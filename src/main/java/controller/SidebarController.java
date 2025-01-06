@@ -56,7 +56,7 @@ public class SidebarController implements Initializable {
     public void loadListings() {
         loadPage("listings-view.fxml");
     }
-    public void loadHotels(){loadPage("page1gh.fxml");}
+    public void loadHotels(){loadPage("SearchHotel.fxml");}
     public void loadBookings(){
         loadPage("bookings.fxml");
     }
@@ -82,6 +82,8 @@ public class SidebarController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
     private void loadPageLogout(String fxmlFile) {
         try {
             SessionManager.getInstance().logout();
