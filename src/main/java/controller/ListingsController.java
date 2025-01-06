@@ -61,6 +61,12 @@ public class ListingsController {
     private TableColumn<Hotels, String> locationColumn;
 
     @FXML
+    private TableColumn<Hotels, Double> hotelPriceColumn;
+    @FXML
+    private TableColumn<Hotels, Float> hotelRateColumn;
+
+
+    @FXML
     private TableColumn<Hotels, HBox> hotelActionsColumn;
 
 
@@ -145,11 +151,11 @@ public class ListingsController {
     // Method to open Hotel Editor Window
     private void openHotelEditor(Hotels hotel) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml")); // Correct FXML file
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
 
-            EditHotelController controller = loader.getController();
+            EditHotelController controller = loader.getController(); // Correct controller
             controller.setHotel(hotel);
             controller.setParentController(this);
 
@@ -199,10 +205,14 @@ public class ListingsController {
     }
 
     void loadHotelData() {
+        // Bind the data to the table columns
         hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("hotelId"));
         hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("hotelName"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        hotelPriceColumn.setCellValueFactory(new PropertyValueFactory<>("hotelPrice")); // Binding Price
+        hotelRateColumn.setCellValueFactory(new PropertyValueFactory<>("hotelRate")); // Binding Rate
 
+        // Load the data into the table
         ObservableList<Hotels> hotelList = loadHotelsFromDatabase();
         hotelTable.setItems(hotelList);
     }

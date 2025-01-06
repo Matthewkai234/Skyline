@@ -195,14 +195,12 @@ public class AddListingController {
             e.printStackTrace();
         }
     }
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
     }
-
     private void clearErrorMessages() {
         flightIdErrorLabel.setText("");
         airlineErrorLabel.setText("");
@@ -214,7 +212,6 @@ public class AddListingController {
         hotelPriceErrorLabel.setText("");
         hotelRateErrorLabel.setText("");
     }
-
     private void closeWindow() {
         Stage stage = (Stage) listingTypeComboBox.getScene().getWindow();
         stage.close();

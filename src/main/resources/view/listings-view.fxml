@@ -58,6 +58,8 @@
                                     <TableColumn fx:id="hotelIdColumn" text="Hotel ID"/>
                                     <TableColumn fx:id="hotelNameColumn" text="Name"/>
                                     <TableColumn fx:id="locationColumn" text="Location"/>
+                                    <TableColumn fx:id="hotelPriceColumn" text="Price"/> <!-- New Column for Price -->
+                                    <TableColumn fx:id="hotelRateColumn" text="Rate"/> <!-- New Column for Rate -->
                                     <TableColumn fx:id="hotelActionsColumn" text="Actions"/>
                                  </columns>
                                  <columnResizePolicy>
