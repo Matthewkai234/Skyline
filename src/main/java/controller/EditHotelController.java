@@ -18,6 +18,12 @@ public class EditHotelController {
     private TextField locationField;
 
     @FXML
+    private TextField priceField;
+
+    @FXML
+    private TextField rateField;
+
+    @FXML
     private Button saveButton;
 
     private Hotels hotel;
@@ -37,6 +43,8 @@ public class EditHotelController {
         if (hotel != null) {
             hotelNameField.setText(hotel.getHotelName());
             locationField.setText(hotel.getLocation());
+            priceField.setText(String.valueOf(hotel.getHotelPrice()));
+            rateField.setText(String.valueOf(hotel.getHotelRate()));
         }
     }
 
@@ -50,7 +58,9 @@ public class EditHotelController {
             if (managedHotel != null) {
                 managedHotel.setHotelName(hotelNameField.getText());
                 managedHotel.setLocation(locationField.getText());
-                session.update(managedHotel); // Hibernate will detect changes and persist them
+                managedHotel.setHotelPrice(Double.parseDouble(priceField.getText()));
+                managedHotel.setHotelRate(Float.parseFloat(rateField.getText()));
+                session.update(managedHotel);
             }
 
             transaction.commit();

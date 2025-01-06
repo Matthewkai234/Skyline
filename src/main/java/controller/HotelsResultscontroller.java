@@ -541,7 +541,7 @@ public class HotelsResultscontroller {
 
             BookingHotelcontroller page4Controller = loader.getController();
 
-            page4Controller.setLocation(this.Location);
+//            page4Controller.setLocation(this.Location);
 
             Scene currentScene = ((Node) actionEvent.getSource()).getScene();
             currentScene.setRoot(newPage);
