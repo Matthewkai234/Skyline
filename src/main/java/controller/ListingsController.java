@@ -12,9 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.AdminListingFlightModel;
-import model.AdminListingHotelModel;
+import model.Hotels;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
 
@@ -50,19 +49,19 @@ public class ListingsController {
     private TableColumn<AdminListingFlightModel, HBox> flightActionsColumn; // Changed to HBox
 
     @FXML
-    private TableView<AdminListingHotelModel> hotelTable;
+    private TableView<Hotels> hotelTable;
 
     @FXML
-    private TableColumn<AdminListingHotelModel, Integer> hotelIdColumn;
+    private TableColumn<Hotels, Integer> hotelIdColumn;
 
     @FXML
-    private TableColumn<AdminListingHotelModel, String> hotelNameColumn;
+    private TableColumn<Hotels, String> hotelNameColumn;
 
     @FXML
-    private TableColumn<AdminListingHotelModel, String> locationColumn;
+    private TableColumn<Hotels, String> locationColumn;
 
     @FXML
-    private TableColumn<AdminListingHotelModel, HBox> hotelActionsColumn;  // Changed to HBox
+    private TableColumn<Hotels, HBox> hotelActionsColumn;
 
 
     @FXML
@@ -113,7 +112,7 @@ public class ListingsController {
         return buttons;
     }
 
-    private HBox createActionButtonsForHotel(AdminListingHotelModel hotel) {
+    private HBox createActionButtonsForHotel(Hotels hotel) {
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
         deleteButton.setOnAction(event -> deleteHotel(hotel));
@@ -122,8 +121,7 @@ public class ListingsController {
         editButton.setStyle("-fx-background-color: #00affa; -fx-text-fill: white;");
         editButton.setOnAction(event -> openHotelEditor(hotel));
 
-
-        HBox buttons = new HBox(5);
+        HBox buttons = new HBox(10);
         buttons.getChildren().addAll(deleteButton, editButton);
         return buttons;
     }
@@ -143,15 +141,18 @@ public class ListingsController {
             e.printStackTrace();
         }
     }
+
     // Method to open Hotel Editor Window
-    private void openHotelEditor(AdminListingHotelModel hotel) {
+    private void openHotelEditor(Hotels hotel) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml")); // Make sure the path is correct
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
+
             EditHotelController controller = loader.getController();
-            controller.setHotel(hotel); //Pass the hotel data to the controller
-            controller.setParentController(this); // Pass the parent controller to refresh the table view after update
+            controller.setHotel(hotel);
+            controller.setParentController(this);
+
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {
@@ -170,17 +171,16 @@ public class ListingsController {
             System.out.println(e.getMessage());
         }
     }
-    private void deleteHotel(AdminListingHotelModel hotel) {
+    private void deleteHotel(Hotels hotel) {
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.delete(hotel);
             transaction.commit();
             loadHotelData();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
-
 
 
     @FXML
@@ -198,31 +198,27 @@ public class ListingsController {
         }
     }
 
-    public void loadHotelData() {
-        // Set up the columns
+    void loadHotelData() {
         hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("hotelId"));
-        hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("hotelName"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
-        // Load data from database
-        ObservableList<AdminListingHotelModel> hotelList = loadHotelsFromDatabase();
-        hotelActionsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(createActionButtonsForHotel(param.getValue())));
-        // Set items to the table
+        ObservableList<Hotels> hotelList = loadHotelsFromDatabase();
         hotelTable.setItems(hotelList);
-
     }
 
-    private ObservableList<AdminListingHotelModel> loadHotelsFromDatabase() {
-        ObservableList<AdminListingHotelModel> hotels = FXCollections.observableArrayList();
-        try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()){
+    private ObservableList<Hotels> loadHotelsFromDatabase() {
+        ObservableList<Hotels> hotels = FXCollections.observableArrayList();
+        try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<AdminListingHotelModel> criteriaQuery = builder.createQuery(AdminListingHotelModel.class);
-            Root<AdminListingHotelModel> root = criteriaQuery.from(AdminListingHotelModel.class);
-            criteriaQuery.select(root);
-            List<AdminListingHotelModel> hotelData = session.createQuery(criteriaQuery).getResultList();
-            hotels.addAll(hotelData);
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
+            CriteriaQuery<Hotels> query = builder.createQuery(Hotels.class);
+            Root<Hotels> root = query.from(Hotels.class);
+            query.select(root);
+
+            List<Hotels> hotelList = session.createQuery(query).getResultList();
+            hotels.addAll(hotelList);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return hotels;
     }
