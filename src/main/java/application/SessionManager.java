@@ -7,7 +7,6 @@ public class SessionManager {
     private Users loggedInUser;
 
     private SessionManager() {
-        // Private constructor to prevent instantiation
     }
 
     public static SessionManager getInstance() {

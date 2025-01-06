@@ -31,14 +31,29 @@ public class ForgotPasswordController {
     private String recipientEmail;
 
     public void handleExitButtonAction(ActionEvent event) {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            // احصل على الـ Stage الحالي
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+
+            // قم بتحميل صفحة تسجيل الدخول
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_page.fxml"));
+            Parent root = loader.load();
+
+            // استخدم نفس الـ Root الحالي بدون كسر التصميم
+            Scene scene = stage.getScene();
+            scene.setRoot(root);
+
+            // احتفظ بالعنوان كما هو
+            stage.setTitle("Login");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the login page.");
+        }
     }
 
     @FXML
     private void handleSendEmail() {
         recipientEmail = emailField.getText().trim(); //get the email here
-
 
         if (recipientEmail.isEmpty() || !isValidEmail(recipientEmail)) {
             showAlert("Invalid Email", "Please enter a valid email address.");
