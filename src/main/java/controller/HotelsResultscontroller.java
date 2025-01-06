@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
 import java.io.IOException;
 import java.util.List;
 import java.text.DecimalFormat;
@@ -537,14 +538,12 @@ public class HotelsResultscontroller {
     public void handleReserveButtonAction(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookingHotel.fxml"));
-            Parent newPage = loader.load();
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
 
-            BookingHotelcontroller page4Controller = loader.getController();
-
-//            page4Controller.setLocation(this.Location);
-
-            Scene currentScene = ((Node) actionEvent.getSource()).getScene();
-            currentScene.setRoot(newPage);
         } catch (IOException e) {
             e.printStackTrace();
         }
