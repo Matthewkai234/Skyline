@@ -4,7 +4,6 @@ import database.Users;
 import database.Roles;
 import database.Permissions;
 import database.Flight;
-import database.Booking;
 
 import model.*;
 import org.hibernate.SessionFactory;
@@ -25,9 +24,8 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(Roles.class);
         configuration.addAnnotatedClass(Permissions.class);
         configuration.addAnnotatedClass(Flight.class);
-        configuration.addAnnotatedClass(Booking.class);
         configuration.addAnnotatedClass(Hotels.class);
-        configuration.addAnnotatedClass(BookingHotels.class);
+        configuration.addAnnotatedClass(clients_booking_hotels.class);
 
         // Add model classes here
         configuration.addAnnotatedClass(FlightsBookingModel.class);

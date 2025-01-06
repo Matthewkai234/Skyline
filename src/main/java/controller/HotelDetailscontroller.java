@@ -50,7 +50,7 @@ public class HotelDetailscontroller {
 
             BookingHotelcontroller page4Controller = loader.getController();
 
-            page4Controller.setHotelName(this.hotelNameLabel.getText());
+//            page4Controller.setHotelName(this.hotelNameLabel.getText());
 
             Scene newScene = new Scene(newPage);
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
