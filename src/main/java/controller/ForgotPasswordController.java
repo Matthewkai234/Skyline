@@ -32,19 +32,15 @@ public class ForgotPasswordController {
 
     public void handleExitButtonAction(ActionEvent event) {
         try {
-            // احصل على الـ Stage الحالي
-            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            // قم بتحميل صفحة تسجيل الدخول
+            // Load the login page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_page.fxml"));
             Parent root = loader.load();
 
-            // استخدم نفس الـ Root الحالي بدون كسر التصميم
-            Scene scene = stage.getScene();
-            scene.setRoot(root);
-
-            // احتفظ بالعنوان كما هو
-            stage.setTitle("Login");
+            // Get the current stage and set the new scene
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login"); // Set the title for the login page
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
             showAlert("Error", "Failed to load the login page.");
@@ -54,6 +50,7 @@ public class ForgotPasswordController {
     @FXML
     private void handleSendEmail() {
         recipientEmail = emailField.getText().trim(); //get the email here
+
 
         if (recipientEmail.isEmpty() || !isValidEmail(recipientEmail)) {
             showAlert("Invalid Email", "Please enter a valid email address.");
