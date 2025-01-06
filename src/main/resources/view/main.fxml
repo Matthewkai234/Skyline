@@ -72,7 +72,7 @@
 
 
             <!-- Listings -->
-            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
+            <HBox fx:id="listingsButtonBox" alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5;" styleClass="HBox">
                <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                   <Image url="@../images/list-ingredients-48.png" />
                </ImageView>
@@ -82,8 +82,10 @@
                   </cursor>
                </Button>
             </HBox>
+
          </VBox>
          <VBox>
+
             <children>
 
                <!-- Logout Section -->

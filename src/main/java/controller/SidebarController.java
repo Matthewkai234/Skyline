@@ -8,10 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +28,12 @@ public class SidebarController implements Initializable {
     @FXML
     private HBox contentArea;
 
+    @FXML
+    private HBox listingsButtonBox; // VBox containing the Listings button
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        adjustSidebarForRole();
         loadHomePage();
     }
 
@@ -35,41 +41,63 @@ public class SidebarController implements Initializable {
     public void home(ActionEvent actionEvent) {
         loadHomePage();
     }
+
+    @FXML
     public void bookings(ActionEvent actionEvent) throws IOException {
         loadBookings();
     }
 
+    @FXML
     public void hotels(ActionEvent actionEvent) throws IOException {
         loadHotels();
     }
+
+    @FXML
     public void listings(ActionEvent actionEvent) throws IOException {
         loadListings();
     }
 
+    @FXML
     public void login(ActionEvent actionEvent) throws IOException {
         loadLogin();
     }
+
+    @FXML
     public void flights(ActionEvent actionEvent) throws IOException {
         loadFlights();
     }
 
-    public void loadListings() {
+    private void loadListings() {
         loadPage("listings-view.fxml");
     }
-    public void loadHotels(){loadPage("SearchHotel.fxml");}
-    public void loadBookings(){
+
+    private void loadHotels() {
+        loadPage("SearchHotel.fxml");
+    }
+
+    private void loadBookings() {
         loadPage("bookings.fxml");
     }
 
-    public void loadLogin(){loadPageLogout("login_page.fxml");}
-    public void loadFlights(){loadPage("SearchFlightBigFinal.fxml");}
+    private void loadLogin() {
+        loadPageLogout("login_page.fxml");
+    }
 
+    private void loadFlights() {
+        loadPage("SearchFlightBigFinal.fxml");
+    }
 
     private void loadHomePage() {
         if (isUserAdmin()) {
             loadPage("adminHome.fxml");
         } else {
             loadPage("HomeDashboard.fxml");
+        }
+    }
+
+    private void adjustSidebarForRole() {
+        if (!isUserAdmin()) {
+            listingsButtonBox.setVisible(false); // Hide Listings button for non-admins
         }
     }
 
@@ -82,7 +110,6 @@ public class SidebarController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     private void loadPageLogout(String fxmlFile) {
         try {
