@@ -1,62 +1,63 @@
 package database.services;
 
-import model.HotelsBookingModel;
 import database.interfaces.BookingDAO;
+import model.HotelsBookingModel;
+import model.LatestBookingModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
 
 import java.util.List;
 
-
-public class HotelsBookingDAOImp implements BookingDAO<HotelsBookingModel> {
+public class LatestBookingDAOImp implements BookingDAO <LatestBookingModel>{
 
     private final SessionFactory sessionFactory;
 
-    public HotelsBookingDAOImp() {
+    public LatestBookingDAOImp() {
         HibernateUtil hibernateUtility = HibernateUtil.getInstance();
         sessionFactory = hibernateUtility.getSessionFactory();
     }
 
     @Override
-    public void insert(HotelsBookingModel hotelsBookingModel) {
+    public void insert(LatestBookingModel latestBookingModel) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(hotelsBookingModel);
+            session.save(latestBookingModel);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public void update(HotelsBookingModel hotelsBookingModel) {
+    public void update(LatestBookingModel latestBookingModel) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.update(hotelsBookingModel);
+            session.update(latestBookingModel);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public void delete(HotelsBookingModel hotelsBookingModel) {
+    public void delete(LatestBookingModel latestBookingModel) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.delete(hotelsBookingModel);
+            session.delete(latestBookingModel);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public List<HotelsBookingModel> getAll() {
+    public List<LatestBookingModel> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT u FROM HotelsBookingModel u", HotelsBookingModel.class).list();
+            return session.createQuery("SELECT u FROM LatestBookingModel u", LatestBookingModel.class).list();
         }
     }
 
     @Override
-    public HotelsBookingModel findBookingById(int id) {
+    public LatestBookingModel findBookingById(int id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(HotelsBookingModel.class, id);
+            return session.get(LatestBookingModel.class, id);
         }
     }
 
 }
+
