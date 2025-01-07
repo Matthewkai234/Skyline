@@ -1,11 +1,15 @@
 package controller;
 
+import database.services.HotelsBookingDAOImp;
+import database.services.LatestBookingDAOImp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import model.HotelsBookingModel;
+import model.LatestBookingModel;
 import model.clients_booking_hotels;
 import database.services.ClientsHotelBookingDAOImp;
 import database.interfaces.ClientsHotelBookingsDAO;
@@ -185,10 +189,18 @@ public class BookingHotelcontroller {
             bookingService.saveBooking(booking);
 
             messageLabel.setText("Hotel Booked Successfully!");
+            HotelsBookingDAOImp hotelsBookingDAOImp = new HotelsBookingDAOImp();
+            hotelsBookingDAOImp.insert(new HotelsBookingModel(LocalDate.now(), clientFirstName+" "+clientLastName,hotelName,locationName, HotelsBookingModel.Status.PENDING));
+
+            LatestBookingDAOImp latestBookingDAOImp = new LatestBookingDAOImp();
+            latestBookingDAOImp.insert( new LatestBookingModel(clientFirstName+" "+clientLastName, "Hotel", hotelName));
+
             clearFields();
         } catch (NumberFormatException e) {
             messageLabel.setText("Invalid input for number of guests, please provide a number");
         }
+
+
     }
 
     private void clearFields(){

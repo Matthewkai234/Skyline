@@ -1,15 +1,15 @@
 package controller;
 
 import database.Flight;
-import database.services.SearshFlightDOAImp;
-import database.services.clients_booking_flightsDOAImp;
+import database.services.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.FlightsBookingModel;
+import model.HotelsBookingModel;
+import model.LatestBookingModel;
 import model.clients_booking_flights;
-
 import java.time.LocalDate;
 
 public class FlightBookingController {
@@ -33,6 +33,9 @@ public class FlightBookingController {
     private TextField status;
 
     @FXML
+    private TextField takeOff;
+
+    @FXML
     private Label messageLabel;
 
     private int flightId;
@@ -50,7 +53,8 @@ public class FlightBookingController {
             StartDate.setValue(flight.getStartDate());
             ArriveDate.setValue(flight.getArriveDate());
             AirLine.setText(flight.getAirline());
-            destination.setText(flight.getTakeoffContry());
+            takeOff.setText(flight.getTakeoffContry());
+            destination.setText(flight.getLandingCountry());
             status.setText("Pending");
             status.setEditable(false);
         } else {
@@ -66,6 +70,7 @@ public class FlightBookingController {
         String destinationValue = destination.getText();
         String airlineValue = AirLine.getText();
         String statusValue = status.getText();
+        String takeOffValue = takeOff.getText();
 
         if (userNameValue.isEmpty() || startDateValue == null || arriveDateValue == null ||
                 destinationValue.isEmpty() || airlineValue.isEmpty() || statusValue.isEmpty()) {
@@ -87,12 +92,18 @@ public class FlightBookingController {
         booking.setDestination(destinationValue);
         booking.setStatus(bookingStatus.toString());
         booking.setCustomerName(userNameValue);
-        booking.setTakeOff(booking.getTakeOff());
+        booking.setTakeOff(takeOffValue);
 
 
         try {
             clients_booking_flightsDOAImp bookingDAO = new clients_booking_flightsDOAImp();
             bookingDAO.AddBooking(booking);
+
+            FlightsBookingDAOImp flightsBookingDAOImp = new FlightsBookingDAOImp();
+            flightsBookingDAOImp.insert(new FlightsBookingModel(LocalDate.now(), userNameValue, takeOffValue,destinationValue, airlineValue, FlightsBookingModel.Status.PENDING));
+
+            LatestBookingDAOImp latestBookingDAOImp = new LatestBookingDAOImp();
+            latestBookingDAOImp.insert( new LatestBookingModel(userNameValue, "Flight", airlineValue));
             showMessage("Booking successfully added!", "success");
         } catch (Exception e) {
             showMessage("Failed to book the flight. Please try again.", "error");

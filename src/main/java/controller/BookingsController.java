@@ -69,24 +69,17 @@ public class BookingsController implements Initializable {
     @FXML
     private TableColumn<BookingHistoryModel, String> bhCustomerNameColumn;
     //-------------------------------------------------------------------//
-    private ObservableList<FlightsBookingModel> flightsBookingsList;
     FlightsBookingDAOImp flightsBookingRepository = new FlightsBookingDAOImp();
     ObservableList<FlightsBookingModel> initialFlightsData() {
-
         var bookings = flightsBookingRepository.getAll();
         return FXCollections.<FlightsBookingModel>observableArrayList(bookings);
     }
     //-------------------------------------------------------------------//
-    private ObservableList<HotelsBookingModel> hotelsBookingList;
     HotelsBookingDAOImp hotelsBookingRepository = new HotelsBookingDAOImp();
     ObservableList<HotelsBookingModel> initialHotelsData(){
         var bookings = hotelsBookingRepository.getAll();
         return FXCollections.<HotelsBookingModel>observableArrayList(bookings);
     }
-    //-------------------------------------------------------------------//
-    private ObservableList<BookingHistoryModel> bookingHistoryList;
-
-
     //-------------------------------------------------------------------//
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,7 +87,6 @@ public class BookingsController implements Initializable {
         initializeHotelsBookings(url, resourceBundle);
         initializeBookingHistory(url,resourceBundle);
     }
-
     //-------------------------------------------------------------------//
     public void initializeBookingHistory(URL url, ResourceBundle resourceBundle){
         bhBookingIdColumn.setCellValueFactory (new PropertyValueFactory<BookingHistoryModel, Integer>( "bookingId"));

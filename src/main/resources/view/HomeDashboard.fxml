@@ -25,10 +25,6 @@
                     <content>
                         <VBox spacing="20.0" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
                             <children>
-                                <HBox alignment="CENTER_RIGHT">
-                                    <Button mnemonicParsing="false" onAction="#goToBookings" style="-fx-background-color: #00aff0; -fx-text-fill: white; -fx-padding: 8 15; -fx-background-radius: 4;" text="See Details">
-                                    </Button>
-                                </HBox>
                                 <Text style="-fx-font-size: 2em; -fx-font-weight: bold;" text="Dashboard" />
                                 <HBox spacing="20.0" HBox.hgrow="ALWAYS">
                                     <!-- Air Booking Box -->
@@ -87,24 +83,6 @@
                                         </ScrollPane>
                                     </VBox>
                                 </HBox>
-                            </children>
-                        </VBox>
-                    </content>
-                </Tab>
-                <Tab text="Flights" >
-                    <content>
-                        <VBox style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
-                            <children>
-                                <Text style="-fx-font-size: 2em; -fx-font-weight: bold;" text="Flights" />
-                            </children>
-                        </VBox>
-                    </content>
-                </Tab>
-                <Tab text="Hotels" >
-                    <content>
-                        <VBox style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
-                            <children>
-                                <Text style="-fx-font-size: 2em; -fx-font-weight: bold;" text="Hotels" />
                             </children>
                         </VBox>
                     </content>

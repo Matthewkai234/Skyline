@@ -69,33 +69,6 @@
 
             <!-- Action Buttons -->
             <HBox alignment="CENTER" spacing="20.0">
-               <Button style="-fx-background-color: #00AFF0; -fx-text-fill: white; -fx-font-weight: 700;" text="New Booking">
-                  <graphic>
-                     <ImageView fitHeight="6.0" fitWidth="6.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../Icons/plus.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-               <Button style="-fx-background-color: #00AFF0; -fx-text-fill: white; -fx-font-weight: 700;" text="Add Hotel">
-                  <graphic>
-                     <ImageView fitHeight="6.0" fitWidth="6.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../Icons/plus.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
-               <Button style="-fx-background-color: #00AFF0; -fx-text-fill: white; -fx-font-weight: 700;" text="Add Flight">
-                  <graphic>
-                     <ImageView fitHeight="6.0" fitWidth="6.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../Icons/plus.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Button>
                <Button style="-fx-background-color: #00AFF0; -fx-text-fill: white; -fx-font-weight: 700;" text="Add Customer" onAction="#addCustomerWindow">
                   <graphic>
                      <ImageView fitHeight="6.0" fitWidth="6.0" pickOnBounds="true" preserveRatio="true">
