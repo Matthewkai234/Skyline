@@ -1,87 +1,111 @@
 package controller;
 
-import database.Booking;
-import database.FlightBooking;
+import database.Flight;
+import database.services.SearshFlightDOAImp;
+import database.services.clients_booking_flightsDOAImp;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.FlightsBookingModel;
+import model.clients_booking_flights;
+
+import java.time.LocalDate;
 
 public class FlightBookingController {
 
-    // TextField variables
     @FXML
     private TextField userName;
 
     @FXML
-    private TextField FlightId;
+    private DatePicker StartDate;
 
     @FXML
-    private TextField NumberOfPasenger;
+    private DatePicker ArriveDate;
 
     @FXML
-    private TextField From;
+    private TextField destination;
 
     @FXML
-    private TextField To;
+    private TextField AirLine;
 
     @FXML
-    private TextField AgentId;
+    private TextField status;
 
     @FXML
-    private Button bookButton;
+    private Label messageLabel;
 
-    /*
-    // TableView and its columns
-    @FXML
-    private TableView<?> flightTable;
+    private int flightId;
 
-    @FXML
-    private TableColumn<?, ?> flightIdColumn;
+    private final SearshFlightDOAImp searchFlightDAO = new SearshFlightDOAImp();
 
-    @FXML
-    private TableColumn<?, ?> fromCountryColumn;
+    public void initFlightDetails(int flightId) {
+        this.flightId = flightId;
 
-    @FXML
-    private TableColumn<?, ?> toCountryColumn;
+        Flight flight = searchFlightDAO.getFlight(flightId);
 
-    @FXML
-    private TableColumn<?, ?> airLineColumn;
+        if (flight != null) {
+            System.out.println("Flight found: " + flight.getAirline());
 
-    @FXML
-    private TableColumn<?, ?> userNameColumn;
-
-    @FXML
-    private TableColumn<?, ?> agentNameColumn;
-
-    @FXML
-    private TableColumn<?, ?> startDateColumn;
-
-    @FXML
-    private TableColumn<?, ?> endDateColumn;
-
-     */
+            StartDate.setValue(flight.getStartDate());
+            ArriveDate.setValue(flight.getArriveDate());
+            AirLine.setText(flight.getAirline());
+            destination.setText(flight.getTakeoffContry());
+            status.setText("Pending");
+            status.setEditable(false);
+        } else {
+            System.out.println("No flight found with ID: " + flightId);
+        }
+    }
 
     @FXML
     public void Booking() {
+        String userNameValue = userName.getText();
+        LocalDate startDateValue = StartDate.getValue();
+        LocalDate arriveDateValue = ArriveDate.getValue();
+        String destinationValue = destination.getText();
+        String airlineValue = AirLine.getText();
+        String statusValue = status.getText();
+
+        if (userNameValue.isEmpty() || startDateValue == null || arriveDateValue == null ||
+                destinationValue.isEmpty() || airlineValue.isEmpty() || statusValue.isEmpty()) {
+            showMessage("Please fill all fields.", "error");
+            return;
+        }
+
+        FlightsBookingModel.Status bookingStatus;
+        try {
+            bookingStatus = FlightsBookingModel.Status.valueOf(statusValue.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            showMessage("Invalid status value. Use PENDING, CANCELLED, or BOOKED.", "error");
+            return;
+        }
+
+        clients_booking_flights booking = new clients_booking_flights();
+        booking.setBookingDate(startDateValue);
+        booking.setAirline(airlineValue);
+        booking.setDestination(destinationValue);
+        booking.setStatus(bookingStatus.toString());
+        booking.setCustomerName(userNameValue);
+        booking.setTakeOff(booking.getTakeOff());
 
 
-        Booking book = new Booking();
-        FlightBooking flightBooking = new FlightBooking();
+        try {
+            clients_booking_flightsDOAImp bookingDAO = new clients_booking_flightsDOAImp();
+            bookingDAO.AddBooking(booking);
+            showMessage("Booking successfully added!", "success");
+        } catch (Exception e) {
+            showMessage("Failed to book the flight. Please try again.", "error");
+            e.printStackTrace();
+        }
+    }
 
-
-        String userName = this.userName.getText();
-        int flightId = Integer.parseInt(FlightId.getText());
-        int numberOfPassengers = Integer.parseInt(NumberOfPasenger.getText());
-        String from = From.getText();
-        String to = To.getText();
-        int agentId = Integer.parseInt(AgentId.getText());
-
-        book.setUserName(userName);
-        book.setAgentId(agentId);
-
-        //flightBooking.setFlight();
-
-
-
+    private void showMessage(String message, String type) {
+        messageLabel.setText(message);
+        if ("success".equalsIgnoreCase(type)) {
+            messageLabel.setStyle("-fx-text-fill: green;");
+        } else if ("error".equalsIgnoreCase(type)) {
+            messageLabel.setStyle("-fx-text-fill: red;");
+        }
     }
 }

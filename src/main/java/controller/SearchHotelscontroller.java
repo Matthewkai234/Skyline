@@ -3,10 +3,10 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,10 +30,14 @@ public class SearchHotelscontroller {
             HotelsResultscontroller controller = loader.getController();
             controller.setLocation(location);
 
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage newStage = new Stage();
+            newStage.setTitle("Hotel Results for: " + location);
+            newStage.initModality(Modality.APPLICATION_MODAL);
+
             Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            newStage.setScene(scene);
+            newStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error loading the page.");

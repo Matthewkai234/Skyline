@@ -31,8 +31,20 @@ public class ForgotPasswordController {
     private String recipientEmail;
 
     public void handleExitButtonAction(ActionEvent event) {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            // Load the login page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_page.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage and set the new scene
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login"); // Set the title for the login page
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the login page.");
+        }
     }
 
     @FXML
