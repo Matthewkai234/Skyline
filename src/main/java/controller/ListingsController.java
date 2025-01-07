@@ -27,6 +27,7 @@
         @FXML
         private TabPane tabPane;
 
+
         @FXML
         private TableView<AdminListingFlightModel> flightTable;
 
@@ -46,7 +47,22 @@
         private TableColumn<AdminListingFlightModel, String> arrivalDateColumn;
 
         @FXML
-        private TableColumn<AdminListingFlightModel, HBox> flightActionsColumn; // Changed to HBox
+        private TableColumn<AdminListingFlightModel, String> takeoffCountryColumn;
+
+        @FXML
+        private TableColumn<AdminListingFlightModel, String> landingCountryColumn;
+
+        @FXML
+        private TableColumn<AdminListingFlightModel, Integer> priceColumn;
+
+        @FXML
+        private TableColumn<AdminListingFlightModel, String> startDateColumn;
+
+        @FXML
+        private TableColumn<AdminListingFlightModel, String> arriveDateColumn;
+
+        @FXML
+        private TableColumn<AdminListingFlightModel, HBox> flightActionsColumn;
 
         @FXML
         private TableView<Hotels> hotelTable;
