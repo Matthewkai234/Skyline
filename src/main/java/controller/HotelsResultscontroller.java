@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.stage.Modality;
 import java.io.IOException;
 import java.util.List;
 import java.text.DecimalFormat;
@@ -288,47 +287,6 @@ public class HotelsResultscontroller {
         return filteredHotels;
     }
 
-    private void setLabelVisibility(Label nameLabel, Label priceLabel, Label locationLabel, Label rateLabel, boolean visible) {
-        nameLabel.setVisible(visible);
-        priceLabel.setVisible(visible);
-        locationLabel.setVisible(visible);
-        rateLabel.setVisible(visible);
-    }
-
-    private void displayFilteredHotels(List<Hotels> filteredHotels) {
-        int maxHotelsToShow = Math.min(filteredHotels != null ? filteredHotels.size() : 0, RESULTS_PER_PAGE);
-
-        for (int i = 0; i < RESULTS_PER_PAGE; i++) {
-            AnchorPane hotelCard = getHotelCard(i);
-            if (hotelCard != null) {
-                hotelCard.setVisible(false);
-            }
-        }
-
-        for (int i = 0; i < maxHotelsToShow; i++) {
-            Hotels hotel = filteredHotels.get(i);
-            Label nameLabel = getHotelNameLabel(i);
-            Label priceLabel = getHotelPriceLabel(i);
-            Label locationLabel = getHotelLocationLabel(i);
-            Label rateLabel = getHotelRateLabel(i);
-            AnchorPane hotelCard = getHotelCard(i);
-
-            if (nameLabel != null && priceLabel != null && locationLabel != null && rateLabel != null && hotelCard != null) {
-                setHotelData(nameLabel, priceLabel, locationLabel, rateLabel, hotel);
-                hotelCard.setVisible(true);
-            }
-        }
-
-        if (maxHotelsToShow >= totalResults) {
-            if (moreResultsButton != null) {
-                moreResultsButton.setVisible(false);
-            }
-        } else {
-            if (moreResultsButton != null) {
-                moreResultsButton.setVisible(true);
-            }
-        }
-    }
 
     @FXML
     private void initialize() {
@@ -531,34 +489,6 @@ public class HotelsResultscontroller {
             priceLabel.setText("");
             locationLabel.setText("");
             rateLabel.setText("");
-        }
-    }
-
-    @FXML
-    public void handleReserveButtonAction(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookingHotel.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void loadNewWindow(String fxmlFile) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxmlFile));
-            Node content = loader.load();
-            Stage newStage = new Stage();
-            Scene scene = new Scene((Parent) content);
-            newStage.setScene(scene);
-            newStage.setTitle("Skyline");
-            newStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
