@@ -1,12 +1,11 @@
 package controller;
 
 import application.SkylineApplication;
-import database.Flight;
+import model.FlightModel;
 import database.services.SearshFlightDOAImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
@@ -30,7 +29,7 @@ public class SearchFlightController {
     SearshFlightDOAImp searshFlightDOAImp = new SearshFlightDOAImp();
 
     @FXML
-    private TableView<Flight> Table;
+    private TableView<FlightModel> Table;
 
 
     @FXML
@@ -40,13 +39,13 @@ public class SearchFlightController {
         String date = dateFlight.getValue() != null ? dateFlight.getValue().toString() : "Not Selected";
         System.out.println("date: " + date);
 
-        List<Flight> flights = searshFlightDOAImp.searchFlights(from, to, date);
+        List<FlightModel> flights = searshFlightDOAImp.searchFlights(from, to, date);
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/flightSearshResultTaple.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/flightSearchResultTable.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
-            FlightSearshResultTapleController resultController = fxmlLoader.getController();
+            FlightSearchResultTableController resultController = fxmlLoader.getController();
             resultController.setSearchCriteria(from, to, flights);
 
             Stage resultStage = new Stage();

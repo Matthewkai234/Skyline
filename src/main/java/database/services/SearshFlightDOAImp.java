@@ -1,14 +1,14 @@
 package database.services;
 
-import database.Flight;
-import database.interfaces.SearshFlightDOA;
+import model.FlightModel;
+import database.interfaces.FlightDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
 
 import java.util.List;
 
-public class SearshFlightDOAImp implements SearshFlightDOA {
+public class SearshFlightDOAImp implements FlightDAO {
     HibernateUtil hibernateUtil;
     SessionFactory sessionFactory;
 
@@ -19,17 +19,17 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
 
     @Override
 
-    public List<Flight> searchFlights(String TakeoffContry, String LandingCountry,String date){
+    public List<FlightModel> searchFlights(String TakeoffContry, String LandingCountry, String date){
         Session session = sessionFactory.openSession();
 
-        List<Flight> flights = null;
+        List<FlightModel> flights = null;
 
 
         try {
             session.beginTransaction();
-            String hql = "FROM Flight WHERE TakeoffContry = :TakeoffContry AND LandingCountry = :LandingCountry";
+            String hql = "FROM FlightModel WHERE TakeoffContry = :TakeoffContry AND LandingCountry = :LandingCountry";
 
-            flights = session.createQuery(hql, Flight.class)
+            flights = session.createQuery(hql, FlightModel.class)
                     .setParameter("TakeoffContry", TakeoffContry)
                     .setParameter("LandingCountry", LandingCountry)
                     .getResultList();
@@ -55,12 +55,12 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
 
 
     @Override
-    public Flight getFlight(int flightId){
-        Flight flight = null;
+    public FlightModel getFlight(int flightId){
+        FlightModel flight = null;
         Session session = sessionFactory.openSession();
         try {
             session.beginTransaction();
-            flight = session.get(Flight.class, flightId);
+            flight = session.get(FlightModel.class, flightId);
             session.getTransaction().commit();
 
         }catch (Exception e){
@@ -75,7 +75,7 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
     }
 
 
-    public List<Flight> Filter(String from , String to,Integer startPrice, Integer endPrice, String Airline) {
+    public List<FlightModel> Filter(String from , String to, Integer startPrice, Integer endPrice, String Airline) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
@@ -102,7 +102,7 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
                 hql.append(" AND f.Airline = :Airline");
             }
 
-            var query = session.createQuery(hql.toString(), Flight.class);
+            var query = session.createQuery(hql.toString(), FlightModel.class);
 
             if (from != null && !from.isEmpty()) query.setParameter("from", from);
             if (to != null && !to.isEmpty()) query.setParameter("to", to);
@@ -111,7 +111,7 @@ public class SearshFlightDOAImp implements SearshFlightDOA {
             if (endPrice != null) query.setParameter("endPrice", endPrice);
             if (Airline != null && !Airline.isEmpty()) query.setParameter("Airline", Airline);
 
-            List<Flight> flights = query.getResultList();
+            List<FlightModel> flights = query.getResultList();
             session.getTransaction().commit();
 
             flights.stream().forEach(flight -> {

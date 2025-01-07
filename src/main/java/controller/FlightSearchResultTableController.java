@@ -1,6 +1,6 @@
 package controller;
 
-import database.Flight;
+import model.FlightModel;
 import database.services.SearshFlightDOAImp;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -21,32 +21,32 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.util.List;
 
-public class FlightSearshResultTapleController {
+public class FlightSearchResultTableController {
     private String from;
     private String to;
 
     @FXML
-    private TableColumn<Flight, Integer> FlightId;
+    private TableColumn<FlightModel, Integer> FlightId;
 
     @FXML
-    private TableColumn<Flight, String> takeoffContry;
+    private TableColumn<FlightModel, String> takeoffContry;
 
     @FXML
-    private TableColumn<Flight, String> LandingCountry;
+    private TableColumn<FlightModel, String> LandingCountry;
 
     @FXML
-    private TableColumn<Flight, Integer> price;
+    private TableColumn<FlightModel, Integer> price;
 
     @FXML
-    private TableColumn<Flight, String> takeoffDate;
+    private TableColumn<FlightModel, String> takeoffDate;
     @FXML
-    private TableColumn<Flight, String> arrivalDate;
+    private TableColumn<FlightModel, String> arrivalDate;
 
     @FXML
-    private TableColumn<Flight, String> AirLine;
+    private TableColumn<FlightModel, String> AirLine;
 
     @FXML
-    private TableColumn<Flight, Void> bookColumn;
+    private TableColumn<FlightModel, Void> bookColumn;
 
     @FXML
     private TextField StartPrice;
@@ -58,12 +58,12 @@ public class FlightSearshResultTapleController {
     private TextField Airline;
 
     @FXML
-    private TableView<Flight> Table;
+    private TableView<FlightModel> Table;
 
-    private final ObservableList<Flight> flightList = FXCollections.observableArrayList();
+    private final ObservableList<FlightModel> flightList = FXCollections.observableArrayList();
 
     @FXML
-    public void setSearchCriteria(String from, String to, List<Flight> flights) {
+    public void setSearchCriteria(String from, String to, List<FlightModel> flights) {
         this.from = from;
         this.to = to;
 
@@ -105,16 +105,16 @@ public class FlightSearshResultTapleController {
     }
 
     private void addBookButtonToTable() {
-        Callback<TableColumn<Flight, Void>, TableCell<Flight, Void>> cellFactory = new Callback<>() {
+        Callback<TableColumn<FlightModel, Void>, TableCell<FlightModel, Void>> cellFactory = new Callback<>() {
             @Override
-            public TableCell<Flight, Void> call(final TableColumn<Flight, Void> param) {
+            public TableCell<FlightModel, Void> call(final TableColumn<FlightModel, Void> param) {
                 return new TableCell<>() {
                     private final Button btn = new Button("Book");
 
                     {
                         btn.setStyle("-fx-background-color: #00affa; -fx-text-fill: white; -fx-font-weight: bold;");
                         btn.setOnAction(event -> {
-                            Flight flight = getTableView().getItems().get(getIndex());
+                            FlightModel flight = getTableView().getItems().get(getIndex());
                             handleBooking(flight);
                         });
                     }
@@ -136,10 +136,10 @@ public class FlightSearshResultTapleController {
         bookColumn.setCellFactory(cellFactory);
     }
 
-    private void handleBooking(Flight flight) {
+    private void handleBooking(FlightModel flight) {
         if (flight != null) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ClientBooking.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ClientFlightBooking.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
 
                 FlightBookingController bookingController = fxmlLoader.getController();
@@ -154,7 +154,7 @@ public class FlightSearshResultTapleController {
             }
         }
     }
-    public void setFlightData(List<Flight> flights) {
+    public void setFlightData(List<FlightModel> flights) {
         flightList.clear();
         flightList.addAll(flights);
 
@@ -170,7 +170,7 @@ public class FlightSearshResultTapleController {
 
     @FXML
     void onTableRowClick() {
-        Flight selectedFlight = Table.getSelectionModel().getSelectedItem();
+        FlightModel selectedFlight = Table.getSelectionModel().getSelectedItem();
 
         if (selectedFlight != null) {
             try {
@@ -210,7 +210,7 @@ public class FlightSearshResultTapleController {
         System.out.println("End Price: " + endPrice);
         System.out.println("Airline: " + airline);
 
-        List<Flight> filteredFlights = searshFlightDOAImp.Filter(from, to, startPrice, endPrice, airline);
+        List<FlightModel> filteredFlights = searshFlightDOAImp.Filter(from, to, startPrice, endPrice, airline);
 
         flightList.clear();
         flightList.addAll(filteredFlights);

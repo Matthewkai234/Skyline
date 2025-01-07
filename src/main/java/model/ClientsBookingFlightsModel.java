@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "clients_booking_flights")
-public class clients_booking_flights {
+public class ClientsBookingFlightsModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,10 @@ public class clients_booking_flights {
     @Column(name = "status")
     private String status;
 
-    public clients_booking_flights() {
+    public ClientsBookingFlightsModel() {
     }
 
-    public clients_booking_flights(int bookingId, LocalDate bookingDate, String takeOff, String destination, String airline, String customerName, String status) {
+    public ClientsBookingFlightsModel(int bookingId, LocalDate bookingDate, String takeOff, String destination, String airline, String customerName, String status) {
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
         this.takeOff = takeOff;

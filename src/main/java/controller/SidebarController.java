@@ -91,7 +91,7 @@ public class SidebarController implements Initializable {
         if (isUserAdmin()) {
             loadPage("adminHome.fxml");
         } else {
-            loadPage("HomeDashboard.fxml");
+            loadPage("AgentHome.fxml");
         }
     }
 

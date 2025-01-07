@@ -1,7 +1,7 @@
 package database.interfaces;
 
-import model.clients_booking_hotels;
+import model.ClientsBookingHotelsModel;
 
 public interface ClientsHotelBookingsDAO {
-    void saveBooking(clients_booking_hotels booking);
+    void saveBooking(ClientsBookingHotelsModel booking);
 }

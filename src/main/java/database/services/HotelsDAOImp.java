@@ -1,7 +1,7 @@
 package database.services;
 
-import model.Hotels;
-import database.interfaces.HotelsDao;
+import model.HotelsModel;
+import database.interfaces.HotelsDAO;
 import util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,18 +10,18 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotelsService implements HotelsDao {
+public class HotelsDAOImp implements HotelsDAO {
 
-    public List<Hotels> getHotelsListByLocation(String location) {
+    public List<HotelsModel> getHotelsListByLocation(String location) {
         Session session = sessionFactory.openSession();
-        List<Hotels> hotels = null;
+        List<HotelsModel> hotels = null;
         try {
             session.beginTransaction();
 
-            Query<Hotels> query = session.createQuery("FROM Hotels WHERE Location LIKE :location", Hotels.class);
+            Query<HotelsModel> query = session.createQuery("FROM HotelsModel WHERE Location LIKE :location", HotelsModel.class);
             query.setParameter("location", "%" + location + "%");
 
-            List<Hotels> hotelList = query.getResultList();
+            List<HotelsModel> hotelList = query.getResultList();
 
             if (hotelList != null && !hotelList.isEmpty()) {
                 System.out.println("Found " + hotelList.size() + " hotels.");
@@ -45,18 +45,18 @@ public class HotelsService implements HotelsDao {
 
     private final SessionFactory sessionFactory;
 
-    public HotelsService() {
+    public HotelsDAOImp() {
         this.sessionFactory = HibernateUtil.getInstance().getSessionFactory();
     }
 
     @Override
-    public List<Hotels> getAllHotels() {
+    public List<HotelsModel> getAllHotels() {
         Session session = sessionFactory.openSession();
-        List<Hotels> hotels = null;
+        List<HotelsModel> hotels = null;
         try {
             session.beginTransaction();
 
-            Query<Hotels> query = session.createQuery("from Hotels", Hotels.class);
+            Query<HotelsModel> query = session.createQuery("from HotelsModel", HotelsModel.class);
             hotels = query.list();
 
             if (hotels != null) {
@@ -76,13 +76,13 @@ public class HotelsService implements HotelsDao {
     }
 
     @Override
-    public Hotels findHotelById(int hotelId) {
+    public HotelsModel findHotelById(int hotelId) {
         Session session = sessionFactory.openSession();
-        Hotels hotel = null;
+        HotelsModel hotel = null;
         try {
             session.beginTransaction();
 
-            hotel = session.get(Hotels.class, hotelId);
+            hotel = session.get(HotelsModel.class, hotelId);
 
             if (hotel != null) {
                 System.out.println("Hotel Found: ");
@@ -100,13 +100,13 @@ public class HotelsService implements HotelsDao {
         return hotel;
     }
 
-    public Hotels getRandomHotel() {
+    public HotelsModel getRandomHotel() {
         Session session = sessionFactory.openSession();
-        Hotels hotel = null;
+        HotelsModel hotel = null;
         try {
             session.beginTransaction();
 
-            Query<Hotels> query = session.createQuery("FROM Hotels ORDER BY rand()", Hotels.class);
+            Query<HotelsModel> query = session.createQuery("FROM HotelsModel ORDER BY rand()", HotelsModel.class);
             query.setMaxResults(1);
             hotel = query.uniqueResult();
 
@@ -131,13 +131,13 @@ public class HotelsService implements HotelsDao {
         return hotel;
     }
 
-    public List<Hotels> getHotelsList(int limit) {
+    public List<HotelsModel> getHotelsList(int limit) {
         Session session = sessionFactory.openSession();
-        List<Hotels> hotels = null;
+        List<HotelsModel> hotels = null;
         try {
             session.beginTransaction();
 
-            Query<Hotels> query = session.createQuery("FROM Hotels", Hotels.class);
+            Query<HotelsModel> query = session.createQuery("FROM HotelsModel", HotelsModel.class);
             query.setMaxResults(limit);
             hotels = query.list();
 

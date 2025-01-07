@@ -20,7 +20,7 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.Random;
 
-public class ForgotPasswordController {
+public class ForgetPasswordController {
 
     @FXML
     private TextField emailField;

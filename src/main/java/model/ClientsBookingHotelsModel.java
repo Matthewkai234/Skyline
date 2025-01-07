@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "clients_booking_hotels")
-public class clients_booking_hotels {
+public class ClientsBookingHotelsModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class clients_booking_hotels {
     private String location;
 
 
-    public clients_booking_hotels() {
+    public ClientsBookingHotelsModel() {
     }
 
     public int getId() {

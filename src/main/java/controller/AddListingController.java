@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.AdminListingFlightModel;
-import model.Hotels;
+import model.HotelsModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -58,7 +58,7 @@ public class AddListingController {
         try {
             Configuration config = new Configuration().configure("hibernate.cfg.xml")
                     .addAnnotatedClass(AdminListingFlightModel.class)
-                    .addAnnotatedClass(Hotels.class);
+                    .addAnnotatedClass(HotelsModel.class);
             sessionFactory = config.buildSessionFactory();
         } catch (Exception ex) {
             showAlert("Error", "Failed to initialize database connection.");
@@ -96,7 +96,7 @@ public class AddListingController {
                 parentController.loadFlightData(); // Refresh parent flight data
                 showAlert("Success", "Flight added successfully.");
             } else if ("Hotel".equalsIgnoreCase(selectedType)) {
-                Hotels hotel = new Hotels();
+                HotelsModel hotel = new HotelsModel();
                 hotel.setHotelName(nameField.getText());
                 hotel.setLocation(locationField.getText());
                 hotel.setHotelPrice(Double.parseDouble(hotelPriceField.getText()));

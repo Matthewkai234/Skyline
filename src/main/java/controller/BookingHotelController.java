@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import model.HotelsBookingModel;
 import model.LatestBookingModel;
-import model.clients_booking_hotels;
+import model.ClientsBookingHotelsModel;
 import database.services.ClientsHotelBookingDAOImp;
 import database.interfaces.ClientsHotelBookingsDAO;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 
-public class BookingHotelcontroller {
+public class BookingHotelController {
 
     @FXML
     private TextField clientFirstNameField;
@@ -171,7 +171,7 @@ public class BookingHotelcontroller {
         try {
             int numberOfGuests = Integer.parseInt(numGuests);
             // Create a new booking object
-            clients_booking_hotels booking = new clients_booking_hotels();
+            ClientsBookingHotelsModel booking = new ClientsBookingHotelsModel();
             booking.setFirstName(clientFirstName);
             booking.setLastName(clientLastName);
             booking.setEmail(email);

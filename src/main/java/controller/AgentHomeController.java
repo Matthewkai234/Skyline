@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class DashboardController implements Initializable {
+public class AgentHomeController implements Initializable {
 
 
     @FXML

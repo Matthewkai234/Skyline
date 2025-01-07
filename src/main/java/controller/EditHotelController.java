@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Hotels;
+import model.HotelsModel;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -26,11 +26,11 @@ public class EditHotelController {
     @FXML
     private Button saveButton;
 
-    private Hotels hotel;
+    private HotelsModel hotel;
 
     private ListingsController parentController;
 
-    public void setHotel(Hotels hotel) {
+    public void setHotel(HotelsModel hotel) {
         this.hotel = hotel;
         loadHotelData();
     }
@@ -54,7 +54,7 @@ public class EditHotelController {
             Transaction transaction = session.beginTransaction();
 
             // Check and reattach the hotel object if necessary
-            Hotels managedHotel = session.find(Hotels.class, hotel.getHotelId());
+            HotelsModel managedHotel = session.find(HotelsModel.class, hotel.getHotelId());
             if (managedHotel != null) {
                 managedHotel.setHotelName(hotelNameField.getText());
                 managedHotel.setLocation(locationField.getText());

@@ -2,7 +2,7 @@ package database.services;
 
 
 import database.interfaces.ClientsHotelBookingsDAO;
-import model.clients_booking_hotels;
+import model.ClientsBookingHotelsModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,7 +13,7 @@ public class ClientsHotelBookingDAOImp implements ClientsHotelBookingsDAO {
     private static SessionFactory sessionFactory;
     public ClientsHotelBookingDAOImp(){
         try {
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(clients_booking_hotels.class).buildSessionFactory();
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(ClientsBookingHotelsModel.class).buildSessionFactory();
         } catch (Exception e) {
             System.out.println("Error creating session factory " + e);
             throw new ExceptionInInitializerError(e);
@@ -21,7 +21,7 @@ public class ClientsHotelBookingDAOImp implements ClientsHotelBookingsDAO {
 
     }
     @Override
-    public void saveBooking(clients_booking_hotels booking) {
+    public void saveBooking(ClientsBookingHotelsModel booking) {
         Transaction transaction = null;
         try(Session session = sessionFactory.openSession()){
             transaction = session.beginTransaction();

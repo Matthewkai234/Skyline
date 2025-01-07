@@ -1,15 +1,14 @@
 package controller;
 
-import database.Flight;
+import model.FlightModel;
 import database.services.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.FlightsBookingModel;
-import model.HotelsBookingModel;
 import model.LatestBookingModel;
-import model.clients_booking_flights;
+import model.ClientsBookingFlightsModel;
 import java.time.LocalDate;
 
 public class FlightBookingController {
@@ -45,7 +44,7 @@ public class FlightBookingController {
     public void initFlightDetails(int flightId) {
         this.flightId = flightId;
 
-        Flight flight = searchFlightDAO.getFlight(flightId);
+        FlightModel flight = searchFlightDAO.getFlight(flightId);
 
         if (flight != null) {
             System.out.println("Flight found: " + flight.getAirline());
@@ -86,7 +85,7 @@ public class FlightBookingController {
             return;
         }
 
-        clients_booking_flights booking = new clients_booking_flights();
+        ClientsBookingFlightsModel booking = new ClientsBookingFlightsModel();
         booking.setBookingDate(startDateValue);
         booking.setAirline(airlineValue);
         booking.setDestination(destinationValue);
@@ -96,7 +95,7 @@ public class FlightBookingController {
 
 
         try {
-            clients_booking_flightsDOAImp bookingDAO = new clients_booking_flightsDOAImp();
+            ClientsBookingFlightsDAOImp bookingDAO = new ClientsBookingFlightsDAOImp();
             bookingDAO.AddBooking(booking);
 
             FlightsBookingDAOImp flightsBookingDAOImp = new FlightsBookingDAOImp();

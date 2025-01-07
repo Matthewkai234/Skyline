@@ -3,8 +3,8 @@ package controller;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
-import model.Hotels;
-import database.services.HotelsService;
+import model.HotelsModel;
+import database.services.HotelsDAOImp;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public class HotelsResultscontroller {
+public class HotelsResultsController {
     private int totalResults = 0;
     private int currentPage = 0;
     private static final int RESULTS_PER_PAGE = 8;
@@ -122,7 +122,7 @@ public class HotelsResultscontroller {
     @FXML
     private Label hotelLocationLabel8;
 
-    private HotelsService hotelsService;
+    private HotelsDAOImp hotelsService;
     @FXML
     private Button moreButton1;
     @FXML
@@ -140,8 +140,8 @@ public class HotelsResultscontroller {
     @FXML
     private Button moreButton8;
 
-    public HotelsResultscontroller() {
-        this.hotelsService = new HotelsService();
+    public HotelsResultsController() {
+        this.hotelsService = new HotelsDAOImp();
     }
 
     @FXML
@@ -175,7 +175,7 @@ public class HotelsResultscontroller {
         }
     }
 
-    private List<Hotels> currentHotelsList;
+    private List<HotelsModel> currentHotelsList;
 
     private void loadMoreResults() {
         if (currentHotelsList == null || currentHotelsList.isEmpty()) {
@@ -193,7 +193,7 @@ public class HotelsResultscontroller {
         }
 
         for (int i = startIndex; i < endIndex; i++) {
-            Hotels hotel = currentHotelsList.get(i);
+            HotelsModel hotel = currentHotelsList.get(i);
             int cardIndex = i % RESULTS_PER_PAGE;
             Label nameLabel = getHotelNameLabel(cardIndex);
             Label priceLabel = getHotelPriceLabel(cardIndex);
@@ -238,12 +238,12 @@ public class HotelsResultscontroller {
         updateButtonsVisibility();
     }
 
-    private List<Hotels> filterHotels(String selectedRate, String selectedPrice) {
-        List<Hotels> allHotels = hotelsService.getHotelsListByLocation(Location);
-        List<Hotels> filteredHotels = new ArrayList<>();
+    private List<HotelsModel> filterHotels(String selectedRate, String selectedPrice) {
+        List<HotelsModel> allHotels = hotelsService.getHotelsListByLocation(Location);
+        List<HotelsModel> filteredHotels = new ArrayList<>();
         double tolerance = 0.01;
 
-        for (Hotels hotel : allHotels) {
+        for (HotelsModel hotel : allHotels) {
             boolean matchesRate = true;
             if (selectedRate != null && !selectedRate.isEmpty()) {
                 try {
@@ -302,47 +302,47 @@ public class HotelsResultscontroller {
         ));
 
         moreButton1.setOnAction(event -> {
-            Hotels hotel = getHotelData(0);
+            HotelsModel hotel = getHotelData(0);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton2.setOnAction(event -> {
-            Hotels hotel = getHotelData(1);
+            HotelsModel hotel = getHotelData(1);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton3.setOnAction(event -> {
-            Hotels hotel = getHotelData(2);
+            HotelsModel hotel = getHotelData(2);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton4.setOnAction(event -> {
-            Hotels hotel = getHotelData(3);
+            HotelsModel hotel = getHotelData(3);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton5.setOnAction(event -> {
-            Hotels hotel = getHotelData(4);
+            HotelsModel hotel = getHotelData(4);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton6.setOnAction(event -> {
-            Hotels hotel = getHotelData(5);
+            HotelsModel hotel = getHotelData(5);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton7.setOnAction(event -> {
-            Hotels hotel = getHotelData(6);
+            HotelsModel hotel = getHotelData(6);
             handleMoreButtonAction(event, hotel);
         });
 
         moreButton8.setOnAction(event -> {
-            Hotels hotel = getHotelData(7);
+            HotelsModel hotel = getHotelData(7);
             handleMoreButtonAction(event, hotel);
         });
     }
 
-    private Hotels getHotelData(int index) {
+    private HotelsModel getHotelData(int index) {
         if (currentHotelsList != null && index < currentHotelsList.size()) {
             return currentHotelsList.get(index);
         }
@@ -362,7 +362,7 @@ public class HotelsResultscontroller {
         }
     }
 
-    private void displayHotels(List<Hotels> hotels) {
+    private void displayHotels(List<HotelsModel> hotels) {
         for (int i = 0; i < RESULTS_PER_PAGE; i++) {
             AnchorPane hotelCard = getHotelCard(i);
             if (hotelCard != null) {
@@ -371,7 +371,7 @@ public class HotelsResultscontroller {
         }
 
         for (int i = 0; i < hotels.size(); i++) {
-            Hotels hotel = hotels.get(i);
+            HotelsModel hotel = hotels.get(i);
             Label nameLabel = getHotelNameLabel(i);
             Label priceLabel = getHotelPriceLabel(i);
             Label locationLabel = getHotelLocationLabel(i);
@@ -386,12 +386,12 @@ public class HotelsResultscontroller {
     }
 
     @FXML
-    private void handleMoreButtonAction(ActionEvent event, Hotels hotel) {
+    private void handleMoreButtonAction(ActionEvent event, HotelsModel hotel) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HotelDetails.fxml"));
             Parent newPage = loader.load();
 
-            HotelDetailscontroller nextPageController = loader.getController();
+            HotelDetailsController nextPageController = loader.getController();
 
             nextPageController.setHotelData(hotel.getHotelName(), hotel.getHotelPrice(), hotel.getHotelRate(), hotel.getLocation());
 
@@ -475,7 +475,7 @@ public class HotelsResultscontroller {
         }
     }
 
-    private void setHotelData(Label nameLabel, Label priceLabel, Label locationLabel, Label rateLabel, Hotels hotel) {
+    private void setHotelData(Label nameLabel, Label priceLabel, Label locationLabel, Label rateLabel, HotelsModel hotel) {
         if (hotel != null) {
             nameLabel.setText(hotel.getHotelName());
             priceLabel.setText(String.valueOf(hotel.getHotelPrice()));

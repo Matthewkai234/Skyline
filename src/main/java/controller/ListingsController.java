@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.AdminListingFlightModel;
-import model.Hotels;
+import model.HotelsModel;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -47,25 +47,25 @@ public class ListingsController {
     private TableColumn<AdminListingFlightModel, HBox> flightActionsColumn;
 
     @FXML
-    private TableView<Hotels> hotelTable;
+    private TableView<HotelsModel> hotelTable;
 
     @FXML
-    private TableColumn<Hotels, Integer> hotelIdColumn;
+    private TableColumn<HotelsModel, Integer> hotelIdColumn;
 
     @FXML
-    private TableColumn<Hotels, String> hotelNameColumn;
+    private TableColumn<HotelsModel, String> hotelNameColumn;
 
     @FXML
-    private TableColumn<Hotels, String> locationColumn;
+    private TableColumn<HotelsModel, String> locationColumn;
 
     @FXML
-    private TableColumn<Hotels, Double> hotelPriceColumn;
+    private TableColumn<HotelsModel, Double> hotelPriceColumn;
 
     @FXML
-    private TableColumn<Hotels, Float> hotelRateColumn;
+    private TableColumn<HotelsModel, Float> hotelRateColumn;
 
     @FXML
-    private TableColumn<Hotels, HBox> hotelActionsColumn;
+    private TableColumn<HotelsModel, HBox> hotelActionsColumn;
 
     @FXML
     public void initialize() {
@@ -112,7 +112,7 @@ public class ListingsController {
         return buttons;
     }
 
-    private HBox createActionButtonsForHotel(Hotels hotel) {
+    private HBox createActionButtonsForHotel(HotelsModel hotel) {
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
         deleteButton.setOnAction(event -> deleteHotel(hotel));
@@ -144,7 +144,7 @@ public class ListingsController {
     }
 
 
-    private void openHotelEditor(Hotels hotel) {
+    private void openHotelEditor(HotelsModel hotel) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditHotel.fxml"));
             Stage stage = new Stage();
@@ -170,7 +170,7 @@ public class ListingsController {
         }
     }
 
-    private void deleteHotel(Hotels hotel) {
+    private void deleteHotel(HotelsModel hotel) {
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.delete(hotel);
@@ -203,19 +203,19 @@ public class ListingsController {
         hotelPriceColumn.setCellValueFactory(new PropertyValueFactory<>("hotelPrice"));
         hotelRateColumn.setCellValueFactory(new PropertyValueFactory<>("hotelRate"));
 
-        ObservableList<Hotels> hotelList = loadHotelsFromDatabase();
+        ObservableList<HotelsModel> hotelList = loadHotelsFromDatabase();
         hotelTable.setItems(hotelList);
     }
 
-    private ObservableList<Hotels> loadHotelsFromDatabase() {
-        ObservableList<Hotels> hotels = FXCollections.observableArrayList();
+    private ObservableList<HotelsModel> loadHotelsFromDatabase() {
+        ObservableList<HotelsModel> hotels = FXCollections.observableArrayList();
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Hotels> query = builder.createQuery(Hotels.class);
-            Root<Hotels> root = query.from(Hotels.class);
+            CriteriaQuery<HotelsModel> query = builder.createQuery(HotelsModel.class);
+            Root<HotelsModel> root = query.from(HotelsModel.class);
             query.select(root);
 
-            List<Hotels> hotelList = session.createQuery(query).getResultList();
+            List<HotelsModel> hotelList = session.createQuery(query).getResultList();
             hotels.addAll(hotelList);
         } catch (Exception e) {
             e.printStackTrace();

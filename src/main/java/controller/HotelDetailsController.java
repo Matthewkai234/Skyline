@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public class HotelDetailscontroller {
+public class HotelDetailsController {
     @FXML
     private Label hotelNameLabel;
     @FXML
@@ -45,10 +45,10 @@ public class HotelDetailscontroller {
     @FXML
     private void handleReserveButtonAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BookingHotel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientHotelBooking.fxml"));
             Parent newPage = loader.load();
 
-            BookingHotelcontroller page4Controller = loader.getController();
+            BookingHotelController page4Controller = loader.getController();
 
             page4Controller.setHotelName(this.hotelNameLabel.getText());
             page4Controller.setHotelLocation(this.hotelLocationLabel.getText());
@@ -68,7 +68,7 @@ public class HotelDetailscontroller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HotelsResults.fxml"));
             Parent newPage = loader.load();
 
-            HotelsResultscontroller page2Controller = loader.getController();
+            HotelsResultsController page2Controller = loader.getController();
 
             page2Controller.setLocation(this.Location);
             page2Controller.loadHotelData();

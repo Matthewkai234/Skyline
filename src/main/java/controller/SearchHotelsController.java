@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SearchHotelscontroller {
+public class SearchHotelsController {
     @FXML
     private TextField searchTextField;
 
@@ -27,7 +27,7 @@ public class SearchHotelscontroller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HotelsResults.fxml"));
             Parent root = loader.load();
-            HotelsResultscontroller controller = loader.getController();
+            HotelsResultsController controller = loader.getController();
             controller.setLocation(location);
 
             Stage newStage = new Stage();

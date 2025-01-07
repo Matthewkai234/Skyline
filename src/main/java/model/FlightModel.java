@@ -1,4 +1,4 @@
-package database;
+package model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 // Flight class
 @Entity
 @Table(name = "flight")
-public class Flight {
+public class FlightModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer flightId;

@@ -1,6 +1,6 @@
 package controller;
 import application.SkylineApplication;
-import database.Flight;
+import model.FlightModel;
 import database.services.SearshFlightDOAImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +35,7 @@ public class ReviewForFlightController {
         System.out.println(flightId);
 
 
-        Flight flight = searshFlightDOAImp.getFlight(flightId);
+        FlightModel flight = searshFlightDOAImp.getFlight(flightId);
         System.out.println(flight.getPrice());
 
         Airline.setText(flight.getAirline());
@@ -58,7 +58,7 @@ public class ReviewForFlightController {
     @FXML
     protected void handelBookBtn(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/ClientBooking.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(SkylineApplication.class.getResource("/view/ClientFlightBooking.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

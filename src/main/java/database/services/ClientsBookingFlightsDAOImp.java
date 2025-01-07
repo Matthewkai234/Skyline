@@ -1,22 +1,22 @@
 package database.services;
 
-import database.interfaces.clients_booking_flightsDOA;
-import model.clients_booking_flights;
+import database.interfaces.ClientsBookingFlightsDAO;
+import model.ClientsBookingFlightsModel;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
 
 import org.hibernate.Session;
 
 
-public class clients_booking_flightsDOAImp implements clients_booking_flightsDOA {
+public class ClientsBookingFlightsDAOImp implements ClientsBookingFlightsDAO {
 
     private final SessionFactory sessionFactory;
 
-    public clients_booking_flightsDOAImp() {
+    public ClientsBookingFlightsDAOImp() {
         HibernateUtil hibernateUtility = HibernateUtil.getInstance();
         sessionFactory = hibernateUtility.getSessionFactory();
     }
-    public void AddBooking(clients_booking_flights booking){
+    public void AddBooking(ClientsBookingFlightsModel booking){
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             session.save(booking);
