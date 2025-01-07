@@ -72,6 +72,7 @@ public class BookingsController implements Initializable {
     private ObservableList<FlightsBookingModel> flightsBookingsList;
     FlightsBookingDAOImp flightsBookingRepository = new FlightsBookingDAOImp();
     ObservableList<FlightsBookingModel> initialFlightsData() {
+
         var bookings = flightsBookingRepository.getAll();
         return FXCollections.<FlightsBookingModel>observableArrayList(bookings);
     }

@@ -50,6 +50,26 @@ public class BookingHotelcontroller {
 
     private final Map<String, String> countryCodeMap = new HashMap<>();
     private final ClientsHotelBookingsDAO bookingService = new ClientsHotelBookingDAOImp();
+
+    @FXML
+    private TextField hotelNameField;
+
+    @FXML
+    private TextField hotelLocationField;
+
+    public void setHotelName(String hotelName) {
+        if (hotelNameField != null) {
+            hotelNameField.setText(hotelName);
+        }
+    }
+    @FXML
+    public void setHotelLocation(String hotelLocation) {
+        if (hotelLocationField != null) {
+            hotelLocationField.setText(hotelLocation);
+        }
+    }
+
+
     public void initialize(){
         // Room type options
         ObservableList<String> roomTypes = FXCollections.observableArrayList("Single", "Double", "Suite", "Couples");
@@ -126,7 +146,8 @@ public class BookingHotelcontroller {
         String specialRequests = specialRequestsField.getText();
         String phoneNumber = phoneNumberField.getText();
         String countryCode = countryCodeCombo.getValue();
-
+        String hotelName = hotelNameField.getText();
+        String locationName = hotelLocationField.getText();
 
         if (clientFirstName.isEmpty() || clientLastName.isEmpty() || checkInDate == null || checkOutDate == null || numGuests.isEmpty()|| roomType == null || countryCode == null || phoneNumber.isEmpty()){
             messageLabel.setText("Please fill out all required fields ");
@@ -157,6 +178,8 @@ public class BookingHotelcontroller {
             booking.setSpecialRequests(specialRequests);
             booking.setPhoneNumber(phoneNumber);
             booking.setCountryCode(countryCode);
+            booking.setHotelName(hotelName);
+            booking.setLocation(locationName);
 
             // Save the booking information
             bookingService.saveBooking(booking);
@@ -180,8 +203,8 @@ public class BookingHotelcontroller {
         phoneNumberField.clear();
         countryCodeCombo.setValue(null);
         clearErrorMessages();
-
     }
+
     private void clearErrorMessages(){
         emailErrorLabel.setText("");
         phoneNumberErrorLabel.setText("");

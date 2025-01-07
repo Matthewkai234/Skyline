@@ -39,7 +39,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>ZZ
         </Button>
-        <Button fx:id="backButton" onAction="#handleBackButtonAction"     layoutX="3.0" layoutY="60.0" mnemonicParsing="false" style="-fx-background-color: 000000;" text="&lt;" textFill="#089cff">
+        <Button fx:id="backButton" layoutX="3.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleBackButtonAction" style="-fx-background-color: 000000;" text="&lt;" textFill="#089cff">
             <font>
                 <Font size="36.0" />
             </font>
@@ -51,11 +51,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton1" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -73,7 +68,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton1" layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -111,11 +106,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton2" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -133,7 +123,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton2" layoutX="40.0" layoutY="58.0" mnemonicParsing="false"  style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -169,11 +159,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton3" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -191,7 +176,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton3" layoutX="40.0" layoutY="58.0" mnemonicParsing="false"  style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -227,11 +212,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton4" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -249,7 +229,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton4" layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -285,11 +265,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton5" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -307,7 +282,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton5" layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -343,11 +318,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton6" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -365,7 +335,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton6" layoutX="40.0" layoutY="58.0" mnemonicParsing="false"  style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -401,11 +371,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton7" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -423,7 +388,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton7" layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -459,11 +424,6 @@
                         <Image url="@../images/images.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="moreButton8" layoutX="118.0" layoutY="138.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <AnchorPane layoutX="45.0" layoutY="199.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                     <children>
                         <Text layoutX="132.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For 1 night ">
@@ -481,7 +441,7 @@
                                 <Image url="@../images/360_F_109844239_A7MdQSDf4y1H80cfvHZuSa0zKBkZ68S7.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="40.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" style="-fx-background-color: #089cff;" text="Reserve" textFill="WHITE">
+                        <Button fx:id="moreButton8" layoutX="40.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: #089cff;" text="More" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>

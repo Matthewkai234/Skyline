@@ -41,6 +41,12 @@ public class clients_booking_hotels {
     @Column(name="country_code")
     private String countryCode;
 
+    @Column(name="hotel_name")
+    private String hotelName;
+
+    @Column(name="location")
+    private String location;
+
 
     public clients_booking_hotels() {
     }
@@ -131,6 +137,22 @@ public class clients_booking_hotels {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
