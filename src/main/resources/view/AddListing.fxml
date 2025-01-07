@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefWidth="300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddListingController">
+<AnchorPane prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddListingController">
     <children>
-        <VBox spacing="10.0" style="-fx-padding: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <VBox spacing="15.0" style="-fx-padding: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
             <children>
                 <!-- Header Label -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <children>
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #00affa;" text="Add New Listing" HBox.hgrow="ALWAYS" />
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #00affa;" text="Add New Listing" />
                     </children>
                 </HBox>
 
@@ -27,59 +21,57 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="listingTypeComboBox" promptText="Flight" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
+                <ComboBox fx:id="listingTypeComboBox" promptText="Select Listing Type" />
 
                 <!-- Fields Pane -->
                 <AnchorPane fx:id="fieldsPane" VBox.vgrow="ALWAYS">
                     <!-- Flight Fields -->
-                    <VBox fx:id="flightFieldsContainer" spacing="5.0" VBox.vgrow="ALWAYS">
-                        <Label fx:id="flightIdLabel" text="Flight ID" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="flightIdField" style="-fx-border-color: #00affa;" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="flightIdErrorLabel" style="-fx-text-fill: red;" />
+                    <VBox fx:id="flightFieldsContainer" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <Label text="Flight ID" />
+                        <TextField fx:id="flightIdField" promptText="Enter Flight ID" />
 
-                        <Label fx:id="airlineLabel" text="Airline" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="airlineField" style="-fx-border-color: #00affa;" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="airlineErrorLabel" style="-fx-text-fill: red;" />
+                        <Label text="Airline" />
+                        <TextField fx:id="airlineField" promptText="Enter Airline" />
 
-                        <Label fx:id="destinationLabel" text="Destination" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="destinationField" style="-fx-border-color: #00affa;" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="destinationErrorLabel" style="-fx-text-fill: red;" />
-                        <Label fx:id="departureDateLabel" text="Departure Date" HBox.hgrow="ALWAYS" />
-                        <DatePicker fx:id="departureDateField" style="-fx-border-color: #00affa;" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="departureDateErrorLabel" style="-fx-text-fill: red;" />
-                        <Label fx:id="arrivalDateLabel" text="Arrival Date" HBox.hgrow="ALWAYS" />
-                        <DatePicker fx:id="arrivalDateField" style="-fx-border-color: #00affa;" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="arrivalDateErrorLabel" style="-fx-text-fill: red;" />
+                        <Label text="Destination" />
+                        <TextField fx:id="destinationField" promptText="Enter Destination" />
+
+                        <Label text="Departure Date" />
+                        <DatePicker fx:id="departureDateField" promptText="Select Departure Date" />
+
+                        <Label text="Arrival Date" />
+                        <DatePicker fx:id="arrivalDateField" promptText="Select Arrival Date" />
+
+                        <Label text="Price" />
+                        <TextField fx:id="priceField" promptText="Enter Price" />
+
+                        <Label text="Takeoff Country" />
+                        <TextField fx:id="takeoffCountryField" promptText="Enter Takeoff Country" />
+
+                        <Label text="Landing Country" />
+                        <TextField fx:id="landingCountryField" promptText="Enter Landing Country" />
                     </VBox>
 
                     <!-- Hotel Fields -->
-                    <VBox fx:id="hotelFieldsContainer" spacing="5.0" visible="false" VBox.vgrow="ALWAYS">
-                        <Label fx:id="hotelIdLabel" text="Hotel ID" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="hotelIdField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
-                        <Label fx:id="hotelIdErrorLabel" style="-fx-text-fill: red;" />
+                    <VBox fx:id="hotelFieldsContainer" spacing="10.0" visible="false" VBox.vgrow="ALWAYS">
+                        <Label text="Hotel Name" />
+                        <TextField fx:id="nameField" promptText="Enter Hotel Name" />
 
-                        <Label fx:id="nameLabel" text="Name" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="nameField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
-                        <Label fx:id="nameErrorLabel" style="-fx-text-fill: red;" />
+                        <Label text="Location" />
+                        <TextField fx:id="locationField" promptText="Enter Location" />
 
-                        <Label fx:id="locationLabel" text="Location" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="locationField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
-                        <Label fx:id="locationErrorLabel" style="-fx-text-fill: red;" />
+                        <Label text="Price" />
+                        <TextField fx:id="hotelPriceField" promptText="Enter Price" />
 
-                        <Label fx:id="hotelPriceLabel" text="Price" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="hotelPriceField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
-                        <Label fx:id="hotelPriceErrorLabel" style="-fx-text-fill: red;" />
-
-                        <Label fx:id="hotelRateLabel" text="Rate" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="hotelRateField" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
-                        <Label fx:id="hotelRateErrorLabel" style="-fx-text-fill: red;" />
+                        <Label text="Rate" />
+                        <TextField fx:id="hotelRateField" promptText="Enter Rate" />
                     </VBox>
                 </AnchorPane>
 
                 <!-- Add Button -->
                 <HBox alignment="CENTER">
                     <children>
-                        <Button onAction="#addListing" prefHeight="26.0" style="-fx-background-color: #00affa; -fx-text-fill: white;" text="Add New List" HBox.hgrow="NEVER" VBox.vgrow="NEVER" />
+                        <Button onAction="#addListing" style="-fx-background-color: #00affa; -fx-text-fill: white;" text="Add Listing" />
                     </children>
                 </HBox>
             </children>
