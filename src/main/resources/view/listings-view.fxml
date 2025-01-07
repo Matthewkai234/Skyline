@@ -80,11 +80,10 @@
                                      HBox.hgrow="ALWAYS"/>
                               <TableView fx:id="flightTable" VBox.vgrow="ALWAYS">
                                  <columns>
-                                    <TableColumn fx:id="flightNumberColumn" text="Flight Number"/>
                                     <TableColumn fx:id="airlineColumn" text="Airline"/>
-                                    <TableColumn fx:id="destinationColumn" text="Destination"/>
-                                    <TableColumn fx:id="departureDateColumn" text="Departure Date"/>
-                                    <TableColumn fx:id="arrivalDateColumn" text="Arrival Date"/>
+                                    <TableColumn fx:id="takeoffCountryColumn" text="Takeoff Country"/>
+                                    <TableColumn fx:id="landingCountryColumn" text="Landing Country"/>
+                                    <TableColumn fx:id="priceColumn" text="Price"/>
                                     <TableColumn fx:id="flightActionsColumn" text="Actions"/>
                                  </columns>
                                  <columnResizePolicy>

@@ -22,7 +22,7 @@ public class AdminListingFlightModel {
     @Column(name = "departureDate")
     private String departureDate;
 
-    @Column(name = "arrivalDate")
+    @Column(name = "ArriveDate")
     private String arrivalDate;
 
     @Column(name = "TakeoffContry")
@@ -37,8 +37,6 @@ public class AdminListingFlightModel {
     @Column(name = "StartDate")
     private Date startDate;
 
-    @Column(name = "ArriveDate")
-    private Date arriveDate;
 
     @Transient
     private String actions;
@@ -57,11 +55,12 @@ public class AdminListingFlightModel {
         this.landingCountry = landingCountry;
         this.price = price;
         this.startDate = startDate;
-        this.arriveDate = arriveDate;
         this.actions = "Actions";
     }
 
     // Getters and Setters
+
+
     public int getFlightId() {
         return flightId;
     }
@@ -142,14 +141,6 @@ public class AdminListingFlightModel {
         this.startDate = startDate;
     }
 
-    public Date getArriveDate() {
-        return arriveDate;
-    }
-
-    public void setArriveDate(Date arriveDate) {
-        this.arriveDate = arriveDate;
-    }
-
     public String getActions() {
         return actions;
     }
@@ -171,7 +162,6 @@ public class AdminListingFlightModel {
                 ", landingCountry='" + landingCountry + '\'' +
                 ", price=" + price +
                 ", startDate=" + startDate +
-                ", arriveDate=" + arriveDate +
                 '}';
     }
 }
