@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,6 +18,11 @@ public class LoginController {
     @FXML
     private TextField emailField;
 
+    @FXML
+    private Label emailErrorLabel;
+
+    @FXML
+    private Label passwordErrorLabel;
 
     @FXML
     private PasswordField passwordField;
@@ -26,13 +32,31 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
+        // Clear previous error messages and styles
+        emailErrorLabel.setVisible(false);
+        passwordErrorLabel.setVisible(false);
+        emailField.setStyle("-fx-border-color: #009EE2; -fx-background-radius: 9; -fx-border-radius: 9;");
+        passwordField.setStyle("-fx-border-color: #009EE2; -fx-background-radius: 9; -fx-border-radius: 9;");
+
+        boolean hasError = false;
+
+        // Validate email
         if (email == null || email.trim().isEmpty()) {
-            showAlert("Error", "Please enter your email.");
-            return;
+            emailErrorLabel.setText("Email is required.");
+            emailErrorLabel.setVisible(true);
+            emailField.setStyle("-fx-border-color: red; -fx-background-radius: 9; -fx-border-radius: 9;");
+            hasError = true;
         }
 
+        // Validate password
         if (password == null || password.trim().isEmpty()) {
-            showAlert("Error", "Please enter your password.");
+            passwordErrorLabel.setText("Password is required.");
+            passwordErrorLabel.setVisible(true);
+            passwordField.setStyle("-fx-border-color: red; -fx-background-radius: 9; -fx-border-radius: 9;");
+            hasError = true;
+        }
+
+        if (hasError) {
             return;
         }
 
@@ -46,10 +70,14 @@ public class LoginController {
                 SessionManager.getInstance().setLoggedInUser(user);
                 loadPage("main.fxml");
             } else {
-                showAlert("Error", "Invalid Email or Password.");
+                passwordErrorLabel.setText("Invalid password.");
+                passwordErrorLabel.setVisible(true);
+                passwordField.setStyle("-fx-border-color: red; -fx-background-radius: 9; -fx-border-radius: 9;");
             }
         } else {
-            showAlert("Error", "Invalid Email or Password.");
+            emailErrorLabel.setText("Invalid email.");
+            emailErrorLabel.setVisible(true);
+            emailField.setStyle("-fx-border-color: red; -fx-background-radius: 9; -fx-border-radius: 9;");
         }
     }
 
