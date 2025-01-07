@@ -27,6 +27,8 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(Hotels.class);
         configuration.addAnnotatedClass(BookingHotels.class);
         configuration.addAnnotatedClass(clients_booking_hotels.class);
+        configuration.addAnnotatedClass(clients_booking_flights.class);
+
 
         // Add model classes here
         configuration.addAnnotatedClass(FlightsBookingModel.class);

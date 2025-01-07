@@ -9,11 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +24,6 @@ import java.util.List;
 public class FlightSearshResultTapleController {
     private String from;
     private String to;
-
 
     @FXML
     private TableColumn<Flight, Integer> FlightId;
@@ -36,12 +38,15 @@ public class FlightSearshResultTapleController {
     private TableColumn<Flight, Integer> price;
 
     @FXML
-    private TableColumn<Flight, String> Data;
+    private TableColumn<Flight, String> takeoffDate;
+    @FXML
+    private TableColumn<Flight, String> arrivalDate;
 
     @FXML
-    private TableColumn<Flight,String> AirLine;
+    private TableColumn<Flight, String> AirLine;
 
-    // filter
+    @FXML
+    private TableColumn<Flight, Void> bookColumn;
 
     @FXML
     private TextField StartPrice;
@@ -51,9 +56,6 @@ public class FlightSearshResultTapleController {
 
     @FXML
     private TextField Airline;
-
-
-
 
     @FXML
     private TableView<Flight> Table;
@@ -79,15 +81,79 @@ public class FlightSearshResultTapleController {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         AirLine.setCellValueFactory(new PropertyValueFactory<>("Airline"));
 
-        Data.setCellValueFactory(cellData -> {
+
+
+
+        takeoffDate.setCellValueFactory(cellData -> {
             if (cellData.getValue().getStartDate() != null) {
                 return new SimpleStringProperty(cellData.getValue().getStartDate().toString());
             } else {
                 return new SimpleStringProperty("N/A");
             }
         });
+        arrivalDate.setCellValueFactory(cellData -> {
+            if (cellData.getValue().getStartDate() != null) {
+                return new SimpleStringProperty(cellData.getValue().getArriveDate().toString());
+            } else {
+                return new SimpleStringProperty("N/A");
+            }
+        });
+
+
+
+        addBookButtonToTable();
     }
 
+    private void addBookButtonToTable() {
+        Callback<TableColumn<Flight, Void>, TableCell<Flight, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Flight, Void> call(final TableColumn<Flight, Void> param) {
+                return new TableCell<>() {
+                    private final Button btn = new Button("Book");
+
+                    {
+                        btn.setStyle("-fx-background-color: #00affa; -fx-text-fill: white; -fx-font-weight: bold;");
+                        btn.setOnAction(event -> {
+                            Flight flight = getTableView().getItems().get(getIndex());
+                            handleBooking(flight);
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                            setStyle("-fx-alignment: CENTER;");
+                        }
+                    }
+                };
+            }
+        };
+
+        bookColumn.setCellFactory(cellFactory);
+    }
+
+    private void handleBooking(Flight flight) {
+        if (flight != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ClientBooking.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+
+                FlightBookingController bookingController = fxmlLoader.getController();
+                bookingController.initFlightDetails(flight.getFlightId());
+
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Booking Page");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public void setFlightData(List<Flight> flights) {
         flightList.clear();
         flightList.addAll(flights);
@@ -123,45 +189,10 @@ public class FlightSearshResultTapleController {
                 e.printStackTrace();
             }
         }
-
     }
 
     @FXML
-    /*
-    void FilterData(){
-
-        System.out.println("Filter Data Func");
-
-        SearshFlightDOAImp searshFlightDOAImp = new SearshFlightDOAImp();
-
-        System.out.println("Filter Data Func");
-
-        String startPriceText = StartPrice.getText();
-        String endPriceText = EndPrice.getText();
-
-        String airline = Airline.getText();
-        Integer startPrice = (startPriceText.isEmpty()) ? null : Integer.parseInt(startPriceText);
-        Integer endPrice = (endPriceText.isEmpty()) ? null : Integer.parseInt(endPriceText);
-
-        System.out.println("Start Price: " + startPrice);
-        System.out.println("End Price: " + endPrice);
-        System.out.println("Airline: " + airline);
-
-        List<Flight> Felterdflights = searshFlightDOAImp.Filter("USA","Canada",startPrice, endPrice, airline);
-
-        System.out.println(Felterdflights.size());
-
-
-        flightList.clear();
-        flightList.addAll(Felterdflights);
-
-        Table.setItems(flightList);
-
-
-    }
-
-     */
-    void FilterData() {
+    void filterData() {
         System.out.println("Filter Data Func");
 
         SearshFlightDOAImp searshFlightDOAImp = new SearshFlightDOAImp();
@@ -179,7 +210,6 @@ public class FlightSearshResultTapleController {
         System.out.println("End Price: " + endPrice);
         System.out.println("Airline: " + airline);
 
-        // استخدم القيم المدخلة في البحث
         List<Flight> filteredFlights = searshFlightDOAImp.Filter(from, to, startPrice, endPrice, airline);
 
         flightList.clear();
@@ -187,5 +217,4 @@ public class FlightSearshResultTapleController {
 
         Table.setItems(flightList);
     }
-
 }
